@@ -1,0 +1,15 @@
+#sign-up-form {
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    padding: 10px;
+    color: white !important;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#profilePicImg{
+    width: 150px;
+}
