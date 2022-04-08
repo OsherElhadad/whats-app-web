@@ -1,15 +1,21 @@
-#sign-up-form {
-    align-items: center;
-    justify-items: center;
-    text-align: center;
-    padding: 10px;
-    color: white !important;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+#ProfilePicHolder{
+    width: 40%;
+    position: relative;
+    margin: auto;
 }
 
-#profilePicImg{
-    width: 150px;
+#SignUpProfilePicImg{
+    width: 100%;
+}
+
+.btn-circle.btn-sm {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    font-size: 8px;
+    text-align: center;
+
+    position: absolute;
+    right: 0;
 }

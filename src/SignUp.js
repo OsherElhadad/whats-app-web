@@ -1,78 +1,88 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import React, { useState } from "react";
 import LogIn from "./LogIn";
 import "./SignUp.css";
 
 function SignUp() {
   const [file, setFile] = useState();
+
   function fileUpload(e) {
-    console.log(e.target.files);
     setFile(URL.createObjectURL(e.target.files[0]));
   }
 
+  function removePicture(e) {
+    setFile();
+  }
+
+
   return (
-    <div id="page">
-      <form action="" id="sign-up-form">
-        <div class="container">
-          <div class="row align-items-start row justify-content-start">
-            <div class="row ">
-              <h1>Create Account</h1>
+    <section className="vh-100">
+      <div className="container py-5 h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100">
+          <div className="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div className="card bg-dark text-white">
+              <div className="card-body p-5 text-center">
+
+                <div className="mb-md-5 mt-md-4 pb-5">
+
+                  <h2 className="fw-bold mb-2 text-uppercase">Sign Up</h2>
+                  <h6>Please Fill Your Info!</h6>
+
+                  <br></br>
+
+                  <div className="form-outline form-white mb-3">
+                    <input id="SignUpUsername" type="text" placeholder="Enter Username" className="form-control form-control-lg" required autoFocus />
+                    <label for="SignUpUsername" className="form-label">Username</label>
+                  </div>
+
+                  <div className="form-outline form-white mb-3">
+                    <input id="SignUpPassword" type="password" placeholder="Enter Password" className="form-control form-control-lg" required />
+                    <label for="SignUpPassword" className="form-label">Password</label>
+                  </div>
+
+                  <div className="form-outline form-white mb-3">
+                    <input id="SignUpRePassword" type="password" placeholder="Re-Enter Password" className="form-control form-control-lg" required />
+                    <label for="SignUpRePassword" className="form-label">Verify Password</label>
+                  </div>
+
+                  <div className="form-outline form-white mb-3">
+                    <input id="SignUpNickname" type="text" placeholder="Enter Nickname" className="form-control form-control-lg" required />
+                    <label for="SignUpNickname" className="form-label">Nickname</label>
+                  </div>
+
+                  <div class="mb-3">
+
+                    {!file && (
+                      <div>
+                        <input id="SignUpProfilePic" class="form-control" type="file" onChange={fileUpload}></input>
+                        <label for="SignUpProfilePic" class="form-label" >Upload Profile Picture</label>
+                      </div>
+                    )}
+
+
+                    {file && (
+                      <div id="ProfilePicHolder">
+                        <img id="SignUpProfilePicImg" src={file}></img>
+                        <button class="btn btn-danger btn-circle btn-sm" onClick={removePicture}>X</button>
+                      </div>
+                    )}
+                  </div>
+
+                  <button className="btn btn-outline-light btn-lg px-5" type="submit">Sign-Up</button>
+                  
+                </div>
+
+                <div>
+                    <span className="mb-0">Already Signed? &nbsp;</span>
+                    <Link to="/" className="text-white-50 fw-bold">Log-In</Link>
+                  </div>
+
+              </div>
             </div>
-            <div class="row ">
-              <div class="col">
-                <label for="username" className="m-4">Username</label>
-              </div>
-              <div class="col">
-                <input id="username" className="m-4" type="text" placeholder="Enter Username" autoFocus required></input>
-              </div>
-            </div>
-            <br></br>
-            <div class="row">
-              <div class="col">
-                <label for="password" className="m-4">Password</label>
-              </div>
-              <div class="col">
-                <input id="password" className="m-4" type="password" placeholder="Enter Password" required></input>
-              </div>
-            </div>
-            <br></br>
-            <div class="row">
-              <div class="col">
-                <label for="repeatPassword" className="m-4">Verify Password</label>
-              </div>
-              <div class="col">
-                <input id="repeatPassword" className="m-4" type="password" placeholder="Enter Password Again" required></input>
-              </div>
-            </div>
-            <br></br>
-            <div class="row">
-              <div class="col">
-                <label for="displayName" className="m-4">Display Name</label>
-              </div>
-              <div class="col">
-                <input id="displayName" className="m-4" type="text" placeholder="Enter Nickname" required></input>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <label for="profilePic" className="m-4">Profile Picture</label>
-              </div>
-              <div class="col">
-                <input id="profilePic" className="m-4" type="file" onChange={fileUpload} required></input>
-              </div>
-              <div class="col">
-                <img id="profilePicImg" src={file}></img>
-              </div>
-            </div>
-            <br></br>
-            <span> Already signed-up?</span> <a href='/'>click here</a> <span> to log-in!</span>
-            <br></br>
-            <br></br>
-            <button type="button" class="btn btn-danger">Submit</button>
           </div>
         </div>
-      </form>
-    </div>
+      </div>
+    </section>
   );
 }
 
