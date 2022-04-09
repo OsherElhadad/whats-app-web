@@ -16,9 +16,9 @@ function SignUp() {
 
 
   return (
-    <section className="vh-100">
-      <div className="container py-5 h-100">
-        <div className="row d-flex justify-content-center align-items-center h-100">
+    <section className="vh-60">
+      <div className="container py-5 h-60">
+        <div className="row d-flex justify-content-center align-items-center h-60">
           <div className="col-12 col-md-8 col-lg-6 col-xl-5">
             <div className="card bg-dark text-white">
               <div className="card-body p-5 text-center">
@@ -30,24 +30,24 @@ function SignUp() {
 
                   <br></br>
 
-                  <div className="form-outline form-white mb-3">
-                    <input id="SignUpUsername" type="text" placeholder="Enter Username" className="form-control form-control-lg" required autoFocus />
-                    <label for="SignUpUsername" className="form-label">Username</label>
+                  <div className="form-floating form-white text-dark mb-4">
+                    <input id="SignUpUsername" type="text" placeholder="Enter Username" className="form-control" required autoFocus />
+                    <label htmlFor="SignUpUsername" className="form-label">Username</label>
                   </div>
 
-                  <div className="form-outline form-white mb-3">
-                    <input id="SignUpPassword" type="password" placeholder="Enter Password" className="form-control form-control-lg" required />
-                    <label for="SignUpPassword" className="form-label">Password</label>
+                  <div className="form-floating form-white text-dark mb-4">
+                    <input id="SignUpPassword" type="password" placeholder="Enter Password" className="form-control" required />
+                    <label htmlFor="SignUpPassword" className="form-label">Password</label>
                   </div>
 
-                  <div className="form-outline form-white mb-3">
-                    <input id="SignUpRePassword" type="password" placeholder="Re-Enter Password" className="form-control form-control-lg" required />
-                    <label for="SignUpRePassword" className="form-label">Verify Password</label>
+                  <div className="form-floating form-white text-dark mb-4">
+                    <input id="SignUpRePassword" type="password" placeholder="Re-Enter Password" className="form-control" required />
+                    <label htmlFor="SignUpRePassword" className="form-label">Verify Password</label>
                   </div>
 
-                  <div className="form-outline form-white mb-3">
-                    <input id="SignUpNickname" type="text" placeholder="Enter Nickname" className="form-control form-control-lg" required />
-                    <label for="SignUpNickname" className="form-label">Nickname</label>
+                  <div className="form-floating form-white text-dark mb-4">
+                    <input id="SignUpNickname" type="text" placeholder="Enter Nickname" className="form-control" required />
+                    <label htmlFor="SignUpNickname" className="form-label">Nickname</label>
                   </div>
 
                   <div class="mb-3">
@@ -55,7 +55,7 @@ function SignUp() {
                     {!file && (
                       <div>
                         <input id="SignUpProfilePic" class="form-control" type="file" onChange={fileUpload}></input>
-                        <label for="SignUpProfilePic" class="form-label" >Upload Profile Picture</label>
+                        <label htmlFor="SignUpProfilePic" >Profile Picture</label>
                       </div>
                     )}
 
