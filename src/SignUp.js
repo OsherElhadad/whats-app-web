@@ -1,7 +1,7 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
-import LogIn from "./LogIn";
 import "./SignUp.css";
+import $ from "jquery";
 
 function SignUp() {
   const [file, setFile] = useState();
@@ -14,6 +14,87 @@ function SignUp() {
     setFile();
   }
 
+  var users = [{ username: "admin", password: "a123" }]  
+
+  function validateSpaces(str, id, errorHtml){
+    if (/\s/.test(str)) {
+      document.getElementById(id).innerHTML = errorHtml;
+      return false;
+    }
+    return true;
+  }
+
+  function validateLength(str, len, id, errorHtml){
+    if (str.length < len) {
+      document.getElementById(id).innerHTML = errorHtml;
+      return false;
+    }
+    return true;
+  }
+
+  $(function () {
+    $("#signUpForm").on("submit", function (event) {
+      var name = $('#SignUpUsername').val();
+
+      if (!(validateSpaces(name, "userMessage", "Username must be one word!"))) {
+        return false;
+      }
+
+      if (!(validateLength(name, 2, "userMessage", "Username must contain at least two characters!"))) {
+        return false;
+      }
+
+      var pass = $('#SignUpPassword').val();
+
+      if (!(validateSpaces(pass, "userMessage", "Password must be one word!"))) {
+        return false;
+      }
+
+      if (!(validateLength(pass, 2, "userMessage", "Password must contain at least two characters!"))) {
+        return false;
+      }
+
+      if (!(/\d/.test(pass) && /[a-zA-Z]/.test(pass))) {
+        document.getElementById("userMessage").innerHTML = "Password must contain at least one number one letter characters!";
+        return false;
+      }
+
+      var rePass = $('#SignUpRePassword').val();
+
+      if (pass != rePass) {
+        document.getElementById("userMessage").innerHTML = "Passwords doesn't match. Please try again.";
+        return false;
+      }
+
+      var nick = $('#SignUpNickname').val();
+
+      if (!(validateLength(nick, 2, "userMessage", "Nickname must contain at least two characters!"))) {
+        return false;
+      }
+
+      document.getElementById("userMessage").innerHTML = "";
+      // document.getElementById("u").innerHTML = name;
+      // document.getElementById("p").innerHTML = pass;
+      // document.getElementById("rp").innerHTML = rePass;
+      // document.getElementById("n").innerHTML = nick;
+
+
+      var pic = $('#SignUpProfilePic').val();
+
+      users.push(
+        {
+          username: name,
+          password: pass,
+          nickname: nick,
+          picture: pic
+        }
+      );
+
+      console.log(users);
+
+      return false;
+    });
+  });
 
   return (
     <section className="vh-100">
@@ -30,52 +111,61 @@ function SignUp() {
 
                   <br></br>
 
-                  <div className="form-outline form-white mb-3">
-                    <input id="SignUpUsername" type="text" placeholder="Enter Username" className="form-control form-control-lg" required autoFocus />
-                    <label for="SignUpUsername" className="form-label">Username</label>
-                  </div>
+                  <form id="signUpForm">
+                    <div className="form-outline form-white mb-3">
+                      <input id="SignUpUsername" type="text" placeholder="Enter Username" className="form-control form-control-lg" autoFocus />
+                      <label for="SignUpUsername" className="form-label">Username</label>
+                    </div>
 
-                  <div className="form-outline form-white mb-3">
-                    <input id="SignUpPassword" type="password" placeholder="Enter Password" className="form-control form-control-lg" required />
-                    <label for="SignUpPassword" className="form-label">Password</label>
-                  </div>
+                    <div className="form-outline form-white mb-3">
+                      <input id="SignUpPassword" type="password" placeholder="Enter Password" className="form-control form-control-lg" />
+                      <label for="SignUpPassword" className="form-label">Password</label>
+                    </div>
 
-                  <div className="form-outline form-white mb-3">
-                    <input id="SignUpRePassword" type="password" placeholder="Re-Enter Password" className="form-control form-control-lg" required />
-                    <label for="SignUpRePassword" className="form-label">Verify Password</label>
-                  </div>
+                    <div className="form-outline form-white mb-3">
+                      <input id="SignUpRePassword" type="password" placeholder="Re-Enter Password" className="form-control form-control-lg" />
+                      <label for="SignUpRePassword" className="form-label">Verify Password</label>
+                    </div>
 
-                  <div className="form-outline form-white mb-3">
-                    <input id="SignUpNickname" type="text" placeholder="Enter Nickname" className="form-control form-control-lg" required />
-                    <label for="SignUpNickname" className="form-label">Nickname</label>
-                  </div>
+                    <div className="form-outline form-white mb-3">
+                      <input id="SignUpNickname" type="text" placeholder="Enter Nickname" className="form-control form-control-lg" />
+                      <label for="SignUpNickname" className="form-label">Nickname</label>
+                    </div>
 
-                  <div class="mb-3">
+                    <div class="mb-3">
 
-                    {!file && (
-                      <div>
-                        <input id="SignUpProfilePic" class="form-control" type="file" onChange={fileUpload}></input>
-                        <label for="SignUpProfilePic" class="form-label" >Upload Profile Picture</label>
-                      </div>
-                    )}
+                      {!file && (
+                        <div>
+                          <input id="SignUpProfilePic" class="form-control" type="file" onChange={fileUpload} /*required*/ ></input>
+                          <label for="SignUpProfilePic" class="form-label" >Upload Profile Picture</label>
+                        </div>
+                      )}
 
 
-                    {file && (
-                      <div id="ProfilePicHolder">
-                        <img id="SignUpProfilePicImg" src={file}></img>
-                        <button class="btn btn-danger btn-circle btn-sm" onClick={removePicture}>X</button>
-                      </div>
-                    )}
-                  </div>
+                      {file && (
+                        <div id="ProfilePicHolder">
+                          <img id="SignUpProfilePicImg" src={file}></img>
+                          <button id="closeBtn" class="btn btn-danger btn-circle btn-sm" onClick={removePicture}>X</button>
+                        </div>
+                      )}
+                    </div>
+                    <button className="btn btn-outline-light btn-lg px-5" type="submit" >Sign-Up</button>
+                  </form>
+                  <br></br>
 
-                  <button className="btn btn-outline-light btn-lg px-5" type="submit">Sign-Up</button>
-                  
+                  <p id="userMessage" class="text-danger fw-bold"></p>
+                    
+                  {/* <p id="u"></p>
+                  <p id="p"></p>
+                  <p id="rp"></p>
+                  <p id="n"></p> */}
+
                 </div>
 
                 <div>
-                    <span className="mb-0">Already Signed? &nbsp;</span>
-                    <Link to="/" className="text-white-50 fw-bold">Log-In</Link>
-                  </div>
+                  <span className="mb-0">Already Signed? &nbsp;</span>
+                  <Link to="/" className="text-white-50 fw-bold">Log-In</Link>
+                </div>
 
               </div>
             </div>
