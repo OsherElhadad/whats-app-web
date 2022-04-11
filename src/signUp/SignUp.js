@@ -14,7 +14,7 @@ function SignUp() {
     setFile();
   }
 
-  var users = [];
+  var users = [{username: "admin", password: "a123", nickname: "The Admin"}];
 
   function validateSpaces(str, errorId, errorHtml, parentId) {
     if (/\s/.test(str)) {
@@ -56,58 +56,58 @@ function SignUp() {
   const name = useRef(null);
 
   function validateUsername() {
-      if ((!(validateSpaces(name.current.value, "usernameInvalidFeedback", "Username must be one word!", "SignUpUsername")))
+    if ((!(validateSpaces(name.current.value, "usernameInvalidFeedback", "Username must be one word!", "SignUpUsername")))
       || (!(validateLength(name.current.value, 2, "usernameInvalidFeedback", "Username must contain at least two characters!", "SignUpUsername")))) {
-        return false;
-      }
-      return true;
+      return false;
+    }
+    return true;
   }
 
   const pass = useRef(null);
 
   function validatePassword() {
-      if ((!(validateSpaces(pass.current.value, "passwordInvalidFeedback", "Password must be one word!", "SignUpPassword")))
+    if ((!(validateSpaces(pass.current.value, "passwordInvalidFeedback", "Password must be one word!", "SignUpPassword")))
       || (!(validateLength(pass.current.value, 2, "passwordInvalidFeedback", "Password must contain at least two characters!", "SignUpPassword")))
-      || (!(validateNumberAndLetter(pass.current.value,"passwordInvalidFeedback","Password must contain a number and a letter!", "SignUpPassword")))) {
-        return false;
-      }
-      return true;
+      || (!(validateNumberAndLetter(pass.current.value, "passwordInvalidFeedback", "Password must contain a number and a letter!", "SignUpPassword")))) {
+      return false;
+    }
+    return true;
   }
 
   const rePass = useRef(null);
 
   function validateRepeatedPassword() {
-      if (pass.current.value != rePass.current.value) {
-        document.getElementById("rePasswordInvalidFeedback").innerHTML = "Passwords doesn't match. Please try again.";
-        document.getElementById("SignUpRePassword").classList.add('is-invalid');
-        document.getElementById("SignUpRePassword").classList.remove('is-valid');
-        return false;
-      }
-      document.getElementById("SignUpRePassword").classList.remove('is-invalid');
-      document.getElementById("SignUpRePassword").classList.add('is-valid');
-      return true;
+    if (pass.current.value != rePass.current.value) {
+      document.getElementById("rePasswordInvalidFeedback").innerHTML = "Passwords doesn't match. Please try again.";
+      document.getElementById("SignUpRePassword").classList.add('is-invalid');
+      document.getElementById("SignUpRePassword").classList.remove('is-valid');
+      return false;
+    }
+    document.getElementById("SignUpRePassword").classList.remove('is-invalid');
+    document.getElementById("SignUpRePassword").classList.add('is-valid');
+    return true;
   }
 
   const nick = useRef(null);
 
   function validateNickname() {
-      if (!(validateLength(nick.current.value, 2, "nicknameInvalidFeedback", "Username must contain at least two characters!", "SignUpNickname"))) {
-        return false;
-      }
-      return true;
+    if (!(validateLength(nick.current.value, 2, "nicknameInvalidFeedback", "Username must contain at least two characters!", "SignUpNickname"))) {
+      return false;
+    }
+    return true;
   }
 
   const pic = useRef(null);
 
-  useEffect( ()=> {
+  useEffect(() => {
     document.getElementById("SignUpUsername").addEventListener("keyup", function (event) { validateUsername(); })
     document.getElementById("SignUpPassword").addEventListener("keyup", function (event) { validatePassword(); })
-    document.getElementById("SignUpRePassword").addEventListener("keyup", function (event) { validateRepeatedPassword();})
+    document.getElementById("SignUpRePassword").addEventListener("keyup", function (event) { validateRepeatedPassword(); })
     document.getElementById("SignUpNickname").addEventListener("keyup", function (event) { validateNickname(); })
   }, [])
 
   $("#signUpForm").on("submit", function (event) {
-    if(validateUsername() && validatePassword() && validateRepeatedPassword() && validateNickname()) {
+    if (validateUsername() && validatePassword() && validateRepeatedPassword() && validateNickname()) {
       users.push(
         {
           username: name.current.value,
@@ -117,6 +117,7 @@ function SignUp() {
         }
       );
     }
+    console.log(users);
     return false;
   });
 
@@ -135,50 +136,50 @@ function SignUp() {
 
                   <br></br>
 
-                  <form id="signUpForm" novalidate>
+                  <form id="signUpForm" noValidate>
                     <div className="form-floating form-white text-dark mb-4">
-                      <input ref={name} id="SignUpUsername" type="text" placeholder="Enter Username" className="form-control" required autoFocus />
+                      <input ref={name} id="SignUpUsername" type="text" placeholder="Enter Username" className="form-control" autoFocus />
                       <label htmlFor="SignUpUsername" className="form-label">Username</label>
-                      <div class="valid-feedback">
+                      <div className="valid-feedback">
                         Looks good!
                       </div>
-                      <div id="usernameInvalidFeedback" class="invalid-feedback"></div>
+                      <div id="usernameInvalidFeedback" className="invalid-feedback"></div>
                     </div>
 
                     <div className="form-floating form-white text-dark mb-4">
                       <input ref={pass} id="SignUpPassword" type="password" placeholder="Enter Password" className="form-control" />
                       <label htmlFor="SignUpPassword" className="form-label">Password</label>
-                      <div class="valid-feedback">
+                      <div className="valid-feedback">
                         Looks good!
                       </div>
-                      <div id="passwordInvalidFeedback" class="invalid-feedback"></div>
+                      <div id="passwordInvalidFeedback" className="invalid-feedback"></div>
                     </div>
 
                     <div className="form-floating form-white text-dark mb-4">
                       <input ref={rePass} id="SignUpRePassword" type="password" placeholder="Re-Enter Password" className="form-control" />
                       <label htmlFor="SignUpRePassword" className="form-label">Verify Password</label>
-                      <div class="valid-feedback">
+                      <div className="valid-feedback">
                         Looks good!
                       </div>
-                      <div id="rePasswordInvalidFeedback" class="invalid-feedback"></div>
+                      <div id="rePasswordInvalidFeedback" className="invalid-feedback"></div>
                     </div>
 
                     <div className="form-floating form-white text-dark mb-4">
                       <input ref={nick} id="SignUpNickname" type="text" placeholder="Enter Nickname" className="form-control" />
                       <label htmlFor="SignUpNickname" className="form-label">Nickname</label>
-                      <div class="valid-feedback">
+                      <div className="valid-feedback">
                         Looks good!
                       </div>
-                      <div id="nicknameInvalidFeedback" class="invalid-feedback">
+                      <div id="nicknameInvalidFeedback" className="invalid-feedback">
                         Please choose a password.
                       </div>
                     </div>
 
-                    <div class="mb-3">
+                    <div className="mb-3">
 
                       {!file && (
                         <div>
-                          <input ref={pic} id="SignUpProfilePic" class="form-control" type="file" onChange={fileUpload}></input>
+                          <input ref={pic} id="SignUpProfilePic" className="form-control" type="file" onChange={fileUpload}></input>
                           <label htmlFor="SignUpProfilePic" >Profile Picture</label>
                         </div>
                       )}
@@ -187,7 +188,7 @@ function SignUp() {
                       {file && (
                         <div id="ProfilePicHolder">
                           <img id="SignUpProfilePicImg" src={file}></img>
-                          <button id="closeBtn" class="btn btn-danger btn-circle btn-sm" onClick={removePicture}>X</button>
+                          <button id="closeBtn" className="btn btn-danger btn-circle btn-sm" onClick={removePicture}>X</button>
                         </div>
                       )}
                     </div>
