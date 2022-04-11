@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./SignUp.css";
 import $ from "jquery";
 
@@ -99,12 +99,12 @@ function SignUp() {
 
   const pic = useRef(null);
 
-  $(function () {
+  useEffect( ()=> {
     document.getElementById("SignUpUsername").addEventListener("keyup", function (event) { validateUsername(); })
     document.getElementById("SignUpPassword").addEventListener("keyup", function (event) { validatePassword(); })
     document.getElementById("SignUpRePassword").addEventListener("keyup", function (event) { validateRepeatedPassword();})
     document.getElementById("SignUpNickname").addEventListener("keyup", function (event) { validateNickname(); })
-  });
+  }, [])
 
   $("#signUpForm").on("submit", function (event) {
     if(validateUsername() && validatePassword() && validateRepeatedPassword() && validateNickname()) {
