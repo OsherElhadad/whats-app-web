@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import {users} from "../Users";
-import $ from "jquery";
 import LogInForm from "./LogInForm";
+import $ from "jquery"
 import LogInSuccess from "./LogInFailure";
 
 function LogIn() {
@@ -25,7 +25,7 @@ function LogIn() {
       console.log(name);
       console.log(pass);
 
-      if (users.some(user => user["username"] == name.current.value && user["password"] == pass.current.value)) {
+      if (users.some(user => user["username"] === name.current.value && user["password"] === pass.current.value)) {
         // TODO - go to chat
       } else {
         showModal();
