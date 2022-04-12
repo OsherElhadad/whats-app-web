@@ -4,7 +4,7 @@ import SignUpForm from "./SignUpForm";
 import SignUpSuccess from "./SignUpSuccess";
 import { validateUsername, validatePassword, validateRepeatedPassword, validateNickname } from "./Validation";
 import { users } from "../Users";
-import $ from "jquery";
+import $ from "jquery"
 
 function SignUp() {
   const [file, setFile] = useState();
