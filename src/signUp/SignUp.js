@@ -53,7 +53,7 @@ function SignUp() {
   }
 
 
-  const name = useRef(null);
+  const name = useRef("");
 
   function validateUsername() {
     if ((!(validateSpaces(name.current.value, "usernameInvalidFeedback", "Username must be one word!", "SignUpUsername")))
@@ -63,9 +63,10 @@ function SignUp() {
     return true;
   }
 
-  const pass = useRef(null);
+  const pass = useRef("");
 
   function validatePassword() {
+    validateRepeatedPassword();
     if ((!(validateSpaces(pass.current.value, "passwordInvalidFeedback", "Password must be one word!", "SignUpPassword")))
       || (!(validateLength(pass.current.value, 2, "passwordInvalidFeedback", "Password must contain at least two characters!", "SignUpPassword")))
       || (!(validateNumberAndLetter(pass.current.value, "passwordInvalidFeedback", "Password must contain a number and a letter!", "SignUpPassword")))) {
@@ -74,7 +75,7 @@ function SignUp() {
     return true;
   }
 
-  const rePass = useRef(null);
+  const rePass = useRef("");
 
   function validateRepeatedPassword() {
     if (pass.current.value != rePass.current.value) {
@@ -88,7 +89,7 @@ function SignUp() {
     return true;
   }
 
-  const nick = useRef(null);
+  const nick = useRef("");
 
   function validateNickname() {
     if (!(validateLength(nick.current.value, 2, "nicknameInvalidFeedback", "Username must contain at least two characters!", "SignUpNickname"))) {
@@ -106,20 +107,24 @@ function SignUp() {
     document.getElementById("SignUpNickname").addEventListener("keyup", function (event) { validateNickname(); })
   }, [])
 
-  $("#signUpForm").on("submit", function (event) {
-    if (validateUsername() && validatePassword() && validateRepeatedPassword() && validateNickname()) {
-      users.push(
-        {
-          username: name.current.value,
-          password: pass.current.value,
-          nickname: nick.current.value,
-          picture: pic.current.value
-        }
-      );
-    }
-    console.log(users);
-    return false;
-  });
+
+  $(document).ready(function() {
+    $("#signUpForm").on("submit", function (event) {
+      event.preventDefault();
+      if (validateUsername() && validatePassword() && validateRepeatedPassword() && validateNickname()) {
+        users.push(
+          {
+            username: name.current.value,
+            password: pass.current.value,
+            nickname: nick.current.value,
+            picture: pic.current.value
+          }
+        );
+      }
+      console.log(users);
+      return false;
+    });
+});
 
   return (
     <section className="vh-60">
@@ -192,7 +197,7 @@ function SignUp() {
                         </div>
                       )}
                     </div>
-                    <button className="btn btn-outline-light btn-lg px-5" type="submit" >Sign-Up</button>
+                    <button className="btn btn-outline-light btn-lg px-5" type="submit">Sign-Up</button>
                   </form>
                   <br></br>
 
