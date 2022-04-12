@@ -1,8 +1,8 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LogIn from './LogIn';
+import { BrowserRouter, Route, Routes, Switch } from "react-router-dom";
+import LogIn from './logIn/LogIn';
+import SignUp from './signUp/SignUpMain';
 import Chat from "./Chat";
-import SignUp from './SignUp';
 
 function App() {
   return (
