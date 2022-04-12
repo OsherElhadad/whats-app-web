@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import SignUp from "./SignUp";
 
 function LogIn() {
   return (
