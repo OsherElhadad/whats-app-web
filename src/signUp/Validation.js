@@ -7,12 +7,12 @@ export const validateUsername = (name)=> {
 }
 
 export const validatePassword = (pass, rePass)=> {
-    validateRepeatedPassword(pass, rePass);
     if ((!(validateSpaces(pass, "passwordInvalidFeedback", "Password must be one word!", "SignUpPassword")))
         || (!(validateLength(pass, 2, "passwordInvalidFeedback", "Password must contain at least two characters!", "SignUpPassword")))
         || (!(validateNumberAndLetter(pass, "passwordInvalidFeedback", "Password must contain a number and a letter!", "SignUpPassword")))) {
         return false;
     }
+    validateRepeatedPassword(pass, rePass);
     return true;
 }
 
@@ -29,7 +29,7 @@ export const validateRepeatedPassword = (pass, rePass)=> {
 }
 
 export const validateNickname = (nick)=> {
-    if (!(validateLength(nick, 2, "nicknameInvalidFeedback", "Username must contain at least two characters!", "SignUpNickname"))) {
+    if (!(validateLength(nick, 2, "nicknameInvalidFeedback", "Nickname must contain at least two characters!", "SignUpNickname"))) {
         return false;
     }
     return true;
@@ -48,7 +48,8 @@ export const validateSpaces = (str, errorId, errorHtml, parentId)=> {
 }
 
 export const validateLength = (str, len, errorId, errorHtml, parentId)=> {
-    if (str && str.length < len) {
+    console.log(str);
+    if ((str && str.length < len) || (str =="")) {
         document.getElementById(errorId).innerHTML = errorHtml;
         document.getElementById(parentId).classList.remove('is-valid');
         document.getElementById(parentId).classList.add('is-invalid');
