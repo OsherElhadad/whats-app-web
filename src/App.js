@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes, Switch } from "react-router-dom";
 import LogIn from './logIn/LogIn';
 import SignUp from './signUp/SignUpMain';
-import Chat from "./Chat";
+import Chat from "./chatPage/Chat";
 
 function App() {
   return (

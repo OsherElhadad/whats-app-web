@@ -5,6 +5,8 @@
 
 .contacts_list {
     background-color: rgba(0, 0, 0, 0.4) !important;
+    height: 75%;
+    overflow:auto;
 }
 
 .list_group_items {
@@ -63,7 +65,25 @@
     outline: 0px !important;
 }
 
-.attach_btn {
+.attach_video_btn {
+    border-radius: 0 0 0 0 !important;
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    height: 60px !important;
+    border: 0 !important;
+    color: white !important;
+    cursor: pointer;
+}
+
+.attach_img_btn {
+    border-radius: 0 0 0 0 !important;
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    height: 60px !important;
+    border: 0 !important;
+    color: white !important;
+    cursor: pointer;
+}
+
+.record_btn {
     border-radius: 15px 0 0 15px !important;
     background-color: rgba(0, 0, 0, 0.3) !important;
     height: 60px !important;
@@ -73,6 +93,15 @@
 }
 
 .send_btn {
+    border-radius: 0 15px 15px 0 !important;
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    height: 60px !important;
+    border: 0 !important;
+    color: white !important;
+    cursor: pointer;
+}
+
+.add_contact_btn {
     border-radius: 0 15px 15px 0 !important;
     background-color: rgba(0, 0, 0, 0.3) !important;
     height: 60px !important;
@@ -130,6 +159,8 @@
     background-color: #c2ccc4;
     padding: 10px;
     position: relative;
+    max-width: 70%;
+    overflow-wrap: break-word;
 }
 
 .msg_cotainer_send {
@@ -140,6 +171,8 @@
     background-color: #78e08f;
     padding: 10px;
     position: relative;
+    max-width: 70%;
+    overflow-wrap: break-word;
 }
 
 .msg_time {
