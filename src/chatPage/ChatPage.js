@@ -1,4 +1,4 @@
-import { Tab, ListGroup, Col, Row} from "react-bootstrap"
+import { Tab, ListGroup, Col, Row } from "react-bootstrap"
 import "./Chat.css"
 import Contact from "./Contact"
 import { users, usersChats } from "../Users";
@@ -7,31 +7,40 @@ import ChatWindow from "./chatWindow/ChatWindow"
 
 
 function Chat(props) {
-    const contactList = usersChats.get(props.user).map((chat, key) => {
-        return (
-            <Contact image={users.get(chat.chatWith).picture}
-                link={chat.chatWith}
-                username={users.get(chat.chatWith).nickname}
-                lastTime="TODO"
-                lastMsg={chat.messages[chat.messages.length - 1].msg}
-                key={key}>
-            </Contact>
-        );
-    })
 
-    const chatWindows = usersChats.get(props.user).map((chat, key) => {
-        return (
-            <ChatWindow 
-                link={chat.chatWith}
-                image={users.get(chat.chatWith).picture}
-                nickname={users.get(chat.chatWith).nickname}
-                user={chat.chatWith}
-                lastActive="TODO - LastTimeActive"
-                myUser={props.user}
-                key={key}>
-            </ChatWindow>
-        );
-    })
+    var contactList;
+
+    if (usersChats.get(props.user)) {
+        contactList = usersChats.get(props.user).map((chat, key) => {
+            return (
+                <Contact image={users.get(chat.chatWith).picture}
+                    link={chat.chatWith}
+                    username={users.get(chat.chatWith).nickname}
+                    lastTime="TODO"
+                    lastMsg={chat.messages[chat.messages.length - 1].msg}
+                    key={key}>
+                </Contact>
+            );
+        })
+    }
+
+    var chatWindows;
+
+    if (usersChats.get(props.user)) {
+        chatWindows = usersChats.get(props.user).map((chat, key) => {
+            return (
+                <ChatWindow
+                    link={chat.chatWith}
+                    image={users.get(chat.chatWith).picture}
+                    nickname={users.get(chat.chatWith).nickname}
+                    user={chat.chatWith}
+                    lastActive="TODO - LastTimeActive"
+                    myUser={props.user}
+                    key={key}>
+                </ChatWindow>
+            );
+        })
+    }
 
     return (
         <div>
