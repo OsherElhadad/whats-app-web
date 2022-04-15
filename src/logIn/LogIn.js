@@ -23,10 +23,6 @@ function LogIn(props) {
   $(document).ready(function () {
     $("#logInForm").on("submit", function (event) {
       event.preventDefault();
-      console.log(users);
-      
-      console.log(name);
-      console.log(pass);
 
       if (users.get(name.current.value) && users.get(name.current.value).password == pass.current.value) {
           props.setUserName(name.current.value);
@@ -36,8 +32,6 @@ function LogIn(props) {
       }
     });
   });
-
-
 
   return (
     <div>

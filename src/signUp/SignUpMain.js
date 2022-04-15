@@ -48,7 +48,6 @@ function SignUp() {
         );
         showModal();
       }
-      console.log(users);
       return false;
     });
   });

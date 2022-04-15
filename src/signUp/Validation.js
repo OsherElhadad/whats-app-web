@@ -10,8 +10,6 @@ export const validateUsername = (name) => {
 }
 
 export const validatePassword = (pass, rePass) => {
-    console.log("password in reciver: " + pass);
-      console.log("repeatedPassword in reciver: " + rePass);
     if ((!(validateSpaces(pass, "passwordInvalidFeedback", "Password must be one word!", "SignUpPassword")))
         || (!(validateLength(pass, 2, "passwordInvalidFeedback", "Password must contain at least two characters!", "SignUpPassword")))
         || (!(validateNumberAndLetter(pass, "passwordInvalidFeedback", "Password must contain a number and a letter!", "SignUpPassword")))) {
