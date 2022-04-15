@@ -3,8 +3,10 @@ import {users} from "../Users";
 import LogInForm from "./LogInForm";
 import $ from "jquery"
 import LogInSuccess from "./LogInFailure";
+import { useNavigate } from "react-router-dom";
 
-function LogIn() {
+
+function LogIn(props) {
   const [isOpen, setIsOpen] = useState(false);
   const showModal = () => {
     setIsOpen(true);
@@ -16,6 +18,7 @@ function LogIn() {
   const name = useRef("");
   const pass = useRef("");
 
+  let navigate = useNavigate();
 
   $(document).ready(function () {
     $("#logInForm").on("submit", function (event) {
@@ -25,8 +28,9 @@ function LogIn() {
       console.log(name);
       console.log(pass);
 
-      if (users.some(user => user["username"] === name.current.value && user["password"] === pass.current.value)) {
-        // TODO - go to chat
+      if (users.get(name.current.value) && users.get(name.current.value).password == pass.current.value) {
+          props.setUserName(name.current.value);
+          navigate("/chat", { replace: true });
       } else {
         showModal();
       }

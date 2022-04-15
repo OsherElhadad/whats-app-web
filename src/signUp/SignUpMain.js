@@ -4,17 +4,17 @@ import SignUpForm from "./SignUpForm";
 import SignUpSuccess from "./SignUpSuccess";
 import { validateUsername, validatePassword, validateRepeatedPassword, validateNickname } from "./Validation";
 import { users } from "../Users";
-import $ from "jquery"
+import $ from "jquery";
 
 function SignUp() {
   const [file, setFile] = useState();
   function fileUpload(e) {
     setFile(URL.createObjectURL(e.target.files[0]));
+    pic = e.target.files[0];
   }
   function removePicture(e) {
     setFile();
   }
-
 
   const [isOpen, setIsOpen] = useState(false);
   const showModal = () => {
@@ -29,7 +29,7 @@ function SignUp() {
   const pass = useRef("");
   const rePass = useRef("");
   const nick = useRef("");
-  const pic = useRef(null);
+  var pic = null; 
 
 
   $(document).ready(function () {
@@ -43,12 +43,11 @@ function SignUp() {
             username: name.current.value,
             password: pass.current.value,
             nickname: nick.current.value,
-            picture: pic.current.value
+            picture: pic
           }
         );
         showModal();
       }
-      
       console.log(users);
       return false;
     });
@@ -64,7 +63,7 @@ function SignUp() {
   return (
     <div>
       <SignUpSuccess isOpen={isOpen} hideModal={hideModal} nick={nick.current.value}></SignUpSuccess>
-      <SignUpForm name={name} pass={pass} rePass={rePass} nick={nick} pic={pic}
+      <SignUpForm name={name} pass={pass} rePass={rePass} nick={nick}
         file={file} fileUpload={fileUpload} removePicture={removePicture}></SignUpForm>
     </div>
   );

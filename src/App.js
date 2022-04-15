@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Routes, Switch } from "react-router-dom";
 import LogIn from './logIn/LogIn';
 import SignUp from './signUp/SignUpMain';
-import Chat from "./chatPage/Chat";
+import ChatPage from "./chatPage/ChatPage";
 
 function App() {
+    const [username , setUsername] = useState("");
+
+    function setUserName(props){
+        setUserName = props;
+    }
+
   return (
     <div>
    <BrowserRouter>
        <Routes>
-         <Route path = "/" element={<LogIn/>}>  </Route>
+         <Route path = "/" element={<LogIn setUserName={setUserName}/>}>  </Route>
          <Route path = "/signup" element={<SignUp/>}>  </Route>
-         <Route path = "/chat" element={<Chat/>}>  </Route>
+         <Route path = "/chat" element={<ChatPage user={username} />}>  </Route>
        </Routes>
    </BrowserRouter>
    </div>
