@@ -1,6 +1,9 @@
 import { useRef } from "react";
-import { getUserChats , addMessage } from "../../UsersChatDB";
+import { OverlayTrigger, Popover } from "react-bootstrap"
+import { getUserChats, addMessage } from "../../UsersChatDB";
 import $ from "jquery";
+import Recorder from "./Recorder";
+import "./SendMsgBar.css"
 
 function SendMsgBar(props) {
 
@@ -20,11 +23,22 @@ function SendMsgBar(props) {
         })
     })
 
+    const popover = (
+        <Popover id="popover-basic">
+          <Popover.Header as="h1" className="popover-header">Record</Popover.Header>
+          <Popover.Body>
+            <Recorder></Recorder>
+          </Popover.Body>
+        </Popover>
+      );
+
     return (
         <div className="card-footer">
             <div className="input-group">
                 <div className="input-group-append">
+                    <OverlayTrigger trigger="click" placement="top" overlay={popover}>
                     <button type="button" className="btn btn-outline-secondary input-group-text record_btn"><i className="bi bi-mic"></i></button>
+                    </OverlayTrigger>
                 </div>
                 <div className="input-group-append">
                     <button type="button" className="btn btn-outline-secondary input-group-text attach_img_btn"><i className="bi bi-image"></i></button>
