@@ -19,7 +19,10 @@ function SendMsgBar(props) {
             props.refreshChat();
             textMsg.current.value = "";
         })
-
+        $("#msg_input").on("propertychange change keyup paste input", function () {
+            $("#".concat(btnId)).prop('disabled', $("#msg_input").val() == "");
+            console.log($("#msg_input").val());
+        })
     })
 
     const selectPic = () => {
@@ -46,19 +49,19 @@ function SendMsgBar(props) {
 
     const popover = (
         <Popover id="popover-basic">
-          <Popover.Header as="h1" className="popover-header">Record</Popover.Header>
-          <Popover.Body>
-            <Recorder></Recorder>
-          </Popover.Body>
+            <Popover.Header as="h1" className="popover-header">Record</Popover.Header>
+            <Popover.Body>
+                <Recorder></Recorder>
+            </Popover.Body>
         </Popover>
-      );
+    );
 
     return (
         <div className="card-footer">
             <div className="input-group">
                 <div className="input-group-append">
                     <OverlayTrigger trigger="click" placement="top" overlay={popover}>
-                    <button type="button" className="btn btn-outline-secondary input-group-text record_btn"><i className="bi bi-mic"></i></button>
+                        <button type="button" className="btn btn-outline-secondary input-group-text record_btn"><i className="bi bi-mic"></i></button>
                     </OverlayTrigger>
                 </div>
 
@@ -70,9 +73,9 @@ function SendMsgBar(props) {
                     <button id={btnId.concat("-vid-btn")} type="button" onClick={selectVideo} className="btn btn-outline-secondary input-group-text attach_video_btn"><i className="bi bi-camera-reels"></i></button>
                     <input id={btnId.concat("-vid-input")} onChange={sendVideo} type="file" accept="video/*" hidden ></input>
                 </div>
-                <input className="type_msg form-control" ref={textMsg} placeholder="Type your message..."></input>
+                <input className="type_msg form-control" ref={textMsg} placeholder="Type your message..." id="msg_input" ></input>
                 <div className="input-group-append">
-                    <button id={btnId.concat("-msg")} type="button" className="btn btn-outline-secondary input-group-text send_btn" ><i className="bi bi-envelope"></i></button>
+                    <button id={btnId.concat("-msg")} type="button" className="btn btn-outline-secondary input-group-text send_btn" disabled={true} ><i className="bi bi-envelope"></i></button>
                 </div>
             </div>
         </div>
