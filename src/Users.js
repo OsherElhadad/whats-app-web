@@ -26,6 +26,11 @@ users.set("osh",
 
 
 
+function getUserPicture(user) {
+    return users.get(user).picture;
+}
+
+
 
 export const usersChats = new Map();
 
@@ -40,4 +45,3 @@ var chats = [{
 }];
 
 usersChats.set("admin", chats);
-
