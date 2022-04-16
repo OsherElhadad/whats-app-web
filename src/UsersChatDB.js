@@ -4,12 +4,12 @@ export const usersChats = new Map();
 
 var chats = [{
     chatWith: "yos",
-    messages: [{ msg: "Hi! I am the admin!", time: "TimeHere", sent: true }, { msg: "Nice to meet you!", time: "TimeHere", sent: false }]
+    messages: [{ msg: "Hi! I am the admin!", time: "TimeHere", sent: true, type: "text" }, { msg: "Nice to meet you!", time: "TimeHere", sent: false, type: "text" }]
 },
 
 {
     chatWith: "osh",
-    messages: [{ msg: "Hello! I'm Osher!", time: "TimeHere", sent: false }, { msg: "Cool! My Name Is Admin :)", time: "TimeHere", sent: true }]
+    messages: [{ msg: "Hello! I'm Osher!", time: "TimeHere", sent: false , type: "text"}, { msg: "Cool! My Name Is Admin :)", time: "TimeHere", sent: true, type: "text" }]
 }];
 
 usersChats.set("admin", chats);
@@ -22,6 +22,7 @@ export function getUserChats(user) {
     return usersChats.get(user);
 }
 
+<<<<<<< HEAD
 export function doesContactOfUserExist(user, talkWith) {
     if (usersChats.get(user)?.find(i => i.chatWith == talkWith)) {
         return true;
@@ -30,16 +31,33 @@ export function doesContactOfUserExist(user, talkWith) {
 }
 
 export function addMessage(sender, talkWith, message, t) {
+=======
+export function addTextMessage(sender, talkWith, message, msgTime) {
+    addMessage(sender, talkWith, message, msgTime, "text");
+}
+
+export function addPictureMessage(sender, talkWith, message, msgTime) {
+    addMessage(sender, talkWith, message, msgTime, "picture");
+}
+
+export function addVideoMessage(sender, talkWith, message, msgTime) {
+    addMessage(sender, talkWith, message, msgTime, "video");
+}
+
+function addMessage(sender, talkWith, message, msgTime, t) {
+>>>>>>> cc15c1fdecbf0c552e4608ce5bbd7c3ec205036c
     getUserChats(sender)?.find(i => i.chatWith == talkWith).messages.push({
         msg: message,
-        time: t,
-        sent: true
+        time: msgTime,
+        sent: true,
+        type: t
     })
 
     getUserChats(talkWith)?.find(i => i.chatWith == sender).messages.push({
         msg: message,
-        time: t,
-        sent: false
+        time: msgTime,
+        sent: false,
+        type: t
     })
 }
 
