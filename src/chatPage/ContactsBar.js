@@ -12,7 +12,7 @@ function SearchAwareToggle({ children, eventKey, callback }) {
             type="button"
             className="btn btn-outline-secondary"
             onClick={decoratedOnClick}>
-            <i className="afa fa-search"></i>
+            <i className="bi bi-search"></i>
         </button>
     );
 }
@@ -29,7 +29,7 @@ function AddContactAwareToggle({ children, eventKey, callback }) {
             type="button"
             className="btn btn-outline-secondary"
             onClick={decoratedOnClick}>
-            <i className="fa fa-users"></i>
+            <i className="bi bi-person-plus-fill"></i>
         </button>
     );
 }
@@ -44,7 +44,7 @@ function ContactsBar() {
                             <SearchAwareToggle eventKey="0"></SearchAwareToggle>
                             <img src="https://static.turbosquid.com/Preview/001214/650/2V/boy-cartoon-3D-model_D.jpg" className="rounded-circle user_img_msg" />
                             <button type="button" className="btn btn-outline-secondary">
-                                <i className="fa fa-power-off"></i>
+                                <i className="bi bi-power"></i>
                             </button>
                             <AddContactAwareToggle eventKey="1"></AddContactAwareToggle>
                         </div>
@@ -62,7 +62,7 @@ function ContactsBar() {
 
                                 <div className="input-group-append">
                                     <button type="button" className="btn btn-outline-secondary add_contact_btn">
-                                        <i className="fa fa-plus"></i>
+                                        <i className="bi bi-plus"></i>
                                     </button>
                                 </div>
                             </div>
