@@ -20,16 +20,16 @@ export function getUserChats(user) {
     return usersChats.get(user);
 }
 
-export function addMessage(sender, talkWith, message) {
+export function addMessage(sender, talkWith, message, t) {
     getUserChats(sender)?.find(i => i.chatWith == talkWith).messages.push({
         msg: message,
-        time: "TimeHere",
+        time: t,
         sent: true
     })
 
     getUserChats(talkWith)?.find(i => i.chatWith == sender).messages.push({
         msg: message,
-        time: "TimeHere",
+        time: t,
         sent: false
     })
 }

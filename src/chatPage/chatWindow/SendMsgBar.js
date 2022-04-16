@@ -11,15 +11,13 @@ function SendMsgBar(props) {
 
     const textMsg = useRef("");
 
-    $(document).ready(function () {
-        $("#".concat(btnId)).unbind("click").on("click", function (event) {
-            console.log(textMsg.current.value);
-            console.log(getUserChats(props.myUser).find(i => i.chatWith == props.username).messages);
-            addMessage(props.myUser, props.username, textMsg.current.value);
-
-            console.log("comon");
-
+    $(document).ready(function (event) {
+        $("#".concat(btnId)).unbind("click").on("click", function () {
+            const date = new Date();
+            let time = date.getHours() + ":" + date.getMinutes();
+            addMessage(props.myUser, props.username, textMsg.current.value, time);
             props.refreshChat();
+            textMsg.current.value = "";
         })
     })
 
