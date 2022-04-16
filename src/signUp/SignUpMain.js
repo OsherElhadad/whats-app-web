@@ -9,6 +9,7 @@ import $ from "jquery";
 function SignUp() {
   const [file, setFile] = useState();
   function fileUpload(e) {
+
     setFile(URL.createObjectURL(e.target.files[0]));
     pic = e.target.files[0];
   }
