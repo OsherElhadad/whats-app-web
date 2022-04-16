@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 const UseRecorder = () => {
   const [audioURL, setAudioURL] = useState("");
   const [isRecording, setIsRecording] = useState(false);
+  const [isRecorded, setRecorded] = useState(false);
   const [recorder, setRecorder] = useState(null);
 
   useEffect(() => {
@@ -36,9 +37,14 @@ const UseRecorder = () => {
 
   const stopRecording = () => {
     setIsRecording(false);
+    setRecorded(true);
   };
 
-  return [audioURL, isRecording, startRecording, stopRecording];
+  const sendRecording = () => {
+    setRecorded(false);
+  };
+
+  return [audioURL, isRecording, isRecorded, startRecording, stopRecording, sendRecording];
 };
 
 async function requestRecorder() {
