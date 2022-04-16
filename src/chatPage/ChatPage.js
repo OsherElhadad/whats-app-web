@@ -1,7 +1,8 @@
 import { Tab, ListGroup, Col, Row } from "react-bootstrap"
 import "./Chat.css"
 import Contact from "./Contact"
-import { users, usersChats } from "../Users";
+import { getUserPicture , getUserNickname } from "../UsersDB";
+import { usersChats } from "../UsersChatDB";
 import ContactsBar from "./ContactsBar";
 import ChatWindow from "./chatWindow/ChatWindow"
 
@@ -13,9 +14,9 @@ function Chat(props) {
     if (usersChats.get(props.user)) {
         contactList = usersChats.get(props.user).map((chat, key) => {
             return (
-                <Contact image={users.get(chat.chatWith).picture}
+                <Contact image={getUserPicture(chat.chatWith)}
                     link={chat.chatWith}
-                    username={users.get(chat.chatWith).nickname}
+                    username={getUserNickname(chat.chatWith)}
                     lastTime="TODO"
                     lastMsg={chat.messages[chat.messages.length - 1].msg}
                     key={key}>
@@ -31,8 +32,8 @@ function Chat(props) {
             return (
                 <ChatWindow
                     link={chat.chatWith}
-                    image={users.get(chat.chatWith).picture}
-                    nickname={users.get(chat.chatWith).nickname}
+                    image={getUserPicture(chat.chatWith)}
+                    nickname={getUserNickname(chat.chatWith)}
                     user={chat.chatWith}
                     lastActive="TODO - LastTimeActive"
                     myUser={props.user}

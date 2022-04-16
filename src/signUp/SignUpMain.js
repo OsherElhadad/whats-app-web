@@ -3,7 +3,7 @@ import "./SignUp.css";
 import SignUpForm from "./SignUpForm";
 import SignUpSuccess from "./SignUpSuccess";
 import { validateUsername, validatePassword, validateRepeatedPassword, validateNickname } from "./Validation";
-import { users } from "../Users";
+import { addNewUser } from "../UsersDB";
 import $ from "jquery";
 
 function SignUp() {
@@ -23,29 +23,22 @@ function SignUp() {
   const hideModal = () => {
     setIsOpen(false);
   };
-  
+
 
   const name = useRef("");
   const pass = useRef("");
   const rePass = useRef("");
   const nick = useRef("");
-  var pic = null; 
+  var pic = null;
 
 
   $(document).ready(function () {
     $("#signUpForm").on("submit", function (event) {
       event.preventDefault();
-      if (name.current.value && validateUsername(name.current.value) && pass.current.value && rePass.current.value 
+      if (name.current.value && validateUsername(name.current.value) && pass.current.value && rePass.current.value
         && validatePassword(pass.current.value, rePass.current.value) && validateRepeatedPassword(pass.current.value, rePass.current.value)
         && validateNickname(nick.current.value)) {
-        users.push(
-          {
-            username: name.current.value,
-            password: pass.current.value,
-            nickname: nick.current.value,
-            picture: pic
-          }
-        );
+        addNewUser(name.current.value, pass.current.value, nick.current.value, pic);
         showModal();
       }
       return false;

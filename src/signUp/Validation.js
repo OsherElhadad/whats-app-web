@@ -1,4 +1,4 @@
-import {users} from "../Users";
+import {doesUserExist} from "../UsersDB";
 
 export const validateUsername = (name) => {
     if ((!(validateSpaces(name, "usernameInvalidFeedback", "Username must be one word!", "SignUpUsername")))
@@ -39,7 +39,7 @@ export const validateNickname = (nick) => {
 }
 
 export const validateUniqueUsername = (str, errorId, errorHtml, parentId) => {
-    if (users.some(e => e.username == str)) {
+    if (doesUserExist(str)) {
         document.getElementById(errorId).innerHTML = errorHtml;
         document.getElementById(parentId).classList.remove('is-valid');
         document.getElementById(parentId).classList.add('is-invalid');

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { usersChats } from "../../Users";
+import { usersChats } from "../../UsersChatDB";
 import $ from "jquery";
 
 function SendMsgBar(props) {

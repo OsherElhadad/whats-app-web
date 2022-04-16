@@ -3,14 +3,14 @@ import ReceiverMessage from "./ReceiverMessage";
 import SenderMessage from "./SenderMessage";
 import SenderMsgBar from "./SendMsgBar";
 import ContactHeader from "./ContactHeader";
-import { usersChats } from "../../Users"
+import { getMessages, usersChats } from "../../UsersChatDB"
 import { useEffect, useState } from "react";
 
 function useMsgList(myUser, user) {
     const [conversationMsgs, setConversationMsgs] = useState();
 
     useEffect(() => {
-        setConversationMsgs(usersChats.get(myUser).find(i => i.chatWith == user).messages);
+        setConversationMsgs(getMessages(myUser, user));
     }, [usersChats])
 
     return conversationMsgs;

@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import {users} from "../Users";
+import {doesUserExist , getUserPassword} from "../UsersDB";
 import LogInForm from "./LogInForm";
 import $ from "jquery"
 import LogInSuccess from "./LogInFailure";
@@ -24,7 +24,7 @@ function LogIn(props) {
     $("#logInForm").on("submit", function (event) {
       event.preventDefault();
 
-      if (users.get(name.current.value) && users.get(name.current.value).password == pass.current.value) {
+      if (doesUserExist(name.current.value) && getUserPassword(name.current.value) == pass.current.value) {
           props.setUserName(name.current.value);
           navigate("/chat", { replace: true });
       } else {
