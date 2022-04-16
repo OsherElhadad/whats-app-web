@@ -55,7 +55,7 @@ function signUpForm(props) {
                     <div className="mb-3">
                       {!props.file && (
                         <div>
-                          <input id="SignUpProfilePic" className="form-control" type="file" onChange={props.fileUpload}></input>
+                          <input id="SignUpProfilePic" className="form-control" type="file" accept="image/*" onChange={props.fileUpload}></input>
                           <label htmlFor="SignUpProfilePic" >Profile Picture</label>
                         </div>
                       )}

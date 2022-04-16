@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 function LogIn(props) {
   const [isOpen, setIsOpen] = useState(false);
+  
   const showModal = () => {
     setIsOpen(true);
   };
