@@ -17,6 +17,7 @@ function ChatWindow(props) {
                 <SenderMessage
                     msgText={m.msg}
                     msgTime={m.time}
+                    type={m.type}
                     key={key}>
                 </SenderMessage>
             );
@@ -27,6 +28,7 @@ function ChatWindow(props) {
                 img={props.image}
                 msgText={m.msg}
                 msgTime={m.time}
+                type={m.type}
                 key={key}>
             </ReceiverMessage>
         );
