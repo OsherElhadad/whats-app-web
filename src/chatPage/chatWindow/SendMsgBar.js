@@ -19,14 +19,10 @@ function SendMsgBar(props) {
             props.refreshChat();
             textMsg.current.value = "";
         })
-<<<<<<< HEAD
         $("#msg_input").on("propertychange change keyup paste input", function () {
             $("#".concat(btnId)).prop('disabled', $("#msg_input").val() == "");
             console.log($("#msg_input").val());
         })
-=======
-
->>>>>>> cc15c1fdecbf0c552e4608ce5bbd7c3ec205036c
     })
 
     const selectPic = () => {
@@ -79,11 +75,7 @@ function SendMsgBar(props) {
                 </div>
                 <input className="type_msg form-control" ref={textMsg} placeholder="Type your message..." id="msg_input" ></input>
                 <div className="input-group-append">
-<<<<<<< HEAD
-                    <button id={btnId} type="button" className="btn btn-outline-secondary input-group-text send_btn" disabled={true} ><i className="bi bi-envelope"></i></button>
-=======
-                    <button id={btnId.concat("-msg")} type="button" className="btn btn-outline-secondary input-group-text send_btn" ><i className="bi bi-envelope"></i></button>
->>>>>>> cc15c1fdecbf0c552e4608ce5bbd7c3ec205036c
+                    <button id={btnId.concat("-msg")} type="button" className="btn btn-outline-secondary input-group-text send_btn" disabled={true} ><i className="bi bi-envelope"></i></button>
                 </div>
             </div>
         </div>

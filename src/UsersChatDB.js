@@ -22,16 +22,13 @@ export function getUserChats(user) {
     return usersChats.get(user);
 }
 
-<<<<<<< HEAD
 export function doesContactOfUserExist(user, talkWith) {
-    if (usersChats.get(user)?.find(i => i.chatWith == talkWith)) {
+    if (getUserChats(user)?.find(i => i.chatWith == talkWith)) {
         return true;
     }
     return false;
 }
 
-export function addMessage(sender, talkWith, message, t) {
-=======
 export function addTextMessage(sender, talkWith, message, msgTime) {
     addMessage(sender, talkWith, message, msgTime, "text");
 }
@@ -45,7 +42,6 @@ export function addVideoMessage(sender, talkWith, message, msgTime) {
 }
 
 function addMessage(sender, talkWith, message, msgTime, t) {
->>>>>>> cc15c1fdecbf0c552e4608ce5bbd7c3ec205036c
     getUserChats(sender)?.find(i => i.chatWith == talkWith).messages.push({
         msg: message,
         time: msgTime,
