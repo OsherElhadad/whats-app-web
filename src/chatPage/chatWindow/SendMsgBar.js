@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { usersChats } from "../../UsersChatDB";
+import { getUserChats , addMessage } from "../../UsersChatDB";
 import $ from "jquery";
 
 function SendMsgBar(props) {
@@ -11,12 +11,12 @@ function SendMsgBar(props) {
     $(document).ready(function () {
         $("#".concat(btnId)).unbind("click").on("click", function (event) {
             console.log(textMsg.current.value);
-            console.log(usersChats.get(props.myUser).find(i => i.chatWith == props.username).messages);
-            usersChats.get(props.myUser).find(i => i.chatWith == props.username).messages.push({
-                msg: textMsg.current.value,
-                time: "TimeHere",
-                sent: true
-            })
+            console.log(getUserChats(props.myUser).find(i => i.chatWith == props.username).messages);
+            addMessage(props.myUser, props.username, textMsg.current.value);
+
+            console.log("comon");
+
+            props.refreshChat();
         })
     })
 

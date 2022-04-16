@@ -12,6 +12,24 @@ var chats = [{
 
 usersChats.set("admin", chats);
 
-export function getMessages(user, talkWith) {
+export function getChatMessages(user, talkWith) {
     return usersChats.get(user).find(i => i.chatWith == talkWith).messages;
+}
+
+export function getUserChats(user) {
+    return usersChats.get(user);
+}
+
+export function addMessage(sender, talkWith, message) {
+    getUserChats(sender)?.find(i => i.chatWith == talkWith).messages.push({
+        msg: message,
+        time: "TimeHere",
+        sent: true
+    })
+
+    getUserChats(talkWith)?.find(i => i.chatWith == sender).messages.push({
+        msg: message,
+        time: "TimeHere",
+        sent: false
+    })
 }

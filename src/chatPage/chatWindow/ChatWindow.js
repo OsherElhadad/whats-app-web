@@ -3,22 +3,12 @@ import ReceiverMessage from "./ReceiverMessage";
 import SenderMessage from "./SenderMessage";
 import SenderMsgBar from "./SendMsgBar";
 import ContactHeader from "./ContactHeader";
-import { getMessages, usersChats } from "../../UsersChatDB"
-import { useEffect, useState } from "react";
-
-function useMsgList(myUser, user) {
-    const [conversationMsgs, setConversationMsgs] = useState();
-
-    useEffect(() => {
-        setConversationMsgs(getMessages(myUser, user));
-    }, [usersChats])
-
-    return conversationMsgs;
-}
-
+import { getChatMessages } from "../../UsersChatDB"
+import {  useState } from "react";
 
 function ChatWindow(props) {
-    const messages = useMsgList(props.myUser, props.user);
+
+    const messages = getChatMessages(props.myUser, props.user);
 
     const msgList = messages?.map((m, key) => {
 
@@ -42,6 +32,16 @@ function ChatWindow(props) {
         );
     })
 
+    const [refresh, setRefresh] = useState(0);
+
+    const refreshChat = () => {
+        if(refresh == 0) {
+            setRefresh(1);
+        }
+        else {
+            setRefresh(0);
+        }
+    }
 
     return (
         <Tab.Pane eventKey={"#".concat(props.link)}>
@@ -53,7 +53,9 @@ function ChatWindow(props) {
                     </div>
                     <SenderMsgBar
                         username={props.user}
-                        myUser={props.myUser}></SenderMsgBar>
+                        myUser={props.myUser}
+                        refreshChat={refreshChat}>
+                    </SenderMsgBar>
                 </div>
             </div>
         </Tab.Pane>
