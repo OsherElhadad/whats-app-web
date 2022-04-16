@@ -1,6 +1,8 @@
 import { Col, Row , ListGroup } from "react-bootstrap"
 
 function Contact(props) {
+
+    
     return (
         <ListGroup.Item action href={"#".concat(props.link)} className="list_group_items">
             <Row>

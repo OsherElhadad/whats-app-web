@@ -1,3 +1,5 @@
+import { doesUserExist } from "./UsersDB";
+
 export const usersChats = new Map();
 
 var chats = [{
@@ -20,6 +22,13 @@ export function getUserChats(user) {
     return usersChats.get(user);
 }
 
+export function doesContactOfUserExist(user, talkWith) {
+    if (usersChats.get(user)?.find(i => i.chatWith == talkWith)) {
+        return true;
+    }
+    return false;
+}
+
 export function addMessage(sender, talkWith, message, t) {
     getUserChats(sender)?.find(i => i.chatWith == talkWith).messages.push({
         msg: message,
@@ -32,4 +41,20 @@ export function addMessage(sender, talkWith, message, t) {
         time: t,
         sent: false
     })
+}
+
+export function addContact(user, talkWith, error) {
+    if (!doesUserExist(talkWith)) {
+        error = "This contact does not exist";
+    } else {
+        if(doesContactOfUserExist(user, talkWith)) {
+            error = "This contact is already your contact"
+        }
+        else {
+            getUserChats(user).push({
+                chatWith: talkWith,
+                messages: []
+            })
+        }
+    }
 }
