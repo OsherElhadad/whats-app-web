@@ -70,7 +70,6 @@
     background-color: rgba(0, 0, 0, 0.3) !important;
     height: 60px !important;
     border: 0 !important;
-    color: white !important;
     cursor: pointer;
 }
 
@@ -79,7 +78,6 @@
     background-color: rgba(0, 0, 0, 0.3) !important;
     height: 60px !important;
     border: 0 !important;
-    color: white !important;
     cursor: pointer;
 }
 
@@ -88,7 +86,6 @@
     background-color: rgba(0, 0, 0, 0.3) !important;
     height: 60px !important;
     border: 0 !important;
-    color: white !important;
     cursor: pointer;
 }
 
@@ -97,8 +94,15 @@
     background-color: rgba(0, 0, 0, 0.3) !important;
     height: 60px !important;
     border: 0 !important;
-    color: white !important;
     cursor: pointer;
+}
+
+.btn {
+    color: white !important;
+}
+
+.btn:hover {
+    color:darkcyan !important;
 }
 
 .add_contact_btn {
