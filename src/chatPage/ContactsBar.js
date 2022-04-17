@@ -6,6 +6,7 @@ import $ from "jquery";
 import { addContact } from "../UsersChatDB";
 import InvalidContactModal from "../InvalidContactModal";
 import SignOffModal from "./SignOffModal";
+import "./ContactsBar.css"
 
 function SearchAwareToggle({ children, eventKey, callback }) {
 
@@ -51,7 +52,7 @@ function ContactsBar(props) {
                 setContactModalText(error);
                 showContactModal();
             } else {
-                props.refreshChat();
+                // props.refreshChat(); - need to refresh in other way
             }
         })
     })
@@ -96,7 +97,7 @@ function ContactsBar(props) {
                         <Card.Header>
                             <div className="d-flex justify-content-between">
                                 <SearchAwareToggle eventKey="0"></SearchAwareToggle>
-                                <img src={getUserPicture(props.myUser)} onClick={setIsProfilePicModelOpen} className="rounded-circle user_img_msg" />
+                                <img id="profile_pic" src={getUserPicture(props.myUser)} onClick={showProfilePicfModal} className="rounded-circle user_img_msg" />
                                 <button type="button" className="btn btn-outline-secondary" onClick={showSignOffModal}>
                                     <i className="bi bi-power"></i>
                                 </button>
