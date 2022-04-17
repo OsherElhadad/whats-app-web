@@ -1,6 +1,13 @@
 import { Accordion, Card, useAccordionButton } from "react-bootstrap"
+<<<<<<< HEAD
+import { useState } from "react";
+import $ from "jquery";
+import { addContact } from "../UsersChatDB";
+import InvalidFileModal from "./chatWindow/InvalidFileModal";
+=======
 import SignOffModal from "./SignOffModal";
 import { useState } from "react";
+>>>>>>> 4522d811ac6bb4ddb999a716bb6bdf0a85b1fd21
 
 function SearchAwareToggle({ children, eventKey, callback }) {
 
@@ -37,17 +44,34 @@ function AddContactAwareToggle({ children, eventKey, callback }) {
 }
 
 function ContactsBar(props) {
+
+    $(document).ready(function (event) {
+        $("#add_contact_btn").unbind("click").on("click", function () {
+            let error = addContact(props.username, $("#add-contact-input").val());
+            if (error != "") {
+                setModalText(error);
+                showModal();
+                console.log(error);
+            } else {
+                props.refreshChat();
+            }
+        })
+    })
+
     const [isModelOpen, setIsModelOpen] = useState(false);
 
-    const showSignOffModal = () => {
+    const [modalText, setModalText] = useState("");
+
+    const showModal = () => {
         setIsModelOpen(true);
     };
-    const hideSignOffModal = () => {
+    const hideModal = () => {
         setIsModelOpen(false);
     };
 
     return (
         <>
+            <InvalidFileModal isOpen={isModelOpen} hideModal={hideModal} text={modalText}></InvalidFileModal>
             <SignOffModal isOpen={isModelOpen} hideModal={hideSignOffModal} setUsername={props.setUsername}></SignOffModal>
 
             <div className="icons_item">
@@ -75,7 +99,7 @@ function ContactsBar(props) {
                                     <input type="text" className="form-control type_msg" id="add-contact-input" placeholder="Add contacts..." aria-label="Add contacts..." />
 
                                     <div className="input-group-append">
-                                        <button type="button" className="btn btn-outline-secondary add_contact_btn">
+                                        <button type="button" className="btn btn-outline-secondary" id="add_contact_btn">
                                             <i className="bi bi-plus"></i>
                                         </button>
                                     </div>

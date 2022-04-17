@@ -21,6 +21,13 @@ users.set("osh",
         picture: "https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg",
     })
 
+users.set("sag",
+    {
+        password: "a1",
+        nickname: "Sagi",
+        picture: "https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg",
+    })
+
 export function addNewUser(user, pass, nick, pic) {
     users.set(user,
         {
