@@ -40,6 +40,8 @@ function SenderMessage(props) {
             </div>
         )
 
+        break;
+            
         case "record": return (
             <div className="d-flex justify-content-end mb-4">
                 <div className="msg_cotainer_send">

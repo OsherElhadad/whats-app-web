@@ -10,16 +10,6 @@ import { useState } from "react";
 
 function Chat(props) {
 
-    const [refresh, setRefresh] = useState(0);
-
-    const refreshChat = () => {
-        if (refresh == 0) {
-            setRefresh(1);
-        }
-        else {
-            setRefresh(0);
-        }
-    }
 
     var contactList;
 
@@ -57,8 +47,7 @@ function Chat(props) {
                     user={chat.chatWith}
                     lastActive="TODO - LastTimeActive"
                     myUser={props.user}
-                    key={key}
-                    refreshChat={refreshChat}>
+                    key={key}>
                 </ChatWindow>
             );
         })
@@ -69,7 +58,7 @@ function Chat(props) {
             <Tab.Container id="list-group-tabs" defaultActiveKey="#def">
                 <Row>
                     <Col sm={4} className="vh-100">
-                        <ContactsBar myUser={props.user} setUsername={props.setUsername} refreshChat={refreshChat}></ContactsBar>
+                        <ContactsBar myUser={props.user} setUsername={props.setUsername} ></ContactsBar>
                         <ListGroup className="contacts_list">
                             {contactList}
                         </ListGroup>
