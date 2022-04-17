@@ -48,7 +48,7 @@ function Chat(props) {
             <Tab.Container id="list-group-tabs" defaultActiveKey="#def">
                 <Row>
                     <Col sm={4} className="vh-100">
-                        <ContactsBar></ContactsBar>
+                        <ContactsBar setUsername={props.setUsername}></ContactsBar>
                         <ListGroup className="contacts_list">
                             {contactList}
                         </ListGroup>

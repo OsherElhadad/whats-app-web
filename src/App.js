@@ -20,7 +20,7 @@ function App() {
        <Routes>
          <Route path = "/" element={<LogIn setUserName={setUsername}/>}>  </Route>
          <Route path = "/signup" element={<SignUp/>}>  </Route>
-         <Route path = "/chat" element={<ChatPage user={username} />}>  </Route>
+         <Route path = "/chat" element={<ChatPage user={username} setUsername={setUsername} />}>  </Route>
        </Routes>
    </BrowserRouter>
    </div>

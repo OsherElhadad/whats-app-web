@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import {doesUserExist , getUserPassword} from "../UsersDB";
 import LogInForm from "./LogInForm";
 import $ from "jquery"
-import LogInSuccess from "./LogInFailure";
+import LogInFailed from "./LogInFailure";
 import { useNavigate } from "react-router-dom";
 
 
@@ -36,7 +36,7 @@ function LogIn(props) {
 
   return (
     <div>
-      <LogInSuccess isOpen={isOpen} hideModal={hideModal}></LogInSuccess>
+      <LogInFailed isOpen={isOpen} hideModal={hideModal}></LogInFailed>
       <LogInForm name={name} pass={pass}></LogInForm>
     </div>
   );
