@@ -2,27 +2,43 @@ import React, { useEffect, useRef, useState } from "react";
 import "./SignUp.css";
 import SignUpForm from "./SignUpForm";
 import SignUpSuccess from "./SignUpSuccess";
-import { validateUsername, validatePassword, validateRepeatedPassword, validateNickname } from "./Validation";
+import { validateUsername, validatePassword, validateRepeatedPassword, validateNickname, validatePic } from "./Validation";
 import { addNewUser } from "../UsersDB";
 import $ from "jquery";
+import InvalidFileModal from "../InvalidFileModal";
 
 function SignUp() {
   const [file, setFile] = useState();
   function fileUpload(e) {
+    if (validatePic(e.target.files[0])) {
+      setFile(URL.createObjectURL(e.target.files[0]));
+      pic = e.target.files[0];
+    } else {
+      showInvalidPicModal();
+    }
 
-    setFile(URL.createObjectURL(e.target.files[0]));
-    pic = e.target.files[0];
   }
   function removePicture(e) {
     setFile();
   }
 
-  const [isOpen, setIsOpen] = useState(false);
-  const showModal = () => {
-    setIsOpen(true);
+  const [isInvalidFileModalOpen, setIsInvalidFileModalOpen] = useState(false);
+
+  const showInvalidPicModal = () => {
+    setIsInvalidFileModalOpen(true);
   };
-  const hideModal = () => {
-    setIsOpen(false);
+  const hideInvalidPicModal = () => {
+    setIsInvalidFileModalOpen(false);
+  };
+
+
+
+  const [isSignUpSuccesModalOpen, setIsSignUpSuccesModalOpen] = useState(false);
+  const showSignUpSuccesModal = () => {
+    setIsSignUpSuccesModalOpen(true);
+  };
+  const hideSignUpSuccesModal = () => {
+    setIsSignUpSuccesModalOpen(false);
   };
 
 
@@ -39,8 +55,8 @@ function SignUp() {
       if (name.current.value && validateUsername(name.current.value) && pass.current.value && rePass.current.value
         && validatePassword(pass.current.value, rePass.current.value) && validateRepeatedPassword(pass.current.value, rePass.current.value)
         && validateNickname(nick.current.value)) {
-        addNewUser(name.current.value, pass.current.value, nick.current.value, pic);
-        showModal();
+        addNewUser(name.current.value, pass.current.value, nick.current.value, file);
+        showSignUpSuccesModal();
       }
       return false;
     });
@@ -55,7 +71,8 @@ function SignUp() {
 
   return (
     <div>
-      <SignUpSuccess isOpen={isOpen} hideModal={hideModal} nick={nick.current.value}></SignUpSuccess>
+      <InvalidFileModal isOpen={isInvalidFileModalOpen} hideModal={hideInvalidPicModal} text="Picture format must be one of the above: jpg/jpeg/png/svg"></InvalidFileModal>
+      <SignUpSuccess isOpen={isSignUpSuccesModalOpen} hideModal={hideSignUpSuccesModal} nick={nick.current.value}></SignUpSuccess>
       <SignUpForm name={name} pass={pass} rePass={rePass} nick={nick}
         file={file} fileUpload={fileUpload} removePicture={removePicture}></SignUpForm>
     </div>
