@@ -41,6 +41,10 @@ export function addVideoMessage(sender, talkWith, message, msgTime) {
     addMessage(sender, talkWith, message, msgTime, "video");
 }
 
+export function addRecordMessage(sender, talkWith, message, msgTime) {
+    addMessage(sender, talkWith, message, msgTime, "record");
+}
+
 function addMessage(sender, talkWith, message, msgTime, t) {
     getUserChats(sender)?.find(i => i.chatWith == talkWith).messages.push({
         msg: message,
@@ -57,18 +61,19 @@ function addMessage(sender, talkWith, message, msgTime, t) {
     })
 }
 
-export function addContact(user, talkWith, error) {
+export function addContact(user, talkWith) {
     if (!doesUserExist(talkWith)) {
-        error = "This contact does not exist";
+        return "This contact does not exist";
     } else {
         if(doesContactOfUserExist(user, talkWith)) {
-            error = "This contact is already your contact"
+            return "This contact is already your contact";
         }
         else {
             getUserChats(user).push({
                 chatWith: talkWith,
                 messages: []
-            })
+            });
+            return "";
         }
     }
 }

@@ -1,8 +1,11 @@
 import { Accordion, Card, useAccordionButton } from "react-bootstrap"
-import SignOffModal from "./SignOffModal";
 import { useState } from "react";
 import { getUserPicture } from "../UsersDB";
 import ProfilePicModal from "./ProfilePicModal";
+import $ from "jquery";
+import { addContact } from "../UsersChatDB";
+import InvalidFileModal from "./chatWindow/InvalidFileModal";
+import SignOffModal from "./SignOffModal";
 
 function SearchAwareToggle({ children, eventKey, callback }) {
 
@@ -39,13 +42,45 @@ function AddContactAwareToggle({ children, eventKey, callback }) {
 }
 
 function ContactsBar(props) {
-    const [isSignOffModelOpen, setIsSignOffModelOpenModelOpen] = useState(false);
+    // const [isSignOffModelOpen, setIsSignOffModelOpenModelOpen] = useState(false);
+
+    // const showSignOffModal = () => {
+    //     setIsSignOffModelOpenModelOpen(true);
+    // };
+    // const hideSignOffModal = () => {
+    //     setIsSignOffModelOpenModelOpen(false);
+
+    $(document).ready(function (event) {
+        $("#add_contact_btn").unbind("click").on("click", function () {
+            let error = addContact(props.username, $("#add-contact-input").val());
+            if (error != "") {
+                setModalText(error);
+                showModal();
+                console.log(error);
+            } else {
+                props.refreshChat();
+            }
+        })
+    })
+
+    const [isSignOffModelOpen, setIsSignOffModelOpen] = useState(false);
 
     const showSignOffModal = () => {
-        setIsSignOffModelOpenModelOpen(true);
+        setIsSignOffModelOpen(true);
     };
     const hideSignOffModal = () => {
-        setIsSignOffModelOpenModelOpen(false);
+        setIsSignOffModelOpen(false);
+    }
+
+    const [isModelOpen, setIsModelOpen] = useState(false);
+
+    const [modalText, setModalText] = useState("");
+
+    const showModal = () => {
+        setIsModelOpen(true);
+    };
+    const hideModal = () => {
+        setIsModelOpen(false);
     };
 
     const [isProfilePicModelOpen, setIsProfilePicModelOpen] = useState(false);
@@ -88,7 +123,7 @@ function ContactsBar(props) {
                                     <input type="text" className="form-control type_msg" id="add-contact-input" placeholder="Add contacts..." aria-label="Add contacts..." />
 
                                     <div className="input-group-append">
-                                        <button type="button" className="btn btn-outline-secondary add_contact_btn">
+                                        <button type="button" className="btn btn-outline-secondary" id="add_contact_btn">
                                             <i className="bi bi-plus"></i>
                                         </button>
                                     </div>

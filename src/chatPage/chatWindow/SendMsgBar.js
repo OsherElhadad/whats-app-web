@@ -1,7 +1,10 @@
 import { useRef, useState } from "react";
 import { addVideoMessage, addTextMessage, addPictureMessage } from "../../UsersChatDB";
+import { OverlayTrigger, Popover } from "react-bootstrap"
 import $ from "jquery";
 import InvalidFileModal from "../../InvalidFileModal";
+import Recorder from "./Recorder";
+import "./SendMsgBar.css"
 
 function SendMsgBar(props) {
 
@@ -16,8 +19,11 @@ function SendMsgBar(props) {
             addTextMessage(props.myUser, props.username, textMsg.current.value, time);
             props.refreshChat();
             textMsg.current.value = "";
+            $("#".concat(btnId).concat("-msg")).prop('disabled', $("#".concat(btnId).concat("-msg-input")).val() == "");
         })
-
+        $("#".concat(btnId).concat("-msg-input")).on("propertychange change keyup paste input", function () {
+            $("#".concat(btnId).concat("-msg")).prop('disabled', $("#".concat(btnId).concat("-msg-input")).val() == "");
+        })
     })
 
     const selectPic = () => {
@@ -25,7 +31,6 @@ function SendMsgBar(props) {
     }
 
     const validatePic = (pic) => {
-        console.log(pic)
         var fileName = pic.name;
         var idxDot = fileName.lastIndexOf(".") + 1;
         var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
@@ -38,7 +43,7 @@ function SendMsgBar(props) {
 
     const [isModelOpen, setIsModelOpen] = useState(false);
 
-    const [modalText, setModalText] = useState(""); 
+    const [modalText, setModalText] = useState("");
 
     const showModal = () => {
         setIsModelOpen(true);
@@ -87,29 +92,40 @@ function SendMsgBar(props) {
         }
     }
 
+    const popover = (
+        <Popover id="popover-basic">
+            <Popover.Header as="h1" className="popover-header">Record</Popover.Header>
+            <Popover.Body>
+                <Recorder myUser={props.myUser} username={props.username} refreshChat={props.refreshChat}></Recorder>
+            </Popover.Body>
+        </Popover>
+    );
+
     return (
         <>
-        <InvalidFileModal isOpen={isModelOpen} hideModal={hideModal} text={modalText}></InvalidFileModal>
-        <div className="card-footer">
-            <div className="input-group">
-                <div className="input-group-append">
-                    <button type="button" className="btn btn-outline-secondary input-group-text record_btn"><i className="bi bi-mic"></i></button>
-                </div>
+            <InvalidFileModal isOpen={isModelOpen} hideModal={hideModal} text={modalText}></InvalidFileModal>
+            <div className="card-footer">
+                <div className="input-group">
+                    <div className="input-group-append">
+                        <OverlayTrigger trigger="click" placement="top" overlay={popover}>
+                            <button type="button" className="btn btn-outline-secondary input-group-text record_btn"><i className="bi bi-mic"></i></button>
+                        </OverlayTrigger>
+                    </div>
 
-                <div className="input-group-append">
-                    <button id={btnId.concat("-img-btn")} type="button" onClick={selectPic} className="btn btn-outline-secondary input-group-text attach_img_btn" ><i className="bi bi-image"></i></button>
-                    <input id={btnId.concat("-img-input")} onChange={sendPic} type="file" accept="image/*" hidden></input>
-                </div>
-                <div className="input-group-append">
-                    <button id={btnId.concat("-vid-btn")} type="button" onClick={selectVideo} className="btn btn-outline-secondary input-group-text attach_video_btn"><i className="bi bi-camera-reels"></i></button>
-                    <input id={btnId.concat("-vid-input")} onChange={sendVideo} type="file" accept="video/*" hidden ></input>
-                </div>
-                <input className="type_msg form-control" ref={textMsg} placeholder="Type your message..."></input>
-                <div className="input-group-append">
-                    <button id={btnId.concat("-msg")} type="button" className="btn btn-outline-secondary input-group-text send_btn" ><i className="bi bi-envelope"></i></button>
+                    <div className="input-group-append">
+                        <button id={btnId.concat("-img-btn")} type="button" onClick={selectPic} className="btn btn-outline-secondary input-group-text attach_img_btn" ><i className="bi bi-image"></i></button>
+                        <input id={btnId.concat("-img-input")} onChange={sendPic} type="file" accept="image/*" hidden></input>
+                    </div>
+                    <div className="input-group-append">
+                        <button id={btnId.concat("-vid-btn")} type="button" onClick={selectVideo} className="btn btn-outline-secondary input-group-text attach_video_btn"><i className="bi bi-camera-reels"></i></button>
+                        <input id={btnId.concat("-vid-input")} onChange={sendVideo} type="file" accept="video/*" hidden ></input>
+                    </div>
+                    <input className="type_msg form-control" ref={textMsg} placeholder="Type your message..." id={btnId.concat("-msg-input")} ></input>
+                    <div className="input-group-append">
+                        <button id={btnId.concat("-msg")} type="button" className="btn btn-outline-secondary input-group-text send_btn" disabled={true} ><i className="bi bi-envelope"></i></button>
+                    </div>
                 </div>
             </div>
-        </div>
         </>
     );
 }
