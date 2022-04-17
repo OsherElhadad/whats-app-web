@@ -1,4 +1,7 @@
 import { Accordion, Card, useAccordionButton } from "react-bootstrap"
+import { useRef, useState } from "react";
+import $ from "jquery";
+import { addContact } from "../UsersChatDB";
 
 function SearchAwareToggle({ children, eventKey, callback }) {
 
@@ -34,7 +37,17 @@ function AddContactAwareToggle({ children, eventKey, callback }) {
     );
 }
 
-function ContactsBar() {
+function ContactsBar(props) {
+    var error = useRef("");
+
+    $(document).ready(function (event) {
+        $("#add_contact_btn").on("click", function () {
+            error = addContact(props.username, $("#add-contact-input").val());
+            props.refreshChat();
+            console.log(error)
+        })
+    })
+
     return (
         <div className="icons_item">
             <Accordion>
@@ -61,7 +74,7 @@ function ContactsBar() {
                                 <input type="text" className="form-control type_msg" id="add-contact-input" placeholder="Add contacts..." aria-label="Add contacts..." />
 
                                 <div className="input-group-append">
-                                    <button type="button" className="btn btn-outline-secondary add_contact_btn">
+                                    <button type="button" className="btn btn-outline-secondary" id="add_contact_btn">
                                         <i className="bi bi-plus"></i>
                                     </button>
                                 </div>

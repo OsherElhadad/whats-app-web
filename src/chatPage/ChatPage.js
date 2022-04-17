@@ -5,9 +5,21 @@ import { getUserPicture , getUserNickname } from "../UsersDB";
 import { getUserChats } from "../UsersChatDB";
 import ContactsBar from "./ContactsBar";
 import ChatWindow from "./chatWindow/ChatWindow"
+import { useState } from "react";
 
 
 function Chat(props) {
+
+    const [refresh, setRefresh] = useState(0);
+
+    const refreshChat = () => {
+        if(refresh == 0) {
+            setRefresh(1);
+        }
+        else {
+            setRefresh(0);
+        }
+    }
 
     var contactList;
 
@@ -37,7 +49,8 @@ function Chat(props) {
                     user={chat.chatWith}
                     lastActive="TODO - LastTimeActive"
                     myUser={props.user}
-                    key={key}>
+                    key={key}
+                    refreshChat={refreshChat}>
                 </ChatWindow>
             );
         })
@@ -48,7 +61,7 @@ function Chat(props) {
             <Tab.Container id="list-group-tabs" defaultActiveKey="#def">
                 <Row>
                     <Col sm={4} className="vh-100">
-                        <ContactsBar></ContactsBar>
+                        <ContactsBar username={props.user} refreshChat={refreshChat}></ContactsBar>
                         <ListGroup className="contacts_list">
                             {contactList}
                         </ListGroup>

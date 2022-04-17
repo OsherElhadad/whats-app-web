@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { addVideoMessage, addTextMessage,addPictureMessage } from "../../UsersChatDB";
 import { OverlayTrigger, Popover } from "react-bootstrap"
 import $ from "jquery";
@@ -20,7 +20,7 @@ function SendMsgBar(props) {
             textMsg.current.value = "";
         })
         $("#msg_input").on("propertychange change keyup paste input", function () {
-            $("#".concat(btnId)).prop('disabled', $("#msg_input").val() == "");
+            $("#".concat(btnId).concat("-msg")).prop('disabled', $("#msg_input").val() == "");
             console.log($("#msg_input").val());
         })
     })

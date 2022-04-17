@@ -57,18 +57,18 @@ function addMessage(sender, talkWith, message, msgTime, t) {
     })
 }
 
-export function addContact(user, talkWith, error) {
+export function addContact(user, talkWith) {
     if (!doesUserExist(talkWith)) {
-        error = "This contact does not exist";
+        return "This contact does not exist";
     } else {
         if(doesContactOfUserExist(user, talkWith)) {
-            error = "This contact is already your contact"
+            return "This contact is already your contact";
         }
         else {
             getUserChats(user).push({
                 chatWith: talkWith,
                 messages: []
-            })
+            });
         }
     }
 }
