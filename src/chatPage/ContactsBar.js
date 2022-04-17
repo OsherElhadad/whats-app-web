@@ -1,5 +1,7 @@
 import { Accordion, Card, useAccordionButton } from "react-bootstrap"
 import { useState } from "react";
+import { getUserPicture } from "../UsersDB";
+import ProfilePicModal from "./ProfilePicModal";
 import $ from "jquery";
 import { addContact } from "../UsersChatDB";
 import InvalidFileModal from "./chatWindow/InvalidFileModal";
@@ -40,6 +42,13 @@ function AddContactAwareToggle({ children, eventKey, callback }) {
 }
 
 function ContactsBar(props) {
+    // const [isSignOffModelOpen, setIsSignOffModelOpenModelOpen] = useState(false);
+
+    // const showSignOffModal = () => {
+    //     setIsSignOffModelOpenModelOpen(true);
+    // };
+    // const hideSignOffModal = () => {
+    //     setIsSignOffModelOpenModelOpen(false);
 
     $(document).ready(function (event) {
         $("#add_contact_btn").unbind("click").on("click", function () {
@@ -74,18 +83,28 @@ function ContactsBar(props) {
         setIsModelOpen(false);
     };
 
+    const [isProfilePicModelOpen, setIsProfilePicModelOpen] = useState(false);
+
+    const showProfilePicfModal = () => {
+        setIsProfilePicModelOpen(true);
+    };
+    const hideProfilePicModal = () => {
+        setIsProfilePicModelOpen(false);
+    };
+
+    console.log("contacsbar: "+props.myUser);
+
     return (
         <>
-            <InvalidFileModal isOpen={isModelOpen} hideModal={hideModal} text={modalText}></InvalidFileModal>
             <SignOffModal isOpen={isSignOffModelOpen} hideModal={hideSignOffModal} setUsername={props.setUsername}></SignOffModal>
-
+            <ProfilePicModal isOpen={isProfilePicModelOpen} hideModal={hideProfilePicModal} myUser={props.myUser}></ProfilePicModal>
             <div className="icons_item">
                 <Accordion>
                     <Card>
                         <Card.Header>
                             <div className="d-flex justify-content-between">
                                 <SearchAwareToggle eventKey="0"></SearchAwareToggle>
-                                <img src="https://static.turbosquid.com/Preview/001214/650/2V/boy-cartoon-3D-model_D.jpg" className="rounded-circle user_img_msg" />
+                                <img src={getUserPicture(props.myUser)} onClick={setIsProfilePicModelOpen} className="rounded-circle user_img_msg" />
                                 <button type="button" className="btn btn-outline-secondary" onClick={showSignOffModal}>
                                     <i className="bi bi-power"></i>
                                 </button>
