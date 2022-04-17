@@ -42,6 +42,18 @@ function ReciverMessage(props) {
                 </div>
             </div>
         )
+
+        case "record": return (
+            <div className="d-flex justify-content-start mb-4">
+                <div className="img_cont_msg">
+                    <img src={props.img} className="rounded-circle user_img_msg" />
+                </div>
+                <div className="msg_cotainer">
+                    <audio controls className="msg_cotainer_media" src={props.msgText}></audio>
+                    <span className="msg_time">{props.msgTime}</span>
+                </div>
+            </div>
+        )
     }
 }
 
