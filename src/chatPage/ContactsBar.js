@@ -4,7 +4,7 @@ import { getUserPicture } from "../UsersDB";
 import ProfilePicModal from "./ProfilePicModal";
 import $ from "jquery";
 import { addContact } from "../UsersChatDB";
-import InvalidFileModal from "./chatWindow/InvalidFileModal";
+import InvalidContactModal from "../InvalidContactModal";
 import SignOffModal from "./SignOffModal";
 
 function SearchAwareToggle({ children, eventKey, callback }) {
@@ -42,21 +42,14 @@ function AddContactAwareToggle({ children, eventKey, callback }) {
 }
 
 function ContactsBar(props) {
-    // const [isSignOffModelOpen, setIsSignOffModelOpenModelOpen] = useState(false);
-
-    // const showSignOffModal = () => {
-    //     setIsSignOffModelOpenModelOpen(true);
-    // };
-    // const hideSignOffModal = () => {
-    //     setIsSignOffModelOpenModelOpen(false);
 
     $(document).ready(function (event) {
         $("#add_contact_btn").unbind("click").on("click", function () {
-            let error = addContact(props.username, $("#add-contact-input").val());
+            console.log(props.myUser)
+            let error = addContact(props.myUser, $("#add-contact-input").val());
             if (error != "") {
-                setModalText(error);
-                showModal();
-                console.log(error);
+                setContactModalText(error);
+                showContactModal();
             } else {
                 props.refreshChat();
             }
@@ -72,15 +65,15 @@ function ContactsBar(props) {
         setIsSignOffModelOpen(false);
     }
 
-    const [isModelOpen, setIsModelOpen] = useState(false);
+    const [isContactModelOpen, setIsContactModelOpen] = useState(false);
 
-    const [modalText, setModalText] = useState("");
+    const [ContactModalText, setContactModalText] = useState("");
 
-    const showModal = () => {
-        setIsModelOpen(true);
+    const showContactModal = () => {
+        setIsContactModelOpen(true);
     };
-    const hideModal = () => {
-        setIsModelOpen(false);
+    const hideContactModal = () => {
+        setIsContactModelOpen(false);
     };
 
     const [isProfilePicModelOpen, setIsProfilePicModelOpen] = useState(false);
@@ -92,10 +85,9 @@ function ContactsBar(props) {
         setIsProfilePicModelOpen(false);
     };
 
-    console.log("contacsbar: "+props.myUser);
-
     return (
         <>
+            <InvalidContactModal isOpen={isContactModelOpen} hideModal={hideContactModal} text={ContactModalText}></InvalidContactModal>
             <SignOffModal isOpen={isSignOffModelOpen} hideModal={hideSignOffModal} setUsername={props.setUsername}></SignOffModal>
             <ProfilePicModal isOpen={isProfilePicModelOpen} hideModal={hideProfilePicModal} myUser={props.myUser}></ProfilePicModal>
             <div className="icons_item">

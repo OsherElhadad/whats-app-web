@@ -12,15 +12,12 @@ function SendMsgBar(props) {
 
     const textMsg = useRef("");
 
-    const [showPopover, setShowPopover] = useState(false);
-
     $(document).ready(function (event) {
         $("#".concat(btnId).concat("-msg")).unbind("click").on("click", function () {
             const date = new Date();
             let time = date.getHours() + ":" + date.getMinutes();
             addTextMessage(props.myUser, props.username, textMsg.current.value, time);
             props.refreshChat();
-            setShowPopover(false);
             textMsg.current.value = "";
             $("#".concat(btnId).concat("-msg")).prop('disabled', $("#".concat(btnId).concat("-msg-input")).val() == "");
         })
@@ -60,7 +57,6 @@ function SendMsgBar(props) {
             const date = new Date();
             let time = date.getHours() + ":" + date.getMinutes();
             addPictureMessage(props.myUser, props.username, e.target.files[0], time);
-            setShowPopover(false);
             props.refreshChat();
         }
         else {
@@ -89,7 +85,6 @@ function SendMsgBar(props) {
             const date = new Date();
             let time = date.getHours() + ":" + date.getMinutes();
             addVideoMessage(props.myUser, props.username, e.target.files[0], time);
-            setShowPopover(false);
             props.refreshChat();
         } else {
             setModalText("Video format must be one of the above: mp4/mkv/avi/wmv/mov/flv");
@@ -98,7 +93,7 @@ function SendMsgBar(props) {
     }
 
     const popover = (
-        <Popover className="popover-basic" show={showPopover}>
+        <Popover className="popover-basic">
             <Popover.Header as="h1" className="popover-header">Record</Popover.Header>
             <Popover.Body>
                 <Recorder myUser={props.myUser} username={props.username} refreshChat={props.refreshChat}></Recorder>
@@ -118,7 +113,7 @@ function SendMsgBar(props) {
                     </div>
 
                     <div className="input-group-append">
-                        <button id={btnId.concat("-img-btn")} type="button" onClick={selectPic} className="btn btn-outline-secondary input-group-text attach_img_btn" ><i className="bi bi-image"></i></button>
+                        <button id={btnId.concat("-img-btn")} type="button" onClick={selectPic} className="btn btn-outline-secondary input-group-text attach_img_btn"><i className="bi bi-image"></i></button>
                         <input id={btnId.concat("-img-input")} onChange={sendPic} type="file" accept="image/*" hidden></input>
                     </div>
                     <div className="input-group-append">
