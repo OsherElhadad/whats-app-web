@@ -55,7 +55,7 @@ function SignUp() {
       if (name.current.value && validateUsername(name.current.value) && pass.current.value && rePass.current.value
         && validatePassword(pass.current.value, rePass.current.value) && validateRepeatedPassword(pass.current.value, rePass.current.value)
         && validateNickname(nick.current.value)) {
-        addNewUser(name.current.value, pass.current.value, nick.current.value, file);
+        addNewUser(name.current.value, pass.current.value, nick.current.value, URL.createObjectURL(pic));
         showSignUpSuccesModal();
       }
       return false;
