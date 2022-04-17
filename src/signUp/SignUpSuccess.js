@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function SignUpSuccess(props) {
 
     return (
-        <Modal show={props.isOpen} onHide={props.hideModal}>
+        <Modal backdrop="static" show={props.isOpen} onHide={props.hideModal}>
             <Modal.Header>
                 <Modal.Title>Hi {props.nick}!</Modal.Title>
             </Modal.Header>

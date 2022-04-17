@@ -163,6 +163,7 @@
     background-color: #c2ccc4;
     padding: 10px;
     position: relative;
+    min-width: 30%;
     max-width: 70%;
     overflow-wrap: break-word;
 }
@@ -175,6 +176,7 @@
     background-color: #78e08f;
     padding: 10px;
     position: relative;
+    min-width: 30%;
     max-width: 70%;
     overflow-wrap: break-word;
 }

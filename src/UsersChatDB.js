@@ -41,6 +41,10 @@ export function addVideoMessage(sender, talkWith, message, msgTime) {
     addMessage(sender, talkWith, message, msgTime, "video");
 }
 
+export function addRecordMessage(sender, talkWith, message, msgTime) {
+    addMessage(sender, talkWith, message, msgTime, "record");
+}
+
 function addMessage(sender, talkWith, message, msgTime, t) {
     getUserChats(sender)?.find(i => i.chatWith == talkWith).messages.push({
         msg: message,
@@ -69,6 +73,7 @@ export function addContact(user, talkWith) {
                 chatWith: talkWith,
                 messages: []
             });
+            return "";
         }
     }
 }

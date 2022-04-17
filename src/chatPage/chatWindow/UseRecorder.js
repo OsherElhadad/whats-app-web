@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { addRecordMessage } from "../../UsersChatDB";
 
-const UseRecorder = () => {
+const UseRecorder = (myUser, username, refreshChat) => {
   const [audioURL, setAudioURL] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [isRecorded, setRecorded] = useState(false);
@@ -41,6 +42,10 @@ const UseRecorder = () => {
   };
 
   const sendRecording = () => {
+    const date = new Date();
+    let time = date.getHours() + ":" + date.getMinutes();
+    addRecordMessage(myUser, username, audioURL ,time);
+    refreshChat();
     setRecorded(false);
   };
 
