@@ -43,6 +43,8 @@ function ReciverMessage(props) {
             </div>
         )
 
+            break;
+
         case "record": return (
             <div className="d-flex justify-content-start mb-4">
                 <div className="img_cont_msg">
