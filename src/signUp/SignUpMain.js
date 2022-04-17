@@ -16,8 +16,8 @@ function SignUp() {
     } else {
       showInvalidPicModal();
     }
-
   }
+
   function removePicture(e) {
     setFile();
   }
@@ -55,7 +55,13 @@ function SignUp() {
       if (name.current.value && validateUsername(name.current.value) && pass.current.value && rePass.current.value
         && validatePassword(pass.current.value, rePass.current.value) && validateRepeatedPassword(pass.current.value, rePass.current.value)
         && validateNickname(nick.current.value)) {
-        addNewUser(name.current.value, pass.current.value, nick.current.value, URL.createObjectURL(pic));
+        if (!pic) {
+          pic = "https://as2.ftcdn.net/v2/jpg/00/64/67/63/1000_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg";
+          addNewUser(name.current.value, pass.current.value, nick.current.value, pic);
+        } else {
+          addNewUser(name.current.value, pass.current.value, nick.current.value, URL.createObjectURL(pic));
+        }
+        
         showSignUpSuccesModal();
       }
       return false;
