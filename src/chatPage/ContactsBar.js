@@ -1,13 +1,9 @@
 import { Accordion, Card, useAccordionButton } from "react-bootstrap"
-<<<<<<< HEAD
 import { useState } from "react";
 import $ from "jquery";
 import { addContact } from "../UsersChatDB";
 import InvalidFileModal from "./chatWindow/InvalidFileModal";
-=======
 import SignOffModal from "./SignOffModal";
-import { useState } from "react";
->>>>>>> 4522d811ac6bb4ddb999a716bb6bdf0a85b1fd21
 
 function SearchAwareToggle({ children, eventKey, callback }) {
 
@@ -58,6 +54,15 @@ function ContactsBar(props) {
         })
     })
 
+    const [isSignOffModelOpen, setIsSignOffModelOpen] = useState(false);
+
+    const showSignOffModal = () => {
+        setIsSignOffModelOpen(true);
+    };
+    const hideSignOffModal = () => {
+        setIsSignOffModelOpen(false);
+    }
+
     const [isModelOpen, setIsModelOpen] = useState(false);
 
     const [modalText, setModalText] = useState("");
@@ -72,7 +77,7 @@ function ContactsBar(props) {
     return (
         <>
             <InvalidFileModal isOpen={isModelOpen} hideModal={hideModal} text={modalText}></InvalidFileModal>
-            <SignOffModal isOpen={isModelOpen} hideModal={hideSignOffModal} setUsername={props.setUsername}></SignOffModal>
+            <SignOffModal isOpen={isSignOffModelOpen} hideModal={hideSignOffModal} setUsername={props.setUsername}></SignOffModal>
 
             <div className="icons_item">
                 <Accordion>
