@@ -49,3 +49,7 @@ export function getUserNickname(user) {
 export function getUserPicture(user) {
     return users.get(user).picture;
 }
+
+export function setProfilePicture(user, pic) {
+    users.get(user).picture = pic;
+}

@@ -42,13 +42,13 @@ function Chat(props) {
             );
         })
     }
-
+    
     return (
         <div>
             <Tab.Container id="list-group-tabs" defaultActiveKey="#def">
                 <Row>
                     <Col sm={4} className="vh-100">
-                        <ContactsBar setUsername={props.setUsername}></ContactsBar>
+                        <ContactsBar myUser={props.user} setUsername={props.setUsername}></ContactsBar>
                         <ListGroup className="contacts_list">
                             {contactList}
                         </ListGroup>

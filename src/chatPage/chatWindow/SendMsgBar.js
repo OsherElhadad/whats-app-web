@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { addVideoMessage, addTextMessage, addPictureMessage } from "../../UsersChatDB";
 import $ from "jquery";
-import InvalidFileModal from "./InvalidFileModal";
+import InvalidFileModal from "../../InvalidFileModal";
 
 function SendMsgBar(props) {
 
@@ -58,7 +58,6 @@ function SendMsgBar(props) {
             setModalText("Picture format must be one of the above: jpg/jpeg/png/svg");
             showModal();
         }
-
     }
 
     const validateVid = (vid) => {
@@ -86,7 +85,6 @@ function SendMsgBar(props) {
             setModalText("Video format must be one of the above: mp4/mkv/avi/wmv/mov/flv");
             showModal();
         }
-
     }
 
     return (

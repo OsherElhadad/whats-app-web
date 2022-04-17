@@ -1,6 +1,8 @@
 import { Accordion, Card, useAccordionButton } from "react-bootstrap"
 import SignOffModal from "./SignOffModal";
 import { useState } from "react";
+import { getUserPicture } from "../UsersDB";
+import ProfilePicModal from "./ProfilePicModal";
 
 function SearchAwareToggle({ children, eventKey, callback }) {
 
@@ -37,26 +39,37 @@ function AddContactAwareToggle({ children, eventKey, callback }) {
 }
 
 function ContactsBar(props) {
-    const [isModelOpen, setIsModelOpen] = useState(false);
+    const [isSignOffModelOpen, setIsSignOffModelOpenModelOpen] = useState(false);
 
     const showSignOffModal = () => {
-        setIsModelOpen(true);
+        setIsSignOffModelOpenModelOpen(true);
     };
     const hideSignOffModal = () => {
-        setIsModelOpen(false);
+        setIsSignOffModelOpenModelOpen(false);
     };
+
+    const [isProfilePicModelOpen, setIsProfilePicModelOpen] = useState(false);
+
+    const showProfilePicfModal = () => {
+        setIsProfilePicModelOpen(true);
+    };
+    const hideProfilePicModal = () => {
+        setIsProfilePicModelOpen(false);
+    };
+
+    console.log("contacsbar: "+props.myUser);
 
     return (
         <>
-            <SignOffModal isOpen={isModelOpen} hideModal={hideSignOffModal} setUsername={props.setUsername}></SignOffModal>
-
+            <SignOffModal isOpen={isSignOffModelOpen} hideModal={hideSignOffModal} setUsername={props.setUsername}></SignOffModal>
+            <ProfilePicModal isOpen={isProfilePicModelOpen} hideModal={hideProfilePicModal} myUser={props.myUser}></ProfilePicModal>
             <div className="icons_item">
                 <Accordion>
                     <Card>
                         <Card.Header>
                             <div className="d-flex justify-content-between">
                                 <SearchAwareToggle eventKey="0"></SearchAwareToggle>
-                                <img src="https://static.turbosquid.com/Preview/001214/650/2V/boy-cartoon-3D-model_D.jpg" className="rounded-circle user_img_msg" />
+                                <img src={getUserPicture(props.myUser)} onClick={setIsProfilePicModelOpen} className="rounded-circle user_img_msg" />
                                 <button type="button" className="btn btn-outline-secondary" onClick={showSignOffModal}>
                                     <i className="bi bi-power"></i>
                                 </button>
