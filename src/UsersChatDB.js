@@ -2,7 +2,7 @@ import { doesUserExist } from "./UsersDB";
 
 export const usersChats = new Map();
 
-var chats = [{
+var adminChats = [{
     chatWith: "yos",
     messages: [{ msg: "Hi! I am the admin!", time: "TimeHere", sent: true, type: "text" }, { msg: "Nice to meet you!", time: "TimeHere", sent: false, type: "text" }]
 },
@@ -12,7 +12,9 @@ var chats = [{
     messages: [{ msg: "Hello! I'm Osher!", time: "TimeHere", sent: false , type: "text"}, { msg: "Cool! My Name Is Admin :)", time: "TimeHere", sent: true, type: "text" }]
 }];
 
-usersChats.set("admin", chats);
+usersChats.set("admin", adminChats);
+
+usersChats.set("sag" ,[]);
 
 export function getChatMessages(user, talkWith) {
     return usersChats.get(user).find(i => i.chatWith == talkWith).messages;
@@ -88,8 +90,6 @@ export function lastMassageGenerator(user, talkWith) {
     }
 
     var lastMsg = talk[talk.length - 1];
-
-    console.log(lastMsg.type);
 
     switch(lastMsg.type){
         case "text": return lastMsg.msg;

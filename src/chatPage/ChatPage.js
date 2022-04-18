@@ -55,7 +55,6 @@ function Chat(props) {
             );
         })
     }
-    console.log(chatWindows);
     return (
         <div>
             <Tab.Container id="list-group-tabs" defaultActiveKey="#def">

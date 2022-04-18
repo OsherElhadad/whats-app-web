@@ -20,7 +20,6 @@ function ProfilePicModal(props) {
     }
 
     const validatePic = (pic) => {
-        console.log(pic)
         var fileName = pic.name;
         var idxDot = fileName.lastIndexOf(".") + 1;
         var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
