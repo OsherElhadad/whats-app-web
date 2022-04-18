@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import {doesUserExist , getUserPassword} from "../UsersDB";
+import {doesUserExist , getUserPassword} from "../Users/UsersDB";
 import LogInForm from "./LogInForm";
 import $ from "jquery"
 import LogInFailed from "./LogInFailure";

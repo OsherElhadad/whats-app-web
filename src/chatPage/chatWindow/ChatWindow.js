@@ -3,7 +3,7 @@ import ReceiverMessage from "./ReceiverMessage";
 import SenderMessage from "./SenderMessage";
 import SenderMsgBar from "./SendMsgBar";
 import ContactHeader from "./ContactHeader";
-import { getChatMessages } from "../../UsersChatDB"
+import { getChatMessages } from "../../Users/UsersChatDB"
 import {useState} from "react";
 
 function ChatWindow(props) {

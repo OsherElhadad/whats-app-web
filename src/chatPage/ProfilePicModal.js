@@ -1,5 +1,5 @@
 import Modal from "react-bootstrap/Modal";
-import { setProfilePicture } from "../UsersDB";
+import { setProfilePicture } from "../Users/UsersDB";
 import InvalidFileModal from "../InvalidFileModal";
 import {useState} from "react";
 

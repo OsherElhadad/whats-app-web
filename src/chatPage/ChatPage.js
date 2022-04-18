@@ -1,8 +1,8 @@
 import { Tab, ListGroup, Col, Row } from "react-bootstrap"
 import "./Chat.css"
 import Contact from "./Contact"
-import { getUserPicture, getUserNickname } from "../UsersDB";
-import { getUserChats, lastMassageGenerator, lastMassageGeneratorTime } from "../UsersChatDB";
+import { getUserPicture, getUserNickname } from "../Users/UsersDB";
+import { getUserChats, lastMassageGenerator, lastMassageGeneratorTime } from "../Users/UsersChatDB";
 import ContactsBar from "./ContactsBar";
 import ChatWindow from "./chatWindow/ChatWindow"
 import { useState } from "react";

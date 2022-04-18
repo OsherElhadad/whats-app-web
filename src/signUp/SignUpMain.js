@@ -3,7 +3,7 @@ import "./SignUp.css";
 import SignUpForm from "./SignUpForm";
 import SignUpSuccess from "./SignUpSuccess";
 import { validateUsername, validatePassword, validateRepeatedPassword, validateNickname, validatePic } from "./Validation";
-import { addNewUser } from "../UsersDB";
+import { addNewUser } from "../Users/UsersDB";
 import $ from "jquery";
 import InvalidFileModal from "../InvalidFileModal";
 

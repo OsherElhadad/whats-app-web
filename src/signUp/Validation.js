@@ -1,4 +1,4 @@
-import { doesUserExist } from "../UsersDB";
+import { doesUserExist } from "../Users/UsersDB";
 
 export const validateUsername = (name) => {
     if ((!(validateSpaces(name, "usernameInvalidFeedback", "Username must be one word!", "SignUpUsername")))

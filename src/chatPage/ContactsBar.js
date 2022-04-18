@@ -1,9 +1,9 @@
 import { Accordion, Card, useAccordionButton } from "react-bootstrap"
 import { useState } from "react";
-import { getUserPicture } from "../UsersDB";
+import { getUserPicture } from "../Users/UsersDB";
 import ProfilePicModal from "./ProfilePicModal";
 import $ from "jquery";
-import { addContact , usersChats} from "../UsersChatDB";
+import { addContact , usersChats} from "../Users/UsersChatDB";
 import InvalidContactModal from "../InvalidContactModal";
 import SignOffModal from "./SignOffModal";
 import "./ContactsBar.css"

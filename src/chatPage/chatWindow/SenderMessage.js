@@ -19,7 +19,7 @@ function SenderMessage(props) {
         case "picture": return (
             <div className="d-flex justify-content-end mb-4">
                 <div className="msg_cotainer_send">
-                    <img className="msg_cotainer_media" src={URL.createObjectURL(props.msgText)}></img>
+                    <img className="msg_cotainer_media" src={props.msgText}></img>
                     <span className="msg_time_send">{props.msgTime}</span>
                 </div>
                 <div className="img_cont_msg">
@@ -32,7 +32,7 @@ function SenderMessage(props) {
         case "video": return (
             <div className="d-flex justify-content-end mb-4">
                 <div className="msg_cotainer_send">
-                    <video controls className="msg_cotainer_media" src={URL.createObjectURL(props.msgText)}></video>
+                    <video controls className="msg_cotainer_media" src={props.msgText}></video>
                     <span className="msg_time_send">{props.msgTime}</span>
                 </div>
                 <div className="img_cont_msg">
