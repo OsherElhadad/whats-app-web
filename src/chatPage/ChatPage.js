@@ -50,6 +50,7 @@ function Chat(props) {
                     user={chat.chatWith}
                     lastActive="TODO - LastTimeActive"
                     myUser={props.user}
+                    refreshChat = {refreshChat}
                     key={key}>
                 </ChatWindow>
             );
