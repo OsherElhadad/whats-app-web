@@ -7,6 +7,7 @@ import { addNewUser } from "../Users/UsersDB";
 import { addUserWithEmptyChats } from "../Users/UsersChatDB";
 import $ from "jquery";
 import InvalidFileModal from "../InvalidFileModal";
+import defalutProfilePic from "../Users/DefalutProfilePic.jpg"
 
 function SignUp() {
   const [file, setFile] = useState();
@@ -57,7 +58,7 @@ function SignUp() {
         && validatePassword(pass.current.value, rePass.current.value) && validateRepeatedPassword(pass.current.value, rePass.current.value)
         && validateNickname(nick.current.value)) {
         if (!pic) {
-          pic = "https://as2.ftcdn.net/v2/jpg/00/64/67/63/1000_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg";
+          pic = defalutProfilePic;
           addNewUser(name.current.value, pass.current.value, nick.current.value, pic);
         } else {
           addNewUser(name.current.value, pass.current.value, nick.current.value, URL.createObjectURL(pic));
