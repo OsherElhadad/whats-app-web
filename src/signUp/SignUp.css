@@ -5,7 +5,9 @@
 }
 
 #SignUpProfilePicImg{
-    width: 100%;
+    height: 80px;
+    width: 80px;
+    border: 1.5px solid #f5f6fa;
 }
 
 .btn-circle.btn-sm {
