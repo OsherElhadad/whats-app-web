@@ -2,7 +2,7 @@ import { Tab, ListGroup, Col, Row } from "react-bootstrap"
 import "./Chat.css"
 import Contact from "./Contact"
 import { getUserPicture, getUserNickname } from "../UsersDB";
-import { getUserChats, lastMassageGenerator } from "../UsersChatDB";
+import { getUserChats, lastMassageGenerator, lastMassageGeneratorTime } from "../UsersChatDB";
 import ContactsBar from "./ContactsBar";
 import ChatWindow from "./chatWindow/ChatWindow"
 import { useState } from "react";
@@ -29,7 +29,7 @@ function Chat(props) {
                 <Contact image={getUserPicture(chat.chatWith)}
                     link={chat.chatWith}
                     username={getUserNickname(chat.chatWith)}
-                    lastTime="TODO"
+                    lastTime={lastMassageGeneratorTime(props.user,chat.chatWith)}
                     lastMsg={lastMassageGenerator(props.user,chat.chatWith)}
                     key={key}>
                 </Contact>
@@ -47,7 +47,6 @@ function Chat(props) {
                     image={getUserPicture(chat.chatWith)}
                     nickname={getUserNickname(chat.chatWith)}
                     user={chat.chatWith}
-                    lastActive="TODO - LastTimeActive"
                     myUser={props.user}
                     refreshChat = {refreshChat}
                     key={key}>

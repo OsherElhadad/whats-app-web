@@ -4,12 +4,12 @@ export const usersChats = new Map();
 
 var adminChats = [{
     chatWith: "yos",
-    messages: [{ msg: "Hi! I am the admin!", time: "TimeHere", sent: true, type: "text" }, { msg: "Nice to meet you!", time: "TimeHere", sent: false, type: "text" }]
+    messages: [{ msg: "Hi! I am the admin!", time: "13:00", sent: true, type: "text" }, { msg: "Nice to meet you!", time: "13:01", sent: false, type: "text" }]
 },
 
 {
     chatWith: "osh",
-    messages: [{ msg: "Hello! I'm Osher!", time: "TimeHere", sent: false , type: "text"}, { msg: "Cool! My Name Is Admin :)", time: "TimeHere", sent: true, type: "text" }]
+    messages: [{ msg: "Hello! I'm Osher!", time: "14:00", sent: false , type: "text"}, { msg: "Cool! My Name Is Admin :)", time: "14:01", sent: true, type: "text" }]
 }];
 
 usersChats.set("admin", adminChats);
@@ -97,4 +97,17 @@ export function lastMassageGenerator(user, talkWith) {
         case "video": return "Video";
         case "record": return "Voice Message";
     }
+}
+
+export function lastMassageGeneratorTime(user, talkWith) {
+
+    var talk = getUserChats(user)?.find(i => i.chatWith == talkWith).messages;
+
+    if (talk.length == 0) {
+        return "No messages";
+    }
+
+    var lastMsg = talk[talk.length - 1];
+
+    return lastMsg.time;
 }
