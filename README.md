@@ -17,7 +17,7 @@ All you need to do now is to wait for the website to open on you browser.
 * In case you are not already signed, you can click the limk below the log-in button and sign-up.
 * On successful log-in, you will be navigated to the chats screen.
 
-### Sign-Up Page
+## Sign-Up Page
 
 * This page allows you to create your account.
 * The username, password, verfiy password and nickname fields are requierd in order to sign up. In case one of the mentioned is empty or invalid(will be explanied in a bit), the system won't allow you to sign-up and the submit button will be disabled.
