@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* Clone this repository
+* Go to cloned folder on the CLI and enter the following commands:
+- npm install
+- npm install react-bootstrap bootstrap
+- npm install react-router-dom
 
-## Available Scripts
+Now you are ready to start!
+In oreder to open the website, go to the cloned folder on the CLI and enter the command :
+$ npm start
+All you need to do now is to wait for the website to open on you browser.
 
-In the project directory, you can run:
+## Log-In Page
 
-### `npm start`
+* this is the home page which allows you to log-in to the system and start chatting with your friends!
+* In case you are not already signed, you can click the limk below the log-in button and sign-up.
+* On successful log-in, you will be navigated to the chats screen.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Sign-Up Page
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* This page allows you to create your account.
+* The username, password, verfiy password and nickname fields are requierd in order to sign up. In case one of the mentioned is empty or invalid(will be explanied in a bit), the system won't allow you to sign-up and the submit button will be disabled.
+* When all required fields are filled and valid, the submit button will be un-disabled and you will be able to submit your request to sign-up.
+* While typing in the input fields you will notice a dynamic message below the relavent field. In case the current input is valid, a green border will apear with a check sign and a "Looking good" message. On the other hand, if the current input is invalid, a red border will aprear with a X sign and a message to indicate the specific problem with the input.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Fields requirement in-depth:
+- Username must be one word with length greater or equals to 2, without '-' or '_' characters.
+- Password must be one word with length greater or equals to 2 and contatin at least one number and one letter characters.
+- Verified Password must match the password.
+- Nickname's length must be greater or equals to 2.
+- The last field is optional and allows you to upload a proflie picture while signing in.
+When a picture is selected you can delete it by clicking on the red button on it's upper right corner.
+Profile picture format must be one of the above: jpg/jpeg/png/svg. 
+In case you select a file with diffrent format, a modal will apear to tell you about the error.
+If you leave the field empty, a default picture will be set to your profile(but don't worry, you can change your profile picture in every moment - will be explaiend in the chat section).
