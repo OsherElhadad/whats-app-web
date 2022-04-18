@@ -7,7 +7,7 @@ import { addNewUser } from "../Users/UsersDB";
 import { addUserWithEmptyChats } from "../Users/UsersChatDB";
 import $ from "jquery";
 import InvalidFileModal from "../InvalidFileModal";
-import defalutProfilePic from "../Users/DefalutProfilePic.jpg"
+import defalutProfilePic from "../Users/ProfilePictures/DefalutProfilePic.jpg"
 
 function SignUp() {
   const [file, setFile] = useState();
@@ -64,7 +64,7 @@ function SignUp() {
           addNewUser(name.current.value, pass.current.value, nick.current.value, URL.createObjectURL(pic));
         }
         addUserWithEmptyChats(name.current.value);
-        
+
         showSignUpSuccesModal();
       }
       return false;

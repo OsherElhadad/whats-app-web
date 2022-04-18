@@ -16,13 +16,12 @@ import vid7 from "./ChatMedia/vid7.mp4";
 
 export const usersChats = new Map();
 
-usersChats.set("rag", []);
-usersChats.set("lag", []);
-usersChats.set("bjo", []);
-usersChats.set("flo", []);
-usersChats.set("rol", []);
-usersChats.set("ecb", []);
-
+addUserWithEmptyChats("rag");
+addUserWithEmptyChats("lag");
+addUserWithEmptyChats("bjo");
+addUserWithEmptyChats("flo");
+addUserWithEmptyChats("rol");
+addUserWithEmptyChats("ecb");
 
 // Hard-Coded Chats
 addContact("rag","lag");

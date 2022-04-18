@@ -1,54 +1,20 @@
-import ragnarPic from"./ragnar.png"
-import lagerthaPic from"./Lagertha.jpg"
-import bjornPic from"./bjorn.jpg"
-import flokiPic from"./floki.jpg"
-import rolloPic from"./rollo.jpg"
-import ecbertPic from"./ecbert.jpg"
+import ragnarPic from "./ProfilePictures/ragnar.png"
+import lagerthaPic from "./ProfilePictures/Lagertha.jpg"
+import bjornPic from "./ProfilePictures/bjorn.jpg"
+import flokiPic from "./ProfilePictures/floki.jpg"
+import rolloPic from "./ProfilePictures/rollo.jpg"
+import ecbertPic from "./ProfilePictures/ecbert.jpg"
 
 
 export const users = new Map();
 
-users.set("rag",
-    {
-        password: "a1",
-        nickname: "King Ragnar",
-        picture: ragnarPic,
-    });
-
-users.set("lag",
-    {
-        password: "a1",
-        nickname: "Lagertha",
-        picture: lagerthaPic,
-    });
-
-users.set("bjo",
-    {
-        password: "a1",
-        nickname: "Bjorn Lothbrok",
-        picture: bjornPic,
-    })
-
-users.set("flo",
-    {
-        password: "a1",
-        nickname: "Floki",
-        picture: flokiPic,
-    })
-
-users.set("rol",
-    {
-        password: "a1",
-        nickname: "Rollo",
-        picture: rolloPic,
-    })
-
-users.set("ecb",
-    {
-        password: "a1",
-        nickname: "King Ecbert",
-        picture: ecbertPic,
-    })
+//Hard-Coded Users
+addNewUser("rag", "a1", "King Ragnar", ragnarPic);
+addNewUser("lag", "a1", "Lagertha", lagerthaPic);
+addNewUser("bjo", "a1", "Bjorn Lothbrok", bjornPic);
+addNewUser("flo", "a1", "Floki", flokiPic);
+addNewUser("rol", "a1", "Rollo", rolloPic);
+addNewUser("ecb", "a1", "King Ecbert", ecbertPic);
 
 
 export function addNewUser(user, pass, nick, pic) {
