@@ -26,7 +26,7 @@ function Chat(props) {
 
     function doSearch(query) {
         if (contacts) {
-            setcontactsList(contacts.filter((contact) => contact.chatWith.includes(query)));
+            setcontactsList(contacts.filter((contact) => getUserNickname(contact.chatWith).toLowerCase().includes(query.toLowerCase())));
         }
     }
 
@@ -47,7 +47,7 @@ function Chat(props) {
             );
         })
     }
-    
+
     return (
         <div>
             <Tab.Container id="list-group-tabs" defaultActiveKey="#def">

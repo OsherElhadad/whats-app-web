@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { getUserPicture } from "../UsersDB";
 import ProfilePicModal from "./ProfilePicModal";
 import $ from "jquery";
-import { addContact , usersChats} from "../UsersChatDB";
+import { addContact, usersChats } from "../UsersChatDB";
 import InvalidContactModal from "../InvalidContactModal";
 import SignOffModal from "./SignOffModal";
 import "./ContactsBar.css"
@@ -56,7 +56,13 @@ function ContactsBar(props) {
                 addContact($("#add-contact-input").val(), props.myUser);
                 props.refreshChat();
             }
-        })
+        });
+
+        $("#add-contact-input").bind("keypress", function (e) {
+            if (e.keyCode == 13) {
+                $("#add_contact_btn").click();
+            }
+        });
     })
 
     const [isSignOffModelOpen, setIsSignOffModelOpen] = useState(false);
@@ -90,7 +96,7 @@ function ContactsBar(props) {
 
     const searchBox = useRef(null);
 
-    const searchContact = function() {
+    const searchContact = function () {
         props.doSearch(searchBox.current.value);
     }
 

@@ -9,12 +9,12 @@ var adminChats = [{
 
 {
     chatWith: "osh",
-    messages: [{ msg: "Hello! I'm Osher!", time: "14:00", sent: false , type: "text"}, { msg: "Cool! My Name Is Admin :)", time: "14:01", sent: true, type: "text" }]
+    messages: [{ msg: "Hello! I'm Osher!", time: "14:00", sent: false, type: "text" }, { msg: "Cool! My Name Is Admin :)", time: "14:01", sent: true, type: "text" }]
 }];
 
 usersChats.set("admin", adminChats);
 
-usersChats.set("sag" ,[]);
+usersChats.set("sag", []);
 
 export function getChatMessages(user, talkWith) {
     return usersChats.get(user).find(i => i.chatWith == talkWith).messages;
@@ -67,7 +67,7 @@ export function addContact(user, talkWith) {
     if (!doesUserExist(talkWith)) {
         return "This contact does not exist";
     } else {
-        if(doesContactOfUserExist(user, talkWith)) {
+        if (doesContactOfUserExist(user, talkWith)) {
             return "This contact is already your contact";
         }
         else {
@@ -91,8 +91,15 @@ export function lastMassageGenerator(user, talkWith) {
 
     var lastMsg = talk[talk.length - 1];
 
-    switch(lastMsg.type){
-        case "text": return lastMsg.msg;
+    var maxLen = 30;
+
+    switch (lastMsg.type) {
+        case "text":
+            if (String(lastMsg.msg).length > maxLen) {
+                return String(lastMsg.msg).substring(0, maxLen - 3) + "...";
+            } else {
+                return String(lastMsg.msg);
+            }
         case "picture": return "Picture";
         case "video": return "Video";
         case "record": return "Voice Message";
