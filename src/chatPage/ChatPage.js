@@ -2,7 +2,7 @@ import { Tab, ListGroup, Col, Row } from "react-bootstrap"
 import "./Chat.css"
 import Contact from "./Contact"
 import { getUserPicture, getUserNickname } from "../UsersDB";
-import { getUserChats } from "../UsersChatDB";
+import { getUserChats, lastMassageGenerator } from "../UsersChatDB";
 import ContactsBar from "./ContactsBar";
 import ChatWindow from "./chatWindow/ChatWindow"
 import { useState } from "react";
@@ -10,25 +10,28 @@ import { useState } from "react";
 
 function Chat(props) {
 
+    const [refresh, setRefresh] = useState(0);
+
+    const refreshChat = () => {
+        if (refresh == 0) {
+            setRefresh(1);
+        }
+        else {
+            setRefresh(0);
+        }
+    }
 
     var contactList;
 
     if (getUserChats(props.user)) {
         contactList = getUserChats(props.user).map((chat, key) => {
-            const lastMassageGenerator = () => {
-                if (chat.messages.length == 0) {
-                    return "New contact";
-                } else {
-                    return chat.messages[chat.messages.length - 1].msg;
-                }
-            }
-
+            
             return (
                 <Contact image={getUserPicture(chat.chatWith)}
                     link={chat.chatWith}
                     username={getUserNickname(chat.chatWith)}
                     lastTime="TODO"
-                    lastMsg={lastMassageGenerator()}
+                    lastMsg={lastMassageGenerator(props.user,chat.chatWith)}
                     key={key}>
                 </Contact>
             );
@@ -58,7 +61,7 @@ function Chat(props) {
             <Tab.Container id="list-group-tabs" defaultActiveKey="#def">
                 <Row>
                     <Col sm={4} className="vh-100">
-                        <ContactsBar myUser={props.user} setUsername={props.setUsername} ></ContactsBar>
+                        <ContactsBar myUser={props.user} setUsername={props.setUsername} refreshChat={refreshChat}></ContactsBar>
                         <ListGroup className="contacts_list">
                             {contactList}
                         </ListGroup>

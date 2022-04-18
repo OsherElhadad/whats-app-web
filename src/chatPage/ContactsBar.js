@@ -52,7 +52,7 @@ function ContactsBar(props) {
                 setContactModalText(error);
                 showContactModal();
             } else {
-                // props.refreshChat(); - need to refresh in other way
+                props.refreshChat();
             }
         })
     })
