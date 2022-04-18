@@ -7,7 +7,6 @@ import ContactsBar from "./ContactsBar";
 import ChatWindow from "./chatWindow/ChatWindow"
 import { useState } from "react";
 
-
 function Chat(props) {
 
     const [refresh, setRefresh] = useState(0);
@@ -56,7 +55,7 @@ function Chat(props) {
             );
         })
     }
-    
+    console.log(chatWindows);
     return (
         <div>
             <Tab.Container id="list-group-tabs" defaultActiveKey="#def">
