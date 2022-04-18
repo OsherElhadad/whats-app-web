@@ -1,10 +1,10 @@
-import { Tab, ListGroup, Col, Row } from "react-bootstrap"
-import "./Chat.css"
-import Contact from "./Contact"
+import { Tab, Col, Row } from "react-bootstrap";
+import "./Chat.css";
 import { getUserPicture, getUserNickname } from "../UsersDB";
-import { getUserChats, lastMassageGenerator, lastMassageGeneratorTime } from "../UsersChatDB";
+import { getUserChats } from "../UsersChatDB";
 import ContactsBar from "./ContactsBar";
-import ChatWindow from "./chatWindow/ChatWindow"
+import ChatWindow from "./chatWindow/ChatWindow";
+import ContactListResult from "./chatWindow/ContactListResults";
 import { useState } from "react";
 
 function Chat(props) {
@@ -20,21 +20,14 @@ function Chat(props) {
         }
     }
 
-    var contactList;
+    var contacts = getUserChats(props.user);
 
-    if (getUserChats(props.user)) {
-        contactList = getUserChats(props.user).map((chat, key) => {
-            
-            return (
-                <Contact image={getUserPicture(chat.chatWith)}
-                    link={chat.chatWith}
-                    username={getUserNickname(chat.chatWith)}
-                    lastTime={lastMassageGeneratorTime(props.user,chat.chatWith)}
-                    lastMsg={lastMassageGenerator(props.user,chat.chatWith)}
-                    key={key}>
-                </Contact>
-            );
-        })
+    const [contactsList, setcontactsList] = useState(contacts);
+
+    function doSearch(query) {
+        if (contacts) {
+            setcontactsList(contacts.filter((contact) => contact.chatWith.includes(query)));
+        }
     }
 
     var chatWindows;
@@ -48,21 +41,21 @@ function Chat(props) {
                     nickname={getUserNickname(chat.chatWith)}
                     user={chat.chatWith}
                     myUser={props.user}
-                    refreshChat = {refreshChat}
+                    refreshChat={refreshChat}
                     key={key}>
                 </ChatWindow>
             );
         })
     }
+    
     return (
         <div>
             <Tab.Container id="list-group-tabs" defaultActiveKey="#def">
                 <Row>
                     <Col sm={4} className="vh-100">
-                        <ContactsBar myUser={props.user} setUsername={props.setUsername} refreshChat={refreshChat}></ContactsBar>
-                        <ListGroup className="contacts_list">
-                            {contactList}
-                        </ListGroup>
+                        <ContactsBar myUser={props.user} setUsername={props.setUsername} refreshChat={refreshChat} doSearch={doSearch}></ContactsBar>
+                        <ContactListResult user={props.user} contacts={contactsList}>
+                        </ContactListResult>
                     </Col>
                     <Col sm={8}>
                         <Tab.Content>

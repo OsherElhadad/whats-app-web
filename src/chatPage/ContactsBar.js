@@ -1,5 +1,5 @@
 import { Accordion, Card, useAccordionButton } from "react-bootstrap"
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { getUserPicture } from "../UsersDB";
 import ProfilePicModal from "./ProfilePicModal";
 import $ from "jquery";
@@ -88,6 +88,12 @@ function ContactsBar(props) {
         setIsProfilePicModelOpen(false);
     };
 
+    const searchBox = useRef(null);
+
+    const searchContact = function() {
+        props.doSearch(searchBox.current.value);
+    }
+
     return (
         <>
             <InvalidContactModal isOpen={isContactModelOpen} hideModal={hideContactModal} text={ContactModalText}></InvalidContactModal>
@@ -108,7 +114,7 @@ function ContactsBar(props) {
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
                             <Card.Body>
-                                <input type="search" className="form-control type_msg" id="search-input" placeholder="Search contacts..." aria-label="Search contacts..." />
+                                <input type="search" ref={searchBox} className="form-control type_msg" id="search-input" placeholder="Search contacts..." onKeyUp={searchContact} onChange={searchContact} aria-label="Search contacts..." />
                             </Card.Body>
                         </Accordion.Collapse>
                         <Accordion.Collapse eventKey="1">
