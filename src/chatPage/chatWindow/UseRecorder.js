@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { addRecordMessage } from "../../UsersChatDB";
+import { addRecordMessage } from "../../Users/UsersChatDB";
 
 const UseRecorder = (myUser, username, refreshChat) => {
   const [audioURL, setAudioURL] = useState("");

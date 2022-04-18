@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { addVideoMessage, addTextMessage, addPictureMessage } from "../../UsersChatDB";
+import { addVideoMessage, addTextMessage, addPictureMessage } from "../../Users/UsersChatDB";
 import { OverlayTrigger, Popover } from "react-bootstrap"
 import $ from "jquery";
 import InvalidFileModal from "../../InvalidFileModal";
@@ -63,7 +63,7 @@ function SendMsgBar(props) {
         if (validatePic(e.target.files[0])) {
             const date = new Date();
             let time = date.getHours() + ":" + date.getMinutes();
-            addPictureMessage(props.myUser, props.username, e.target.files[0], time);
+            addPictureMessage(props.myUser, props.username, URL.createObjectURL(e.target.files[0]), time);
             props.refreshChat();
         }
         else {
@@ -91,7 +91,7 @@ function SendMsgBar(props) {
         if (validateVid(e.target.files[0])) {
             const date = new Date();
             let time = date.getHours() + ":" + date.getMinutes();
-            addVideoMessage(props.myUser, props.username, e.target.files[0], time);
+            addVideoMessage(props.myUser, props.username, URL.createObjectURL(e.target.files[0]), time);
             props.refreshChat();
         } else {
             setModalText("Video format must be one of the above: mp4/mkv/avi/wmv/mov/flv");

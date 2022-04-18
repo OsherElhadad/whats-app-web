@@ -1,7 +1,7 @@
 import { ListGroup } from "react-bootstrap";
 import Contact from "../Contact";
-import { lastMassageGenerator, lastMassageGeneratorTime } from "../../UsersChatDB";
-import { getUserPicture, getUserNickname } from "../../UsersDB";
+import { lastMassageGenerator, lastMassageGeneratorTime } from "../../Users/UsersChatDB";
+import { getUserPicture, getUserNickname } from "../../Users/UsersDB";
 
 
 function ContactListResult(props) {

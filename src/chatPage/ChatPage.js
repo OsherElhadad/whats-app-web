@@ -1,7 +1,7 @@
 import { Tab, Col, Row } from "react-bootstrap";
 import "./Chat.css";
-import { getUserPicture, getUserNickname } from "../UsersDB";
-import { getUserChats } from "../UsersChatDB";
+import { getUserPicture, getUserNickname } from "../Users/UsersDB";
+import { getUserChats } from "../Users/UsersChatDB";
 import ContactsBar from "./ContactsBar";
 import ChatWindow from "./chatWindow/ChatWindow";
 import ContactListResult from "./chatWindow/ContactListResults";
