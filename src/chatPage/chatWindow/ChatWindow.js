@@ -4,20 +4,9 @@ import SenderMessage from "./SenderMessage";
 import SenderMsgBar from "./SendMsgBar";
 import ContactHeader from "./ContactHeader";
 import { getChatMessages } from "../../UsersChatDB"
-import refreshChat from "../ChatPage"
+import {useState} from "react";
 
 function ChatWindow(props) {
-
-    const [refresh, setRefresh] = useState(0);
-
-    const refreshChat = () => {
-        if (refresh == 0) {
-            setRefresh(1);
-        }
-        else {
-            setRefresh(0);
-        }
-    }
 
     const messages = getChatMessages(props.myUser, props.user);
 
@@ -56,7 +45,7 @@ function ChatWindow(props) {
                     <SenderMsgBar
                         username={props.user}
                         myUser={props.myUser}
-                        refreshChat={refreshChat}>
+                        refreshChat={props.refreshChat}>
                     </SenderMsgBar>
                 </div>
             </div>

@@ -12,14 +12,13 @@ function SignOffModal(props) {
 
     return (
         <Modal show={props.isOpen} onHide={props.hideModal}>
-            <Modal.Header>
+            <Modal.Header className="bg-dark text-white">
                 <Modal.Title>Are you sure yow want to say goodbye? :(</Modal.Title>
             </Modal.Header>
-            <Modal.Body> click on the button to sign off! </Modal.Body>
-            <Modal.Footer>
-                <button className="btn btn-outline-dark" onClick={signOff}>Sign-Off</button>
-
-                <button className="btn btn-outline-dark" onClick={props.hideModal}>Cancel</button>
+            <Modal.Body className="bg-dark text-white"> I wont ask again! </Modal.Body>
+            <Modal.Footer className="bg-dark text-white">
+                <button className="btn btn-outline-light" onClick={signOff}>Sign-Out</button>
+                <button className="btn btn-outline-light" onClick={props.hideModal}>Cancel</button>
             </Modal.Footer>
         </Modal>
     );

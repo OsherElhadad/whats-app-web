@@ -44,14 +44,14 @@ function ProfilePicModal(props) {
         <>
         <InvalidFileModal isOpen={isModelOpen} hideModal={hideError} text = "Picture format must be one of the above: jpg/jpeg/png/svg"></InvalidFileModal>
         <Modal show={props.isOpen} onHide={props.hideModal}>
-            <Modal.Header>
+            <Modal.Header className="bg-dark text-white">
                 <Modal.Title>Profile Picture Change</Modal.Title>
             </Modal.Header>
-            <Modal.Body> click on the button to change profile picture! </Modal.Body>
-            <Modal.Footer>
-                <button className="btn btn-outline-dark" onClick={selectPicture}>Choose Picture</button>
+            <Modal.Body className="bg-dark text-white"> Are you sure you want to change? </Modal.Body>
+            <Modal.Footer className="bg-dark text-white">
+                <button className="btn btn-outline-light" onClick={selectPicture}>Choose Picture</button>
                 <input id="profilePicInput" type="file" accept="image/*" onChange={changeProfilePicture} hidden></input>
-                <button className="btn btn-outline-dark" onClick={props.hideModal}>Cancel</button>
+                <button className="btn btn-outline-light" onClick={props.hideModal}>Cancel</button>
             </Modal.Footer>
         </Modal>
         </>

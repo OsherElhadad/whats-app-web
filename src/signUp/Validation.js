@@ -1,9 +1,9 @@
-import {doesUserExist} from "../UsersDB";
+import { doesUserExist } from "../UsersDB";
 
 export const validateUsername = (name) => {
     if ((!(validateSpaces(name, "usernameInvalidFeedback", "Username must be one word!", "SignUpUsername")))
         || (!(validateLength(name, 2, "usernameInvalidFeedback", "Username must contain at least two characters!", "SignUpUsername"))
-        || (!(doesContainHyphen(name, "usernameInvalidFeedback", "Username must not contain - or _ characters!", "SignUpUsername")))
+            || (!(doesContainHyphen(name, "usernameInvalidFeedback", "Username must not contain - or _ characters!", "SignUpUsername")))
             || (!(validateUniqueUsername(name, "usernameInvalidFeedback", "Username alreay exists!", "SignUpUsername"))))) {
         return false;
     }
@@ -97,4 +97,15 @@ export const validateNumberAndLetter = (str, errorId, errorHtml, parentId) => {
     document.getElementById(parentId).classList.add('is-valid');
     document.getElementById(parentId).classList.remove('is-invalid');
     return true;
+}
+
+export const validatePic = (pic) => {
+    var fileName = pic.name;
+    var idxDot = fileName.lastIndexOf(".") + 1;
+    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+
+    if (extFile == "jpg" || extFile == "jpeg" || extFile == "png" || extFile == "svg") {
+        return true;
+    }
+    return false;
 }

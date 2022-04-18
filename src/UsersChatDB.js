@@ -77,3 +77,24 @@ export function addContact(user, talkWith) {
         }
     }
 }
+
+export function lastMassageGenerator(user, talkWith) {
+
+    var talk = getUserChats(user)?.find(i => i.chatWith == talkWith).messages;
+
+
+    if (talk.length == 0) {
+        return "New contact";
+    }
+
+    var lastMsg = talk[talk.length - 1];
+
+    console.log(lastMsg.type);
+
+    switch(lastMsg.type){
+        case "text": return lastMsg.msg;
+        case "picture": return "Picture";
+        case "video": return "Video";
+        case "record": return "Voice Message";
+    }
+}
