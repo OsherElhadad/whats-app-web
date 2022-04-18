@@ -161,9 +161,15 @@ export function lastMassageGenerator(user, talkWith) {
     }
 
     var lastMsg = talk[talk.length - 1];
+    var maxLen = 30;
 
     switch (lastMsg.type) {
-        case "text": return lastMsg.msg;
+        case "text":
+            if (String(lastMsg.msg).length > maxLen) {
+                return String(lastMsg.msg).substring(0, maxLen - 3) + "...";
+            } else {
+                return String(lastMsg.msg);
+            }
         case "picture": return "Picture";
         case "video": return "Video";
         case "record": return "Voice Message";
