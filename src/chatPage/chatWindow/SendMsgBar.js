@@ -13,6 +13,13 @@ function SendMsgBar(props) {
     const textMsg = useRef("");
 
     $(document).ready(function (event) {
+
+        $("#".concat(btnId).concat("-msg-input")).bind("keypress", function (e) {
+            if(e.keyCode == 13) {
+                document.getElementById(btnId.concat("-msg")).click();
+            }
+        })
+
         $("#".concat(btnId).concat("-msg")).unbind("click").on("click", function () {
             const date = new Date();
             let time = date.getHours() + ":" + date.getMinutes();

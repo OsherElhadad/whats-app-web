@@ -40,7 +40,6 @@ function Chat(props) {
                     image={getUserPicture(chat.chatWith)}
                     nickname={getUserNickname(chat.chatWith)}
                     user={chat.chatWith}
-                    lastActive="TODO - LastTimeActive"
                     myUser={props.user}
                     refreshChat={refreshChat}
                     key={key}>
@@ -48,7 +47,7 @@ function Chat(props) {
             );
         })
     }
-
+    
     return (
         <div>
             <Tab.Container id="list-group-tabs" defaultActiveKey="#def">

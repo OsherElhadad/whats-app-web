@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { getUserPicture } from "../UsersDB";
 import ProfilePicModal from "./ProfilePicModal";
 import $ from "jquery";
-import { addContact } from "../UsersChatDB";
+import { addContact , usersChats} from "../UsersChatDB";
 import InvalidContactModal from "../InvalidContactModal";
 import SignOffModal from "./SignOffModal";
 import "./ContactsBar.css"
@@ -46,12 +46,14 @@ function ContactsBar(props) {
 
     $(document).ready(function (event) {
         $("#add_contact_btn").unbind("click").on("click", function () {
-            console.log(props.myUser)
+            console.log("before" + usersChats)
             let error = addContact(props.myUser, $("#add-contact-input").val());
+            console.log(usersChats)
             if (error != "") {
                 setContactModalText(error);
                 showContactModal();
             } else {
+                addContact($("#add-contact-input").val(), props.myUser);
                 props.refreshChat();
             }
         })

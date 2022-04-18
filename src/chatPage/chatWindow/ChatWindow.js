@@ -38,7 +38,7 @@ function ChatWindow(props) {
         <Tab.Pane eventKey={"#".concat(props.link)}>
             <div className="chat">
                 <div className="contact_card vh-100">
-                    <ContactHeader image={props.image} nickname={props.nickname} lastActive={props.lastActive}></ContactHeader>
+                    <ContactHeader image={props.image} nickname={props.nickname} ></ContactHeader>
                     <div className="card-body msg_card_body">
                         {msgList}
                     </div>
