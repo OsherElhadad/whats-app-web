@@ -10,6 +10,7 @@
 }
 
 .list_group_items {
+    margin-top: 0 !important;
     background-color: rgba(0, 0, 0, 0.30) !important;
     border: 0;
 }
@@ -115,28 +116,28 @@
 }
 
 .user_img {
-    height: 70px;
-    width: 70px;
+    height: 80px;
+    width: 80px;
     border: 1.5px solid #f5f6fa;
 
 }
 
 .user_img_msg {
-    height: 40px;
-    width: 40px;
+    height: 45px;
+    width: 45px;
     border: 1.5px solid #f5f6fa;
 
 }
 
 .img_cont {
     position: relative;
-    height: 70px;
-    width: 70px;
+    height: 80px;
+    width: 80px;
 }
 
 .img_cont_msg {
-    height: 40px;
-    width: 40px;
+    height: 45px;
+    width: 45px;
 }
 
 .user_info {

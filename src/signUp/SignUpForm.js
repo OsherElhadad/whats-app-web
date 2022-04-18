@@ -62,7 +62,7 @@ function signUpForm(props) {
 
                       {props.file && (
                         <div id="ProfilePicHolder">
-                          <img id="SignUpProfilePicImg" src={props.file}></img>
+                          <img id="SignUpProfilePicImg" className="rounded-circle" src={props.file}></img>
                           <button id="closeBtn" className="btn btn-danger btn-circle btn-sm" onClick={props.removePicture}>X</button>
                         </div>
                       )}

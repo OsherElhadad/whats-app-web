@@ -1,10 +1,10 @@
 import { Accordion, Card, useAccordionButton } from "react-bootstrap";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { getUserPicture } from "../Users/UsersDB";
+import { validateAddContact } from "../Users/UsersChatDB";
 import ProfilePicModal from "./ProfilePicModal";
 import $ from "jquery";
-import { addContact , usersChats} from "../Users/UsersChatDB";
-import InvalidContactModal from "../InvalidContactModal";
+import { addContact, usersChats } from "../Users/UsersChatDB";
 import SignOffModal from "./SignOffModal";
 import "./ContactsBar.css";
 
@@ -42,23 +42,36 @@ function AddContactAwareToggle({ children, eventKey, callback }) {
     );
 }
 
+function validateAddContactKeyUp(username, talkWith) {
+    var errorMsg = validateAddContact(username, talkWith);
+    if (errorMsg == "") {
+        document.getElementById("add-contact-input").classList.add('is-valid');
+        document.getElementById("add-contact-input").classList.remove('is-invalid');
+        return true;
+    }
+    document.getElementById("addContactInvalidFeedback").innerHTML = errorMsg;
+    document.getElementById("add-contact-input").classList.remove('is-valid');
+    document.getElementById("add-contact-input").classList.add('is-invalid');
+    return false;
+}
+
 function ContactsBar(props) {
 
     $(document).ready(function (event) {
+        $("#add-contact-input").unbind().bind("keypress", function (e) {
+            if(e.keyCode == 13) {
+                document.getElementById("add_contact_btn").click();
+            }
+        })
+
         $("#add_contact_btn").unbind("click").on("click", function () {
-            let error = addContact(props.myUser, $("#add-contact-input").val());
-            if (error != "") {
-                setContactModalText(error);
-                showContactModal();
-            } else {
+            console.log("before" + usersChats)
+            let error = validateAddContact(props.myUser, $("#add-contact-input").val());
+            console.log(usersChats)
+            if (error == "") {
+                addContact(props.myUser, $("#add-contact-input").val());
                 addContact($("#add-contact-input").val(), props.myUser);
                 props.refreshChat();
-            }
-        });
-
-        $("#add-contact-input").unbind().bind("keypress", function (e) {
-            if (e.keyCode == 13) {
-                document.getElementById("add_contact_btn").click();
             }
         });
     })
@@ -72,17 +85,6 @@ function ContactsBar(props) {
         setIsSignOffModelOpen(false);
     }
 
-    const [isContactModelOpen, setIsContactModelOpen] = useState(false);
-
-    const [ContactModalText, setContactModalText] = useState("");
-
-    const showContactModal = () => {
-        setIsContactModelOpen(true);
-    };
-    const hideContactModal = () => {
-        setIsContactModelOpen(false);
-    };
-
     const [isProfilePicModelOpen, setIsProfilePicModelOpen] = useState(false);
 
     const showProfilePicfModal = () => {
@@ -92,6 +94,12 @@ function ContactsBar(props) {
         setIsProfilePicModelOpen(false);
     };
 
+    const addContactRef = useRef("");
+
+    useEffect(() => {
+        document.getElementById("add-contact-input").addEventListener("keyup", function (event) { validateAddContactKeyUp(props.myUser, addContactRef.current.value); })
+    }, [])
+
     const searchBox = useRef(null);
 
     const searchContact = function () {
@@ -100,7 +108,6 @@ function ContactsBar(props) {
 
     return (
         <>
-            <InvalidContactModal isOpen={isContactModelOpen} hideModal={hideContactModal} text={ContactModalText}></InvalidContactModal>
             <SignOffModal isOpen={isSignOffModelOpen} hideModal={hideSignOffModal} setUsername={props.setUsername}></SignOffModal>
             <ProfilePicModal isOpen={isProfilePicModelOpen} hideModal={hideProfilePicModal} myUser={props.myUser}></ProfilePicModal>
             <div className="icons_item">
@@ -123,16 +130,21 @@ function ContactsBar(props) {
                         </Accordion.Collapse>
                         <Accordion.Collapse eventKey="1">
                             <Card.Body>
-                                <div className="input-group">
-
-                                    <input type="text" className="form-control type_msg" id="add-contact-input" placeholder="Add contacts..." aria-label="Add contacts..." />
-
-                                    <div className="input-group-append">
-                                        <button type="button" className="btn btn-outline-secondary" id="add_contact_btn">
-                                            <i className="bi bi-plus"></i>
-                                        </button>
+                                <div id="add_contact_form" noValidate>
+                                    <div className="input-group">
+                                        <input ref={addContactRef} id="add-contact-input" type="text" placeholder="Add contacts..." aria-label="Add contacts..." className="form-control type_msg" />
+                                        <div className="input-group-append">
+                                            <button type="button" className="btn btn-outline-secondary" id="add_contact_btn">
+                                                <i className="bi bi-plus"></i>
+                                            </button>
+                                        </div>
+                                        <div className="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                        <div id="addContactInvalidFeedback" className="invalid-feedback"></div>
                                     </div>
                                 </div>
+
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
