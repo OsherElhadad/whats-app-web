@@ -4,6 +4,7 @@ import SignUpForm from "./SignUpForm";
 import SignUpSuccess from "./SignUpSuccess";
 import { validateUsername, validatePassword, validateRepeatedPassword, validateNickname, validatePic } from "./Validation";
 import { addNewUser } from "../Users/UsersDB";
+import { addUserWithEmptyChats } from "../Users/UsersChatDB";
 import $ from "jquery";
 import InvalidFileModal from "../InvalidFileModal";
 
@@ -61,6 +62,7 @@ function SignUp() {
         } else {
           addNewUser(name.current.value, pass.current.value, nick.current.value, URL.createObjectURL(pic));
         }
+        addUserWithEmptyChats(name.current.value);
         
         showSignUpSuccesModal();
       }

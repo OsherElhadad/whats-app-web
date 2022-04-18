@@ -183,3 +183,7 @@ export function lastMassageGeneratorTime(user, talkWith) {
 
     return lastMsg.time;
 }
+
+export function addUserWithEmptyChats(user){
+    usersChats.set(user,[]);
+}
