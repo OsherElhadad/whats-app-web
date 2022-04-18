@@ -68,7 +68,7 @@ function signUpForm(props) {
                       )}
                     </div>
 
-                    <button className="btn btn-outline-light btn-lg px-5" type="submit">Sign-Up</button>
+                    <button id="signUpButton" className="btn btn-outline-light btn-lg px-5" type="submit" disabled>Sign-Up</button>
 
                   </form>
                   <br></br>

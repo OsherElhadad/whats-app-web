@@ -71,11 +71,22 @@ function SignUp() {
     });
   });
 
+  const checkButton =()=> {
+    if (name.current.value && validateUsername(name.current.value) && pass.current.value && rePass.current.value
+        && validatePassword(pass.current.value, rePass.current.value) && validateRepeatedPassword(pass.current.value, rePass.current.value)
+        && validateNickname(nick.current.value)) {
+          document.getElementById("signUpButton").removeAttribute("disabled", "");
+        }
+        else {
+          document.getElementById("signUpButton").setAttribute("disabled", "");
+        }
+  }
+
   useEffect(() => {
-    document.getElementById("SignUpUsername").addEventListener("keyup", function (event) { validateUsername(name.current.value); })
-    document.getElementById("SignUpPassword").addEventListener("keyup", function (event) { validatePassword(pass.current.value, rePass.current.value); })
-    document.getElementById("SignUpRePassword").addEventListener("keyup", function (event) { validateRepeatedPassword(pass.current.value, rePass.current.value); })
-    document.getElementById("SignUpNickname").addEventListener("keyup", function (event) { validateNickname(nick.current.value); })
+    document.getElementById("SignUpUsername").addEventListener("keyup", function (event) { validateUsername(name.current.value); checkButton(); })
+    document.getElementById("SignUpPassword").addEventListener("keyup", function (event) { validatePassword(pass.current.value, rePass.current.value); checkButton(); })
+    document.getElementById("SignUpRePassword").addEventListener("keyup", function (event) { validateRepeatedPassword(pass.current.value, rePass.current.value); checkButton();})
+    document.getElementById("SignUpNickname").addEventListener("keyup", function (event) { validateNickname(nick.current.value); checkButton();})
   }, [])
 
   return (

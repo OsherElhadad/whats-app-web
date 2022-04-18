@@ -46,9 +46,7 @@ function ContactsBar(props) {
 
     $(document).ready(function (event) {
         $("#add_contact_btn").unbind("click").on("click", function () {
-            console.log("before" + usersChats)
             let error = addContact(props.myUser, $("#add-contact-input").val());
-            console.log(usersChats)
             if (error != "") {
                 setContactModalText(error);
                 showContactModal();
@@ -58,9 +56,9 @@ function ContactsBar(props) {
             }
         });
 
-        $("#add-contact-input").bind("keypress", function (e) {
+        $("#add-contact-input").unbind().bind("keypress", function (e) {
             if (e.keyCode == 13) {
-                $("#add_contact_btn").click();
+                document.getElementById("add_contact_btn").click();
             }
         });
     })
