@@ -12,7 +12,7 @@ function Chat(props) {
     const [refresh, setRefresh] = useState(0);
 
     const refreshChat = () => {
-        if (refresh == 0) {
+        if (refresh === 0) {
             setRefresh(1);
         }
         else {
@@ -24,6 +24,7 @@ function Chat(props) {
 
     const [contactsList, setcontactsList] = useState(contacts);
 
+    // search contacts' filter by nickname
     function doSearch(query) {
         if (contacts) {
             setcontactsList(contacts.filter((contact) => getUserNickname(contact.chatWith).toLowerCase().includes(query.toLowerCase())));
@@ -32,6 +33,7 @@ function Chat(props) {
 
     var chatWindows;
 
+    // create each contact it's chat window
     if (getUserChats(props.user)) {
         chatWindows = getUserChats(props.user).map((chat, key) => {
             return (

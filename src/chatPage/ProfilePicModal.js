@@ -1,7 +1,7 @@
 import Modal from "react-bootstrap/Modal";
 import { setProfilePicture } from "../Users/UsersDB";
 import InvalidFileModal from "../InvalidFileModal";
-import {useState} from "react";
+import { useState } from "react";
 
 function ProfilePicModal(props) {
 
@@ -12,7 +12,7 @@ function ProfilePicModal(props) {
     const changeProfilePicture = (e) => {
         props.hideModal();
 
-        if(validatePic(e.target.files[0])) {
+        if (validatePic(e.target.files[0])) {
             setProfilePicture(props.myUser, URL.createObjectURL(e.target.files[0]));
         } else {
             showError();
@@ -41,18 +41,18 @@ function ProfilePicModal(props) {
 
     return (
         <>
-        <InvalidFileModal isOpen={isModelOpen} hideModal={hideError} text = "Picture format must be one of the following: jpg/jpeg/png/svg"></InvalidFileModal>
-        <Modal show={props.isOpen} onHide={props.hideModal}>
-            <Modal.Header className="bg-dark text-white">
-                <Modal.Title>Profile Picture Change</Modal.Title>
-            </Modal.Header>
-            <Modal.Body className="bg-dark text-white"> Are you sure you want to change? </Modal.Body>
-            <Modal.Footer className="bg-dark text-white">
-                <button className="btn btn-outline-light" onClick={selectPicture}>Choose Picture</button>
-                <input id="profilePicInput" type="file" accept="image/*" onChange={changeProfilePicture} hidden></input>
-                <button className="btn btn-outline-light" onClick={props.hideModal}>Cancel</button>
-            </Modal.Footer>
-        </Modal>
+            <InvalidFileModal isOpen={isModelOpen} hideModal={hideError} text="Picture format must be one of the following: jpg/jpeg/png/svg"></InvalidFileModal>
+            <Modal show={props.isOpen} onHide={props.hideModal}>
+                <Modal.Header className="bg-dark text-white">
+                    <Modal.Title>Profile Picture Change</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="bg-dark text-white"> Are you sure you want to change? </Modal.Body>
+                <Modal.Footer className="bg-dark text-white">
+                    <button className="btn btn-outline-light" onClick={selectPicture}>Choose Picture</button>
+                    <input id="profilePicInput" type="file" accept="image/*" onChange={changeProfilePicture} hidden></input>
+                    <button className="btn btn-outline-light" onClick={props.hideModal}>Cancel</button>
+                </Modal.Footer>
+            </Modal>
         </>
     );
 }

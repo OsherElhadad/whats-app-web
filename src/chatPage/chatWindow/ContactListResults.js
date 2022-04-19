@@ -8,14 +8,15 @@ function ContactListResult(props) {
 
     var contactList;
 
+    // get all contacts of user
     if (props.contacts) {
         contactList = props.contacts.map((chat, key) => {
             return (
                 <Contact image={getUserPicture(chat.chatWith)}
                     link={chat.chatWith}
                     username={getUserNickname(chat.chatWith)}
-                    lastTime={lastMassageGeneratorTime(props.user,chat.chatWith)}
-                    lastMsg={lastMassageGenerator(props.user,chat.chatWith)}
+                    lastTime={lastMassageGeneratorTime(props.user, chat.chatWith)}
+                    lastMsg={lastMassageGenerator(props.user, chat.chatWith)}
                     key={key}>
                 </Contact>
             );

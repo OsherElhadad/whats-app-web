@@ -4,12 +4,12 @@ import SenderMessage from "./SenderMessage";
 import SenderMsgBar from "./SendMsgBar";
 import ContactHeader from "./ContactHeader";
 import { getChatMessages } from "../../Users/UsersChatDB"
-import {useState} from "react";
 
 function ChatWindow(props) {
 
     const messages = getChatMessages(props.myUser, props.user);
 
+    //get all messages of user (sender and reciever)
     const msgList = messages?.map((m, key) => {
 
         if (m.sent) {

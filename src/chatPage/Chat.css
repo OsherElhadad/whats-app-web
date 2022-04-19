@@ -6,12 +6,13 @@
 .contacts_list {
     background-color: rgba(0, 0, 0, 0.4) !important;
     height: 75%;
-    overflow:auto;
+    overflow: auto;
 }
 
 .list_group_items {
     margin-top: 0 !important;
     background-color: rgba(0, 0, 0, 0.30) !important;
+    color: #f0f0f283;
     border: 0;
 }
 
@@ -24,15 +25,22 @@
     background-color: rgba(0, 0, 0, 0.5) !important;
     border: 0;
 }
+
 .contacts_body {
     padding: 0.75rem 0 !important;
     overflow-y: auto;
     white-space: nowrap;
 }
 
+.chat {
+    background-image: url("../chat-wallpaper.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .msg_card_body {
     overflow-y: auto;
-    height: 70%
+    height: 70%;
 }
 
 .card-header {
@@ -103,7 +111,7 @@
 }
 
 .btn:hover {
-    color:darkcyan !important;
+    color: darkcyan !important;
 }
 
 #add_contact_btn {

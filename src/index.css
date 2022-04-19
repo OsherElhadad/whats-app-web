@@ -5,7 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("/src/page-wallpaper.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
+
 #root {
   max-width: 95%;
   max-height: 95%;
@@ -14,13 +18,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-#myVideo {
-  position: fixed;
-  z-index:-1;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
 }
