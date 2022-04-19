@@ -56,3 +56,16 @@ When the popover is open, it will close upon a click on the microphone button/a 
 In case you select a file with diffrent format, a modal will appear to tell you about the error.
 * The videos button allows you to send a video. Once clicked on, you can choose a video from your computer. The video format must be one of the following: mp4/mkv/avi/wmv/mov/flv. 
 In case you select a file with diffrent format, a modal will appear to tell you about the error.
+
+## Hard-Coded Data Base
+
+The DB contains 6 hard coded users:
+* Username: rag, Password: a1, Nickname: King Ragnar
+* Username: lag, Password: a1, Nickname: Lagertha
+* Username: bjo, Password: a1, Nickname: Bjorn Lothbrok
+* Username: flo, Password: a1, Nickname: Floki
+* Username: rol, Password: a1, Nickname: Rollo
+* Username: ecb, Password: a1, Nickname: King Ecbert
+
+King Ragnar has an exsiting chat with all other 5.
+Every other user has an additional exsiting chat besides the one with King Ragnar.
