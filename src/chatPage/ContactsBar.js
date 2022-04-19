@@ -75,6 +75,8 @@ function ContactsBar(props) {
                 addContact(props.myUser, $("#add-contact-input").val());
                 addContact($("#add-contact-input").val(), props.myUser);
                 props.refreshChat();
+                searchContact();
+                $("#add-contact-input").val("");
             }
         });
     })
