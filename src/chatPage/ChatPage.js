@@ -7,6 +7,7 @@ import ChatWindow from "./chatWindow/ChatWindow";
 import ContactListResult from "./chatWindow/ContactListResults";
 import { useState } from "react";
 
+
 function Chat(props) {
 
     const [refresh, setRefresh] = useState(0);
@@ -20,7 +21,7 @@ function Chat(props) {
         }
     }
 
-    var contacts = getUserChats(props.user);
+    var contacts = getUserChats( props.user);
 
     const [contactsList, setcontactsList] = useState(contacts);
 
@@ -32,15 +33,15 @@ function Chat(props) {
 
     var chatWindows;
 
-    if (getUserChats(props.user)) {
-        chatWindows = getUserChats(props.user).map((chat, key) => {
+    if (getUserChats( props.user)) {
+        chatWindows = getUserChats( props.user).map((chat, key) => {
             return (
                 <ChatWindow
                     link={chat.chatWith}
                     image={getUserPicture(chat.chatWith)}
                     nickname={getUserNickname(chat.chatWith)}
                     user={chat.chatWith}
-                    myUser={props.user}
+                    myUser={ props.user}
                     refreshChat={refreshChat}
                     key={key}>
                 </ChatWindow>
@@ -53,8 +54,8 @@ function Chat(props) {
             <Tab.Container id="list-group-tabs" defaultActiveKey="#def">
                 <Row>
                     <Col sm={4} className="vh-100">
-                        <ContactsBar myUser={props.user} setUsername={props.setUsername} refreshChat={refreshChat} doSearch={doSearch}></ContactsBar>
-                        <ContactListResult user={props.user} contacts={contactsList}>
+                        <ContactsBar myUser={ props.user} setUsername={props.setUsername} refreshChat={refreshChat} doSearch={doSearch}></ContactsBar>
+                        <ContactListResult user={ props.user} contacts={contactsList}>
                         </ContactListResult>
                     </Col>
                     <Col sm={8}>

@@ -34,18 +34,29 @@ export function doesUserExist(user) {
 }
 
 export function getUserPassword(user) {
-    return users.get(user).password;
+    if(doesUserExist(user)) {
+        return users.get(user).password;
+    }
+    else return null;
 }
 
 export function getUserNickname(user) {
-    return users.get(user).nickname;
+    if(doesUserExist(user)) {
+        return users.get(user).nickname;
+    }
+    else return null;
 }
 
 
 export function getUserPicture(user) {
-    return users.get(user).picture;
+    if(doesUserExist(user)) {
+        return users.get(user).picture;
+    }
+    else return null;
 }
 
 export function setProfilePicture(user, pic) {
-    users.get(user).picture = pic;
+    if(doesUserExist(user)) {
+        users.get(user).picture = pic;
+    }
 }
