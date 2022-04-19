@@ -45,7 +45,7 @@ const UseRecorder = (myUser, username, refreshChat, btnId) => {
   // send record handler
   const sendRecording = () => {
     const date = new Date();
-    let time = date.getHours() + ":" + date.getMinutes();
+    let time = ('0' + date.getHours()).slice(-2) + ":" + ('0' + date.getMinutes()).slice(-2);
     addRecordMessage(myUser, username, audioURL, time);
     document.getElementById(btnId.concat("-popoverBtn")).click();
     refreshChat();

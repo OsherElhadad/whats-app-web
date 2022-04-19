@@ -145,14 +145,10 @@ function addMessage(sender, talkWith, message, msgTime, t) {
 }
 
 export function addContact(user, talkWith) {
-    var error = validateAddContact(user, talkWith);
-    if (error === "") {
-        getUserChats(user).push({
-            chatWith: talkWith,
-            messages: []
-        });
-    }
-    return error;
+    getUserChats(user).push({
+        chatWith: talkWith,
+        messages: []
+    });
 }
 
 export function validateAddContact(user, talkWith) {
