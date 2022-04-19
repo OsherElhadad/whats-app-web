@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
 function signUpForm(props) {
-    return(
-        <section className="vh-60">
+  return (
+    <section className="vh-60">
       <div className="container py-5 h-60">
         <div className="row d-flex justify-content-center align-items-center h-60">
           <div className="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -62,7 +62,7 @@ function signUpForm(props) {
 
                       {props.file && (
                         <div id="ProfilePicHolder">
-                          <img id="SignUpProfilePicImg" className="rounded-circle" src={props.file}></img>
+                          <img id="SignUpProfilePicImg" className="rounded-circle" src={props.file} alt="profile"></img>
                           <button id="closeBtn" className="btn btn-danger btn-circle btn-sm" onClick={props.removePicture}>X</button>
                         </div>
                       )}
@@ -83,7 +83,7 @@ function signUpForm(props) {
         </div>
       </div>
     </section>
-    );
+  );
 }
 
 export default signUpForm;

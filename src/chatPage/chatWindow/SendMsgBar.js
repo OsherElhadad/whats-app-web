@@ -14,6 +14,7 @@ function SendMsgBar(props) {
 
     $(document).ready(function (event) {
 
+        // send media handler (close record popup)
         $(document).unbind("click").on("click", function (e) {
             if (($(e.target).hasClass("media"))) {
                 return;
@@ -24,12 +25,14 @@ function SendMsgBar(props) {
             }
         });
 
+        // click enter handler (send message)
         $("#".concat(btnId).concat("-msg-input")).bind("keypress", function (e) {
             if (e.keyCode === 13) {
                 document.getElementById(btnId.concat("-msg")).click();
             }
         })
 
+        // send message handler
         $("#".concat(btnId).concat("-msg")).unbind("click").on("click", function () {
             const date = new Date();
             let time = ('0' + date.getHours()).slice(-2) + ":" + ('0' + date.getMinutes()).slice(-2);
@@ -44,7 +47,7 @@ function SendMsgBar(props) {
     })
 
     const selectPic = () => {
-        if(isRecordOpen) {
+        if (isRecordOpen) {
             document.getElementById(btnId.concat("-popoverBtn")).click();
         }
         document.getElementById(btnId.concat("-img-input")).click();
@@ -97,7 +100,7 @@ function SendMsgBar(props) {
     }
 
     const selectVideo = () => {
-        if(isRecordOpen) {
+        if (isRecordOpen) {
             document.getElementById(btnId.concat("-popoverBtn")).click();
         }
         document.getElementById(btnId.concat("-vid-input")).click();

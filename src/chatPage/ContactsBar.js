@@ -8,6 +8,7 @@ import { addContact } from "../Users/UsersChatDB";
 import SignOffModal from "./SignOffModal";
 import "./ContactsBar.css";
 
+// create search contact button
 function SearchAwareToggle({ children, eventKey, callback }) {
 
     const decoratedOnClick = useAccordionButton(
@@ -25,6 +26,7 @@ function SearchAwareToggle({ children, eventKey, callback }) {
     );
 }
 
+// create add contact button
 function AddContactAwareToggle({ children, eventKey, callback }) {
 
     const decoratedOnClick = useAccordionButton(
@@ -58,12 +60,15 @@ function validateAddContactKeyUp(username, talkWith) {
 function ContactsBar(props) {
 
     $(document).ready(function (event) {
+
+        // click enter handler (search contact)
         $("#add-contact-input").unbind().bind("keypress", function (e) {
-            if(e.keyCode === 13) {
+            if (e.keyCode === 13) {
                 document.getElementById("add_contact_btn").click();
             }
         })
 
+        // search contact button handler
         $("#add_contact_btn").unbind("click").on("click", function () {
             let error = validateAddContact(props.myUser, $("#add-contact-input").val());
             if (error === "") {

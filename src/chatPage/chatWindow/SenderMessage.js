@@ -2,6 +2,7 @@ import "../Chat.css"
 
 function SenderMessage(props) {
 
+    //get sender messages from different types
     switch (props.type) {
         case "text": return (
             <div className="d-flex justify-content-end mb-4">
@@ -14,12 +15,10 @@ function SenderMessage(props) {
             </div>
         )
 
-            break;
-
         case "picture": return (
             <div className="d-flex justify-content-end mb-4">
                 <div className="msg_cotainer_send">
-                    <img className="msg_cotainer_media" src={props.msgText}></img>
+                    <img className="msg_cotainer_media" src={props.msgText} alt="msg"></img>
                     <span className="msg_time_send">{props.msgTime}</span>
                 </div>
                 <div className="img_cont_msg">
@@ -27,8 +26,6 @@ function SenderMessage(props) {
             </div>
         )
 
-            break;
-            
         case "video": return (
             <div className="d-flex justify-content-end mb-4">
                 <div className="msg_cotainer_send">
@@ -40,8 +37,6 @@ function SenderMessage(props) {
             </div>
         )
 
-        break;
-            
         case "record": return (
             <div className="d-flex justify-content-end mb-4">
                 <div className="msg_cotainer_send">
@@ -52,6 +47,8 @@ function SenderMessage(props) {
                 </div>
             </div>
         )
+
+        default: ;
     }
 }
 

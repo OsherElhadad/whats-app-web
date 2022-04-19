@@ -25,7 +25,7 @@ function LogIn(props) {
     $("#logInForm").on("submit", function (event) {
       event.preventDefault();
 
-      if (doesUserExist(name.current.value) && getUserPassword(name.current.value) == pass.current.value) {
+      if (doesUserExist(name.current.value) && getUserPassword(name.current.value) === pass.current.value) {
         props.setUserName(name.current.value);
         navigate("/chat", { replace: true });
       } else {
