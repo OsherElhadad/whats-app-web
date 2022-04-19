@@ -41,7 +41,7 @@ function ProfilePicModal(props) {
 
     return (
         <>
-        <InvalidFileModal isOpen={isModelOpen} hideModal={hideError} text = "Picture format must be one of the above: jpg/jpeg/png/svg"></InvalidFileModal>
+        <InvalidFileModal isOpen={isModelOpen} hideModal={hideError} text = "Picture format must be one of the following: jpg/jpeg/png/svg"></InvalidFileModal>
         <Modal show={props.isOpen} onHide={props.hideModal}>
             <Modal.Header className="bg-dark text-white">
                 <Modal.Title>Profile Picture Change</Modal.Title>

@@ -91,7 +91,7 @@ function SignUp() {
 
   return (
     <div>
-      <InvalidFileModal isOpen={isInvalidFileModalOpen} hideModal={hideInvalidPicModal} text="Picture format must be one of the above: jpg/jpeg/png/svg"></InvalidFileModal>
+      <InvalidFileModal isOpen={isInvalidFileModalOpen} hideModal={hideInvalidPicModal} text="Picture format must be one of the following: jpg/jpeg/png/svg"></InvalidFileModal>
       <SignUpSuccess isOpen={isSignUpSuccesModalOpen} hideModal={hideSignUpSuccesModal} nick={nick.current.value}></SignUpSuccess>
       <SignUpForm name={name} pass={pass} rePass={rePass} nick={nick}
         file={file} fileUpload={fileUpload} removePicture={removePicture}></SignUpForm>

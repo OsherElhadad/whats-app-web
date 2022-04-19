@@ -14,8 +14,16 @@ function SendMsgBar(props) {
 
     $(document).ready(function (event) {
 
+        $(document).unbind("click").on("click", function (e) {
+            console.log(e.target)
+            if(isRecordOpen && !($(e.target).hasClass("popover-member")) && !($(e.target).hasClass("popover-btn"))) {
+                document.getElementById(btnId.concat("-popoverBtn")).click();
+        }
+        });
+
+   
         $("#".concat(btnId).concat("-msg-input")).bind("keypress", function (e) {
-            if(e.keyCode == 13) {
+            if (e.keyCode == 13) {
                 document.getElementById(btnId.concat("-msg")).click();
             }
         })
@@ -67,7 +75,7 @@ function SendMsgBar(props) {
             props.refreshChat();
         }
         else {
-            setModalText("Picture format must be one of the above: jpg/jpeg/png/svg");
+            setModalText("Picture format must be one of the following: jpg/jpeg/png/svg");
             showModal();
         }
     }
@@ -94,16 +102,46 @@ function SendMsgBar(props) {
             addVideoMessage(props.myUser, props.username, URL.createObjectURL(e.target.files[0]), time);
             props.refreshChat();
         } else {
-            setModalText("Video format must be one of the above: mp4/mkv/avi/wmv/mov/flv");
+            setModalText("Video format must be one of the following: mp4/mkv/avi/wmv/mov/flv");
             showModal();
         }
     }
 
+    // document.addEventListener('click', (e)=> {
+    //     e.preventDefault();
+    //     if (e.target === button || e.target === itag) {
+    //         div.style.display = 'block';
+    //     } else if ((div.style.display === '' || div.style.display === 'none') && (e.target !== button || e.target !== itag)) {
+    //         div.style.display = 'none';
+    //     } else {
+    //         div.style.display = 'none';
+    //     }
+    // })
+
+    const [isRecordOpen, setIsRecordOpen] = useState(false);
+
+    const showRecordPopover = () => {
+        setIsRecordOpen(true);
+    }
+
+    const hideRecordPopover = () => {
+        setIsRecordOpen(false);
+    }
+
+    const microphoneClicked= ()=> {
+        if(!isRecordOpen) {
+            showRecordPopover();
+        } else {
+            hideRecordPopover();
+        }
+        
+    }
+
     const popover = (
-        <Popover className="popover-basic">
-            <Popover.Header as="h1" className="popover-header">Record</Popover.Header>
-            <Popover.Body>
-                <Recorder myUser={props.myUser} username={props.username} refreshChat={props.refreshChat}></Recorder>
+        <Popover className="popover-basic popover-member">
+            <Popover.Header  as="h1" className="popover-header popover-member">Record</Popover.Header>
+            <Popover.Body className="popover-member">
+                <Recorder className="popover-member" myUser={props.myUser} username={props.username} refreshChat={props.refreshChat}></Recorder>
             </Popover.Body>
         </Popover>
     );
@@ -115,10 +153,9 @@ function SendMsgBar(props) {
                 <div className="input-group">
                     <div className="input-group-append">
                         <OverlayTrigger trigger="click" placement="top" overlay={popover}>
-                            <button type="button" className="btn btn-outline-secondary input-group-text record_btn"><i className="bi bi-mic"></i></button>
+                            <button id={btnId.concat("-popoverBtn")} type="button" className="btn btn-outline-secondary input-group-text record_btn popover-btn" onClick={microphoneClicked}><i className="bi bi-mic popover-btn"></i></button>
                         </OverlayTrigger>
                     </div>
-
                     <div className="input-group-append">
                         <button id={btnId.concat("-img-btn")} type="button" onClick={selectPic} className="btn btn-outline-secondary input-group-text attach_img_btn"><i className="bi bi-image"></i></button>
                         <input id={btnId.concat("-img-input")} onChange={sendPic} type="file" accept="image/*" hidden></input>

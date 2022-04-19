@@ -6,16 +6,16 @@ var audioSrc = ""
 function Recorder(props) {
   let [audioURL, isRecording, isRecorded, startRecording, stopRecording, sendRecording] = useRecorder(props.myUser, props.username, props.refreshChat);
   return (
-    <div className="App">
-      <audio src={audioURL} controls />
-      <button onClick={startRecording} disabled={isRecording} className="btn btn-outline-light btn-sm bg-dark rec_btn">
-      <i className="bi bi-record-circle"></i> start
+    <div className="App popover-member">
+      <audio className="popover-member" src={audioURL} controls />
+      <button onClick={startRecording} disabled={isRecording} className="btn btn-outline-light btn-sm bg-dark rec_btn popover-member">
+      <i className="bi bi-record-circle popover-member"></i> start
       </button>
-      <button onClick={stopRecording} disabled={!isRecording} className="btn btn-outline-light btn-sm bg-dark rec_btn">
-      <i className="bi bi-stop-circle"></i> stop
+      <button onClick={stopRecording} disabled={!isRecording} className="btn btn-outline-light btn-sm bg-dark rec_btn popover-member">
+      <i className="bi bi-stop-circle popover-member"></i> stop
       </button>
-      <button onClick={sendRecording} disabled={!isRecorded} className="btn btn-outline-light btn-sm bg-dark rec_btn">
-      <i className="bi bi-envelope"></i> send
+      <button onClick={sendRecording} disabled={!isRecorded} className="btn btn-outline-light btn-sm bg-dark rec_btn popover-member">
+      <i className="bi bi-envelope popover-member"></i> send
       </button>
       </div>
   );

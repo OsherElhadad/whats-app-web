@@ -115,12 +115,12 @@ function ContactsBar(props) {
                     <Card>
                         <Card.Header>
                             <div className="d-flex justify-content-between">
-                                <SearchAwareToggle eventKey="0"></SearchAwareToggle>
                                 <img id="profile_pic" src={getUserPicture(props.myUser)} onClick={showProfilePicfModal} className="rounded-circle user_img_msg" />
+                                <AddContactAwareToggle eventKey="1"></AddContactAwareToggle>
+                                <SearchAwareToggle eventKey="0"></SearchAwareToggle>
                                 <button type="button" className="btn btn-outline-secondary" onClick={showSignOffModal}>
                                     <i className="bi bi-power"></i>
                                 </button>
-                                <AddContactAwareToggle eventKey="1"></AddContactAwareToggle>
                             </div>
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
