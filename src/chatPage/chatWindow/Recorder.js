@@ -1,8 +1,6 @@
 import useRecorder from "./UseRecorder";
 import "./Record.css"
 
-var audioSrc = ""
-
 function Recorder(props) {
   let [audioURL, isRecording, isRecorded, startRecording, stopRecording, sendRecording] = useRecorder(props.myUser, props.username, props.refreshChat, props.btnId);
   return (

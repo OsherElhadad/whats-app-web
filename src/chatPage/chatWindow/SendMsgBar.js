@@ -25,21 +25,21 @@ function SendMsgBar(props) {
         });
 
         $("#".concat(btnId).concat("-msg-input")).bind("keypress", function (e) {
-            if (e.keyCode == 13) {
+            if (e.keyCode === 13) {
                 document.getElementById(btnId.concat("-msg")).click();
             }
         })
 
         $("#".concat(btnId).concat("-msg")).unbind("click").on("click", function () {
             const date = new Date();
-            let time = date.getHours() + ":" + date.getMinutes();
+            let time = ('0' + date.getHours()).slice(-2) + ":" + ('0' + date.getMinutes()).slice(-2);
             addTextMessage(props.myUser, props.username, textMsg.current.value, time);
             props.refreshChat();
             textMsg.current.value = "";
-            $("#".concat(btnId).concat("-msg")).prop('disabled', $("#".concat(btnId).concat("-msg-input")).val() == "");
+            $("#".concat(btnId).concat("-msg")).prop('disabled', $("#".concat(btnId).concat("-msg-input")).val() === "");
         })
         $("#".concat(btnId).concat("-msg-input")).on("propertychange change keyup paste input", function () {
-            $("#".concat(btnId).concat("-msg")).prop('disabled', $("#".concat(btnId).concat("-msg-input")).val() == "");
+            $("#".concat(btnId).concat("-msg")).prop('disabled', $("#".concat(btnId).concat("-msg-input")).val() === "");
         })
     })
 
@@ -55,7 +55,7 @@ function SendMsgBar(props) {
         var idxDot = fileName.lastIndexOf(".") + 1;
         var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
 
-        if (extFile == "jpg" || extFile == "jpeg" || extFile == "png" || extFile == "svg") {
+        if (extFile === "jpg" || extFile === "jpeg" || extFile === "png" || extFile === "svg") {
             return true;
         }
         return false;
@@ -90,7 +90,7 @@ function SendMsgBar(props) {
         var idxDot = fileName.lastIndexOf(".") + 1;
         var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
 
-        if (extFile == "mp4" || extFile == "mkv" || extFile == "avi" || extFile == "wmv" || extFile == "mov" || extFile == "flv") {
+        if (extFile === "mp4" || extFile === "mkv" || extFile === "avi" || extFile === "wmv" || extFile === "mov" || extFile === "flv") {
             return true;
         }
         return false;
