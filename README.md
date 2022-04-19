@@ -50,7 +50,7 @@ Once you enter a valid username, you can add him by pressing the "Enter" key or 
 As for the chat itself - In order to open a chat just click on the desired contact!
 * You can send text messages by clicking on the envelope button or pressing the "Enter" key. You can't send an empty message.
 * The microphone buttons allows you to send a voice message. Once clicked, a popover will appear. In order to start a new recording press the "start" button and press the "stop" button to stop recording. You can hear your voice message before sending it by clicking on the play button. If you want to re-record just click again on the "start" button in order to overwrite the last message. When you are ready, you may press the send button to deliver the recording to the cotact.
-When the popover is open, it will close upon a click on the microphone button or a click outside of the popover area. Be aware that if you have an unsent recored, exsiting the popover will delete the record.
+When the popover is open, it will close upon a click on the microphone button/a click outside of the popover area/a click on the send record. Be aware that if you have an unsent recored, exsiting the popover will delete the record.
 * The picture button allows you to send pictures. Once clicked on, you can choose a picture from your computer. The picture format must be one of the following: jpg/jpeg/png/svg. 
 In case you select a file with diffrent format, a modal will appear to tell you about the error.
 * The videos button allows you to send a video. Once clicked on, you can choose a video from your computer. The video format must be one of the following: mp4/mkv/avi/wmv/mov/flv. 
