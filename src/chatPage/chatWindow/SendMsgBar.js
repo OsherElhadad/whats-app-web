@@ -15,7 +15,7 @@ function SendMsgBar(props) {
     $(document).ready(function (event) {
 
         $(document).unbind("click").on("click", function (e) {
-            if (!($(e.target).hasClass("popover-member"))) {
+            if (($(e.target).hasClass("media"))) {
                 return;
             }
 
