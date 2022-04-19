@@ -5,6 +5,7 @@
 - $ npm install
 - $ npm install react-bootstrap bootstrap
 - $ npm install react-router-dom
+- $ npm install jquery
 
 Now you are ready to start!
 In oreder to open the website, go to the cloned folder on the CLI and enter the command :

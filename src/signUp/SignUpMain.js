@@ -9,7 +9,7 @@ import $ from "jquery";
 import InvalidFileModal from "../InvalidFileModal";
 import defalutProfilePic from "../Users/ProfilePictures/DefalutProfilePic.jpg"
 
-function SignUp() {
+function SignUp(props) {
   const [file, setFile] = useState();
   function fileUpload(e) {
     if (validatePic(e.target.files[0])) {
@@ -64,29 +64,29 @@ function SignUp() {
           addNewUser(name.current.value, pass.current.value, nick.current.value, URL.createObjectURL(pic));
         }
         addUserWithEmptyChats(name.current.value);
-
+        props.setUserName(name.current.value);
         showSignUpSuccesModal();
       }
       return false;
     });
   });
 
-  const checkButton =()=> {
+  const checkButton = () => {
     if (name.current.value && validateUsername(name.current.value) && pass.current.value && rePass.current.value
-        && validatePassword(pass.current.value, rePass.current.value) && validateRepeatedPassword(pass.current.value, rePass.current.value)
-        && validateNickname(nick.current.value)) {
-          document.getElementById("signUpButton").removeAttribute("disabled", "");
-        }
-        else {
-          document.getElementById("signUpButton").setAttribute("disabled", "");
-        }
+      && validatePassword(pass.current.value, rePass.current.value) && validateRepeatedPassword(pass.current.value, rePass.current.value)
+      && validateNickname(nick.current.value)) {
+      document.getElementById("signUpButton").removeAttribute("disabled", "");
+    }
+    else {
+      document.getElementById("signUpButton").setAttribute("disabled", "");
+    }
   }
 
   useEffect(() => {
     document.getElementById("SignUpUsername").addEventListener("keyup", function (event) { validateUsername(name.current.value); checkButton(); })
     document.getElementById("SignUpPassword").addEventListener("keyup", function (event) { validatePassword(pass.current.value, rePass.current.value); checkButton(); })
-    document.getElementById("SignUpRePassword").addEventListener("keyup", function (event) { validateRepeatedPassword(pass.current.value, rePass.current.value); checkButton();})
-    document.getElementById("SignUpNickname").addEventListener("keyup", function (event) { validateNickname(nick.current.value); checkButton();})
+    document.getElementById("SignUpRePassword").addEventListener("keyup", function (event) { validateRepeatedPassword(pass.current.value, rePass.current.value); checkButton(); })
+    document.getElementById("SignUpNickname").addEventListener("keyup", function (event) { validateNickname(nick.current.value); checkButton(); })
   }, [])
 
   return (
