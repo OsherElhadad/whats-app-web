@@ -13,13 +13,16 @@ function App() {
       }
     },[])
     
+    const chagneUsername = (user)=> {
+      setUsername(user);
+    }
 
   return (
     <div>
    <BrowserRouter>
        <Routes>
          <Route path = "/" element={<LogIn setUserName={setUsername}/>}>  </Route>
-         <Route path = "/signup" element={<SignUp/>}>  </Route>
+         <Route path = "/signup"  element={<SignUp setUserName={chagneUsername}/>}>  </Route>
          <Route path = "/chat" element={<ChatPage user={username} setUsername={setUsername} />}>  </Route>
        </Routes>
    </BrowserRouter>

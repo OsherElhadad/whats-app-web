@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import { getUserPicture } from "../Users/UsersDB";
 import { validateAddContact } from "../Users/UsersChatDB";
 import ProfilePicModal from "./ProfilePicModal";
-import $ from "jquery";
+import $ from 'jquery';
 import { addContact, usersChats } from "../Users/UsersChatDB";
 import SignOffModal from "./SignOffModal";
 import "./ContactsBar.css";

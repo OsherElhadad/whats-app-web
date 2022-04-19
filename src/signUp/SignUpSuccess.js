@@ -5,7 +5,7 @@ function SignUpSuccess(props) {
     let navigate = useNavigate();
 
     const goToLogIn = () => {
-        navigate("/", { replace: true });
+        navigate("/chat", { replace: true });
     }
 
     return (
@@ -13,9 +13,9 @@ function SignUpSuccess(props) {
             <Modal.Header className="bg-dark text-white">
                 <Modal.Title>Hi {props.nick}!</Modal.Title>
             </Modal.Header>
-            <Modal.Body className="bg-dark text-white">You are ready to log-in!</Modal.Body>
+            <Modal.Body className="bg-dark text-white">You are ready to chat!</Modal.Body>
             <Modal.Footer className="bg-dark text-white">
-                <button className="btn btn-outline-light" onClick={goToLogIn}>Log-In</button>
+                <button className="btn btn-outline-light" onClick={goToLogIn}>Start Chatting</button>
             </Modal.Footer>
         </Modal>
     );
