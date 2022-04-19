@@ -24,7 +24,7 @@ function ProfilePicModal(props) {
         var idxDot = fileName.lastIndexOf(".") + 1;
         var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
 
-        if (extFile == "jpg" || extFile == "jpeg" || extFile == "png" || extFile == "svg") {
+        if (extFile === "jpg" || extFile === "jpeg" || extFile === "png" || extFile === "svg") {
             return true;
         }
         return false;

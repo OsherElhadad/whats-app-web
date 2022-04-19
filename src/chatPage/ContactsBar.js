@@ -4,7 +4,7 @@ import { getUserPicture } from "../Users/UsersDB";
 import { validateAddContact } from "../Users/UsersChatDB";
 import ProfilePicModal from "./ProfilePicModal";
 import $ from "jquery";
-import { addContact, usersChats } from "../Users/UsersChatDB";
+import { addContact } from "../Users/UsersChatDB";
 import SignOffModal from "./SignOffModal";
 import "./ContactsBar.css";
 
@@ -44,7 +44,7 @@ function AddContactAwareToggle({ children, eventKey, callback }) {
 
 function validateAddContactKeyUp(username, talkWith) {
     var errorMsg = validateAddContact(username, talkWith);
-    if (errorMsg == "") {
+    if (errorMsg === "") {
         document.getElementById("add-contact-input").classList.add('is-valid');
         document.getElementById("add-contact-input").classList.remove('is-invalid');
         return true;
@@ -59,14 +59,14 @@ function ContactsBar(props) {
 
     $(document).ready(function (event) {
         $("#add-contact-input").unbind().bind("keypress", function (e) {
-            if(e.keyCode == 13) {
+            if(e.keyCode === 13) {
                 document.getElementById("add_contact_btn").click();
             }
         })
 
         $("#add_contact_btn").unbind("click").on("click", function () {
             let error = validateAddContact(props.myUser, $("#add-contact-input").val());
-            if (error == "") {
+            if (error === "") {
                 addContact(props.myUser, $("#add-contact-input").val());
                 addContact($("#add-contact-input").val(), props.myUser);
                 props.refreshChat();
@@ -96,7 +96,7 @@ function ContactsBar(props) {
 
     useEffect(() => {
         document.getElementById("add-contact-input").addEventListener("keyup", function (event) { validateAddContactKeyUp(props.myUser, addContactRef.current.value); })
-    }, [])
+    }, [props.myUser])
 
     const searchBox = useRef(null);
 
@@ -113,7 +113,7 @@ function ContactsBar(props) {
                     <Card>
                         <Card.Header>
                             <div className="d-flex justify-content-between">
-                                <img id="profile_pic" src={getUserPicture(props.myUser)} onClick={showProfilePicfModal} className="rounded-circle user_img_msg" />
+                                <img id="profile_pic" src={getUserPicture(props.myUser)} onClick={showProfilePicfModal} className="rounded-circle user_img_msg" alt="profile" />
                                 <AddContactAwareToggle eventKey="1"></AddContactAwareToggle>
                                 <SearchAwareToggle eventKey="0"></SearchAwareToggle>
                                 <button type="button" className="btn btn-outline-secondary" onClick={showSignOffModal}>
@@ -137,7 +137,7 @@ function ContactsBar(props) {
                                             </button>
                                         </div>
                                         <div className="valid-feedback">
-                                            Looks good!
+                                            You can add this contact
                                         </div>
                                         <div id="addContactInvalidFeedback" className="invalid-feedback"></div>
                                     </div>

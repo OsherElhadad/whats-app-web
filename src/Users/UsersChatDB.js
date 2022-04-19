@@ -13,6 +13,8 @@ import pic6 from "./ChatMedia/Back To Earth.jpg";
 import vid6 from "./ChatMedia/vid6.mp4";
 import pic7 from "./ChatMedia/Poncho.jpg";
 import vid7 from "./ChatMedia/vid7.mp4";
+import rec1 from "./ChatMedia/record1.weba";
+import rec2 from "./ChatMedia/record2.weba";
 
 export const usersChats = new Map();
 
@@ -31,12 +33,15 @@ addTextMessage("lag", "rag", "Hello husband!", "14:01");
 addTextMessage("rag", "lag", "Here are some media file:", "14:02");
 addPictureMessage("rag", "lag", pic1, "14:03");
 addVideoMessage("rag", "lag", vid1, "14:03");
-addTextMessage("lag", "rag", "Thanks :)", "14:01");
+addRecordMessage("lag", "rag", rec1, "14:05");
+addRecordMessage("rag", "lag", rec2, "14:06");
+addTextMessage("lag", "rag", "Thanks :)", "14:07");
 
 addContact("rag", "bjo");
 addContact("bjo", "rag");
 addTextMessage("rag", "bjo", "Hello son!", "14:31");
 addTextMessage("bjo", "rag", "Hello father!", "14:50");
+addRecordMessage("bjo", "rag", rec2, "14:52");
 addTextMessage("rag", "bjo", "Here are some media file:", "15:01");
 addPictureMessage("rag", "bjo", pic2, "15:02");
 addVideoMessage("rag", "bjo", vid2, "15:03");
@@ -45,6 +50,7 @@ addTextMessage("bjo", "rag", "thanks father :)", "15:16");
 addContact("rag", "rol");
 addContact("rol", "rag");
 addTextMessage("rag", "rol", "Hello brother!", "16:50");
+addRecordMessage("rag", "rol", rec1, "16:50");
 addTextMessage("rol", "rag", "Hello Rangar", "16:51");
 addTextMessage("rag", "rol", "Here are some media file:", "17:00");
 addPictureMessage("rag", "rol", pic3, "17:01");
@@ -54,6 +60,7 @@ addTextMessage("rol", "rag", "Nice", "17:03");
 addContact("rag", "flo");
 addContact("flo", "rag");
 addTextMessage("flo", "rag", "Hello Rangar!", "12:00");
+addRecordMessage("flo", "rag", rec1, "12:24");
 addTextMessage("rag", "flo", "Hello Floki", "13:51");
 addTextMessage("flo", "rag", "Here are some media file:", "13:55");
 addPictureMessage("flo", "rag", pic4, "13:55");
@@ -64,6 +71,7 @@ addContact("ecb", "rol");
 addContact("rol", "ecb");
 addTextMessage("ecb", "rol", "Hello Rollo!", "16:50");
 addTextMessage("rol", "ecb", "Hello King Ecbert", "16:51");
+addRecordMessage("rol", "ecb", rec2, "16:52");
 addTextMessage("ecb", "rol", "Here are some treats:", "17:00");
 addPictureMessage("ecb", "rol", pic5, "17:01");
 addVideoMessage("ecb", "rol", vid5, "17:02");
@@ -73,6 +81,7 @@ addContact("bjo", "lag");
 addContact("lag", "bjo");
 addTextMessage("bjo", "lag", "Mother!", "12:30");
 addTextMessage("lag", "bjo", "Yes son?", "12:31");
+addRecordMessage("lag", "bjo", rec2, "12:32");
 addTextMessage("bjo", "lag", "Here are some goodies:", "12:32");
 addPictureMessage("bjo", "lag", pic6, "12:33");
 addVideoMessage("bjo", "lag", vid6, "12:34");
@@ -81,6 +90,7 @@ addTextMessage("lag", "bjo", "I rasied you well", "12:34");
 addContact("ecb", "flo");
 addContact("flo", "ecb");
 addTextMessage("ecb", "flo", "Hello Floki!", "10:32");
+addRecordMessage("ecb", "flo", rec1, "10:32");
 addTextMessage("flo", "ecb", "Hello Ecbert :)", "10:33");
 addTextMessage("ecb", "flo", "Here are some media file:", "10:40");
 addPictureMessage("ecb", "flo", pic7, "10:41");
@@ -88,7 +98,7 @@ addVideoMessage("ecb", "flo", vid7, "10:41");
 addTextMessage("flo", "ecb", "I thank you", "10:42");
 
 export function getChatMessages(user, talkWith) {
-    return usersChats.get(user).find(i => i.chatWith == talkWith).messages;
+    return usersChats.get(user).find(i => i.chatWith === talkWith).messages;
 }
 
 export function getUserChats(user) {
@@ -96,7 +106,7 @@ export function getUserChats(user) {
 }
 
 export function doesContactOfUserExist(user, talkWith) {
-    if (getUserChats(user)?.find(i => i.chatWith == talkWith)) {
+    if (getUserChats(user)?.find(i => i.chatWith === talkWith)) {
         return true;
     }
     return false;
@@ -119,14 +129,14 @@ export function addRecordMessage(sender, talkWith, message, msgTime) {
 }
 
 function addMessage(sender, talkWith, message, msgTime, t) {
-    getUserChats(sender)?.find(i => i.chatWith == talkWith).messages.push({
+    getUserChats(sender)?.find(i => i.chatWith === talkWith).messages.push({
         msg: message,
         time: msgTime,
         sent: true,
         type: t
     })
 
-    getUserChats(talkWith)?.find(i => i.chatWith == sender).messages.push({
+    getUserChats(talkWith)?.find(i => i.chatWith === sender).messages.push({
         msg: message,
         time: msgTime,
         sent: false,
@@ -136,7 +146,7 @@ function addMessage(sender, talkWith, message, msgTime, t) {
 
 export function addContact(user, talkWith) {
     var error = validateAddContact(user, talkWith);
-    if (error == "") {
+    if (error === "") {
         getUserChats(user).push({
             chatWith: talkWith,
             messages: []
@@ -153,7 +163,7 @@ export function validateAddContact(user, talkWith) {
             return "This contact is already your contact";
         }
         else {
-            if (user == talkWith) {
+            if (user === talkWith) {
                 return "Are you trying to add yourself?";
             } else {
                 return "";
@@ -164,10 +174,10 @@ export function validateAddContact(user, talkWith) {
 
 export function lastMassageGenerator(user, talkWith) {
 
-    var talk = getUserChats(user)?.find(i => i.chatWith == talkWith).messages;
+    var talk = getUserChats(user)?.find(i => i.chatWith === talkWith).messages;
 
 
-    if (talk.length == 0) {
+    if (talk.length === 0) {
         return "New contact";
     }
 
@@ -184,14 +194,15 @@ export function lastMassageGenerator(user, talkWith) {
         case "picture": return "Picture";
         case "video": return "Video";
         case "record": return "Voice Message";
+        default: ;
     }
 }
 
 export function lastMassageGeneratorTime(user, talkWith) {
 
-    var talk = getUserChats(user)?.find(i => i.chatWith == talkWith).messages;
+    var talk = getUserChats(user)?.find(i => i.chatWith === talkWith).messages;
 
-    if (talk.length == 0) {
+    if (talk.length === 0) {
         return "No messages";
     }
 
