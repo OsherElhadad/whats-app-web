@@ -15,13 +15,15 @@ function SendMsgBar(props) {
     $(document).ready(function (event) {
 
         $(document).unbind("click").on("click", function (e) {
-            console.log(e.target)
-            if(isRecordOpen && !($(e.target).hasClass("popover-member")) && !($(e.target).hasClass("popover-btn"))) {
+            if (!($(e.target).hasClass("popover-member"))) {
+                return;
+            }
+
+            if (isRecordOpen && !($(e.target).hasClass("popover-member")) && !($(e.target).hasClass("popover-btn"))) {
                 document.getElementById(btnId.concat("-popoverBtn")).click();
-        }
+            }
         });
 
-   
         $("#".concat(btnId).concat("-msg-input")).bind("keypress", function (e) {
             if (e.keyCode == 13) {
                 document.getElementById(btnId.concat("-msg")).click();
@@ -42,6 +44,9 @@ function SendMsgBar(props) {
     })
 
     const selectPic = () => {
+        if(isRecordOpen) {
+            document.getElementById(btnId.concat("-popoverBtn")).click();
+        }
         document.getElementById(btnId.concat("-img-input")).click();
     }
 
@@ -92,6 +97,9 @@ function SendMsgBar(props) {
     }
 
     const selectVideo = () => {
+        if(isRecordOpen) {
+            document.getElementById(btnId.concat("-popoverBtn")).click();
+        }
         document.getElementById(btnId.concat("-vid-input")).click();
     }
 
@@ -107,17 +115,6 @@ function SendMsgBar(props) {
         }
     }
 
-    // document.addEventListener('click', (e)=> {
-    //     e.preventDefault();
-    //     if (e.target === button || e.target === itag) {
-    //         div.style.display = 'block';
-    //     } else if ((div.style.display === '' || div.style.display === 'none') && (e.target !== button || e.target !== itag)) {
-    //         div.style.display = 'none';
-    //     } else {
-    //         div.style.display = 'none';
-    //     }
-    // })
-
     const [isRecordOpen, setIsRecordOpen] = useState(false);
 
     const showRecordPopover = () => {
@@ -128,20 +125,20 @@ function SendMsgBar(props) {
         setIsRecordOpen(false);
     }
 
-    const microphoneClicked= ()=> {
-        if(!isRecordOpen) {
+    const microphoneClicked = () => {
+        if (!isRecordOpen) {
             showRecordPopover();
         } else {
             hideRecordPopover();
         }
-        
+
     }
 
     const popover = (
         <Popover className="popover-basic popover-member">
-            <Popover.Header  as="h1" className="popover-header popover-member">Record</Popover.Header>
+            <Popover.Header as="h1" className="popover-header popover-member">Record</Popover.Header>
             <Popover.Body className="popover-member">
-                <Recorder className="popover-member" myUser={props.myUser} username={props.username} refreshChat={props.refreshChat}></Recorder>
+                <Recorder className="popover-member" myUser={props.myUser} username={props.username} refreshChat={props.refreshChat} btnId={btnId}></Recorder>
             </Popover.Body>
         </Popover>
     );
@@ -157,12 +154,12 @@ function SendMsgBar(props) {
                         </OverlayTrigger>
                     </div>
                     <div className="input-group-append">
-                        <button id={btnId.concat("-img-btn")} type="button" onClick={selectPic} className="btn btn-outline-secondary input-group-text attach_img_btn"><i className="bi bi-image"></i></button>
-                        <input id={btnId.concat("-img-input")} onChange={sendPic} type="file" accept="image/*" hidden></input>
+                        <button id={btnId.concat("-img-btn")} type="button" onClick={selectPic} className="btn btn-outline-secondary input-group-text attach_img_btn media"><i className="bi bi-image"></i></button>
+                        <input id={btnId.concat("-img-input")} onChange={sendPic} type="file" accept="image/*" className="media" hidden></input>
                     </div>
                     <div className="input-group-append">
-                        <button id={btnId.concat("-vid-btn")} type="button" onClick={selectVideo} className="btn btn-outline-secondary input-group-text attach_video_btn"><i className="bi bi-camera-reels"></i></button>
-                        <input id={btnId.concat("-vid-input")} onChange={sendVideo} type="file" accept="video/*" hidden ></input>
+                        <button id={btnId.concat("-vid-btn")} type="button" onClick={selectVideo} className="btn btn-outline-secondary input-group-text attach_video_btn media"><i className="bi bi-camera-reels"></i></button>
+                        <input id={btnId.concat("-vid-input")} onChange={sendVideo} type="file" accept="video/*" className="media" hidden ></input>
                     </div>
                     <input className="type_msg form-control" ref={textMsg} placeholder="Type your message..." id={btnId.concat("-msg-input")} ></input>
                     <div className="input-group-append">

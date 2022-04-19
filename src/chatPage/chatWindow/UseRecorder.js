@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { addRecordMessage } from "../../Users/UsersChatDB";
 
-const UseRecorder = (myUser, username, refreshChat) => {
+const UseRecorder = (myUser, username, refreshChat, btnId) => {
   const [audioURL, setAudioURL] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [isRecorded, setRecorded] = useState(false);
   const [recorder, setRecorder] = useState(null);
+
 
   useEffect(() => {
     // Lazily obtain recorder first time we're recording.
@@ -45,6 +46,7 @@ const UseRecorder = (myUser, username, refreshChat) => {
     const date = new Date();
     let time = date.getHours() + ":" + date.getMinutes();
     addRecordMessage(myUser, username, audioURL ,time);
+    document.getElementById(btnId.concat("-popoverBtn")).click();
     refreshChat();
     setRecorded(false);
   };

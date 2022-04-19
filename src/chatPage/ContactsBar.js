@@ -65,9 +65,7 @@ function ContactsBar(props) {
         })
 
         $("#add_contact_btn").unbind("click").on("click", function () {
-            console.log("before" + usersChats)
             let error = validateAddContact(props.myUser, $("#add-contact-input").val());
-            console.log(usersChats)
             if (error == "") {
                 addContact(props.myUser, $("#add-contact-input").val());
                 addContact($("#add-contact-input").val(), props.myUser);

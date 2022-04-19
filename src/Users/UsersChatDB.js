@@ -146,7 +146,6 @@ export function addContact(user, talkWith) {
 }
 
 export function validateAddContact(user, talkWith) {
-    console.log(talkWith)
     if (!doesUserExist(talkWith)) {
         return "This contact does not exist";
     } else {
