@@ -164,6 +164,10 @@
     color: rgba(255, 255, 255, 0.6);
 }
 
+.last_msg {
+    overflow-wrap: break-word;
+}
+
 .msg_cotainer {
     margin-top: auto;
     margin-bottom: auto;
@@ -206,6 +210,13 @@
 
 .msg_cotainer_media {
     position: relative;
+    width: 100%;
+    height: 100%;
     max-width: 300px;
     max-height: 300px;
+}
+
+.msg_record {
+    width: 200px !important;
+    height: 40px !important;
 }

@@ -46,7 +46,7 @@ function ReciverMessage(props) {
                     <img src={props.img} className="rounded-circle user_img_msg" alt="contact" />
                 </div>
                 <div className="msg_cotainer">
-                    <audio controls className="msg_cotainer_media" src={props.msgText}></audio>
+                    <audio controls className="msg_cotainer_media msg_record" src={props.msgText}></audio>
                     <span className="msg_time">{props.msgTime}</span>
                 </div>
             </div>

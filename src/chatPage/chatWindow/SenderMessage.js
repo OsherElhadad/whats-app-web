@@ -40,7 +40,7 @@ function SenderMessage(props) {
         case "record": return (
             <div className="d-flex justify-content-end mb-4">
                 <div className="msg_cotainer_send">
-                    <audio controls className="msg_cotainer_media" src={props.msgText}></audio>
+                    <audio controls className="msg_cotainer_media msg_record" src={props.msgText}></audio>
                     <span className="msg_time_send">{props.msgTime}</span>
                 </div>
                 <div className="img_cont_msg">
