@@ -13,7 +13,7 @@ function ChatWindow(props) {
 
     $(document).ready(function (event) {
 
-        $("#".concat(msgContainerId)).unbind("mousemove mouseup").on("mousemove mouseup", function (e) {
+        $("#".concat(msgContainerId)).unbind("mouseenter keydown").on("mouseenter keydown", function (e) {
             $("#".concat(msgContainerId)).animate({ scrollTop: $("#".concat(msgContainerId)).get(0).scrollHeight }, 'slow');
         });
     });
