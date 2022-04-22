@@ -45,7 +45,7 @@ If you leave the field empty, a default picture will be set to your profile(but 
 In case you select a file with diffrent format, a modal will appear to tell you about the error.
 * Add new contact - Enter username of wanted contact in order to add him to your contacts list! While typing, a dynamic message will appear along with the fiting border color to indicate if current input is: a valid username or a non exsiting username/a contact that already exist on your contacts list/your username itself.
 Once you enter a valid username, you can add him by pressing the "Enter" key or by clicking the Plus button.
-* The search button - Once you click it, you can enter text in order to dynamically filter by it. Only contacts on your contacts list that the current input is prefix to thier nickname will appear on your contacts list(not a case sensitive filter).
+* The search button - Once you click it, you can enter text in order to dynamically filter by it. Only contacts on your contacts list that the current input is substring to thier nickname will appear on your contacts list(not a case sensitive filter).
 * Sign-Off - Once clicked, a modal will appear to ask if you are sure you want to sign-out. You can choose your action by the relavent button.
 
 As for the chat itself - In order to open a chat just click on the desired contact!
@@ -67,5 +67,5 @@ The DB contains 6 hard coded users:
 * Username: rol, Password: a1, Nickname: Rollo
 * Username: ecb, Password: a1, Nickname: King Ecbert
 
-King Ragnar has an exsiting chat with all other 5.
+King Ragnar has an exsiting chat with all other 5 users.
 Every other user has an additional exsiting chat besides the one with King Ragnar.
