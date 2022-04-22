@@ -55,12 +55,12 @@ function Chat(props) {
         <div>
             <Tab.Container id="list-group-tabs" defaultActiveKey="#def">
                 <Row>
-                    <Col sm={4} className="vh-100">
+                    <Col xs={4} sm={4} md={4} lg={4} xl={3} className="vh-100">
                         <ContactsBar myUser={props.user} setUsername={props.setUsername} refreshChat={refreshChat} doSearch={doSearch}></ContactsBar>
                         <ContactListResult user={props.user} contacts={contactsList}>
                         </ContactListResult>
                     </Col>
-                    <Col sm={8}>
+                    <Col xs={8} sm={8} md={8} lg={8} xl={9}>
                         <Tab.Content>
                             {chatWindows}
                         </Tab.Content>

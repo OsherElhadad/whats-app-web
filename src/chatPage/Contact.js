@@ -1,4 +1,4 @@
-import { Col, Row, ListGroup } from "react-bootstrap"
+import { Col, Row, ListGroup } from "react-bootstrap";
 
 function Contact(props) {
 
@@ -10,10 +10,10 @@ function Contact(props) {
                 </Col>
                 <Col sm={10}>
                     <div className="d-flex justify-content-between">
-                        <h5 className="mb-1">{props.username}</h5>
+                        <h5 className="mb-1">{props.usernick}</h5>
                         <small>{props.lastTime}</small>
                     </div>
-                    <p className="mb-1">{props.lastMsg}</p>
+                    <p className="mb-1 last_msg">{props.lastMsg}</p>
                 </Col>
             </Row>
         </ListGroup.Item>

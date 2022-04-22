@@ -10,6 +10,8 @@ function SendMsgBar(props) {
 
     const btnId = props.myUser.concat("-").concat(props.username);
 
+    const msgContainerId = props.myUser.concat("-").concat(props.username).concat("-msg-container");
+
     const textMsg = useRef("");
 
     $(document).ready(function (event) {
@@ -40,7 +42,10 @@ function SendMsgBar(props) {
             props.refreshChat();
             textMsg.current.value = "";
             $("#".concat(btnId).concat("-msg")).prop('disabled', $("#".concat(btnId).concat("-msg-input")).val() === "");
+            $("#".concat(msgContainerId)).animate({ scrollTop: $("#".concat(msgContainerId)).get(0).scrollHeight }, 'slow');
         })
+
+        // disable the send button if there is no text
         $("#".concat(btnId).concat("-msg-input")).on("propertychange change keyup paste input", function () {
             $("#".concat(btnId).concat("-msg")).prop('disabled', $("#".concat(btnId).concat("-msg-input")).val() === "");
         })
