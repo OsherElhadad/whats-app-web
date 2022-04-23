@@ -50,6 +50,7 @@ Once you enter a valid username, you can add him by pressing the "Enter" key on 
 * Sign-Off - Once clicked on, a modal will appear to ask if you are sure you want to sign-out. You can choose your action by the relavent button.
 
 As for the chat itself - In order to open a chat just click on the desired contact!
+* Upon sending a new message or hoevring on the chat window, it will auto scroll to display the lastest messages in the current chat. 
 * You can send text messages by clicking on the envelope button or pressing the "Enter" key. You can't send an empty message.
 * The microphone button allows you to send a voice message. Once clicked, a popover will appear. In order to start a new recording press the "start" button and press the "stop" button to stop recording. You can hear your voice message before sending it by clicking on the play button. If you want to re-record just click again on the "start" button in order to overwrite the last message. When you are ready, you may press the send button to deliver the recording to the contact.
 When the popover is open, it will close upon a click on the microphone button/a click outside of the popover area/a click on the send record. Be aware that if you have an unsent recored that is ready to be sent, exsiting the popover will delete the record.
